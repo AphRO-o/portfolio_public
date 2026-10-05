@@ -1,0 +1,51 @@
+:root {
+  --ink: #1d1c1a;
+  --paper: #f5f2eb;
+  --line: rgba(29, 28, 26, 0.18);
+  --teach: #dc6425;
+  --write: #38735c;
+  --dev: #316da8;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, serif;
+  --sans: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; overflow: hidden; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+body::before { position: fixed; inset: 0; pointer-events: none; content: ""; opacity: 0.28; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E"); }
+
+.identity-index { position: relative; z-index: 1; display: grid; grid-template-rows: auto 1fr auto auto; width: 100%; height: 100dvh; padding: clamp(1.2rem, 3.6vw, 3.6rem) clamp(1.2rem, 5vw, 5.5rem) clamp(1rem, 2.4vw, 2.4rem); }
+.index-meta, .index-footer { display: flex; align-items: center; justify-content: space-between; color: #6c6962; font-size: clamp(0.56rem, 0.72vw, 0.7rem); letter-spacing: 0.16em; }
+.nameplate { align-self: center; }
+.nameplate p { margin: 0 0 0.1rem 0.5vw; color: #77736c; font-size: clamp(0.58rem, 0.8vw, 0.78rem); letter-spacing: 0.32em; }
+.nameplate h1 { margin: 0; font-family: var(--serif); font-size: clamp(5.2rem, 14.3vw, 13.7rem); font-weight: 500; line-height: 0.92; letter-spacing: -0.085em; white-space: nowrap; }
+
+.identity-nav { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.identity-link { --identity-color: var(--ink); position: relative; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: clamp(0.7rem, 1.5vw, 1.4rem); min-height: clamp(105px, 16vh, 150px); padding: 1rem clamp(0.8rem, 1.8vw, 1.8rem); color: inherit; text-decoration: none; transition: color 0.25s, background 0.25s; }
+.identity-link + .identity-link { border-left: 1px solid var(--line); }
+.identity-link.teach { --identity-color: var(--teach); }.identity-link.write { --identity-color: var(--write); }.identity-link.dev { --identity-color: var(--dev); }
+.identity-link::before { position: absolute; inset: 0; z-index: -1; content: ""; background: var(--identity-color); transform: scaleY(0); transform-origin: bottom; transition: transform 0.35s cubic-bezier(.2,.8,.25,1); }
+.identity-link:hover, .identity-link:focus-visible { color: white; outline: none; }
+.identity-link:hover::before, .identity-link:focus-visible::before { transform: scaleY(1); }
+.identity-number { align-self: start; color: #8c8880; font-size: 0.57rem; transition: color 0.25s; }
+.identity-main { display: grid; }
+.identity-main small { color: var(--identity-color); font-size: clamp(0.53rem, 0.65vw, 0.65rem); font-weight: 800; letter-spacing: 0.15em; transition: color 0.25s; }
+.identity-main strong { margin-top: 0.15rem; font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 600; }
+.identity-signature { font-family: var(--serif); font-size: clamp(0.9rem, 1.3vw, 1.2rem); }
+.identity-arrow { font-size: 1.2rem; }
+.identity-link:hover .identity-number, .identity-link:hover .identity-main small, .identity-link:focus-visible .identity-number, .identity-link:focus-visible .identity-main small { color: rgba(255,255,255,0.68); }
+.index-footer { justify-content: flex-end; padding-top: clamp(0.8rem, 1.8vw, 1.5rem); letter-spacing: 0.07em; }
+.index-footer a { color: inherit; text-underline-offset: 0.25rem; }
+
+@media (max-width: 700px) {
+  .identity-index { grid-template-rows: auto minmax(120px, 0.75fr) 1.65fr auto; }
+  .nameplate h1 { font-size: clamp(4.2rem, 22vw, 7rem); }
+  .identity-nav { grid-template-columns: 1fr; }
+  .identity-link { min-height: 0; grid-template-columns: 26px 1fr auto auto; }
+  .identity-link + .identity-link { border-top: 1px solid var(--line); border-left: 0; }
+  .identity-main strong { font-size: clamp(1.45rem, 7vw, 2rem); }
+  .index-footer > span { display: none; }
+  .index-footer { justify-content: flex-end; }
+}
+
+@media (prefers-reduced-motion: reduce) { .identity-link, .identity-link::before { transition: none; } }

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="从小学到高中的沪教版数学课程认知地图，按知识领域串联课程并记录备课、试讲与教案版本。" />
+    <meta name="theme-color" content="#a84316" />
+    <title>数学课程地图｜数学备课实验室</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/curriculum.css" />
+    <script src="/curriculum-data.js" defer></script>
+    <script src="/curriculum.js" defer></script>
+  </head>
+  <body class="curriculum-page">
+    <a class="skip-link" href="#roadmap">跳到课程地图</a>
+    <header class="map-header" data-header>
+      <a class="map-brand" href="/teach" aria-label="返回数学教师作品集">
+        <span class="brand-mark" aria-hidden="true">∑</span>
+        <span><strong>小学至高中数学课程地图</strong><small>沪教版 · MATHEMATICS KNOWLEDGE MAP</small></span>
+      </a>
+      <label class="map-search">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" autocomplete="off" placeholder="搜索小知识点" aria-label="搜索小知识点" data-topic-search />
+        <output data-search-count aria-live="polite"></output>
+      </label>
+      <div class="header-filters domain-filters" role="group" aria-label="按数学领域筛选" data-filters></div>
+      <div class="map-actions" aria-label="地图视图控制">
+        <button type="button" data-zoom-out aria-label="缩小地图">−</button>
+        <span data-zoom-label aria-live="polite">30%</span>
+        <button type="button" data-zoom-in aria-label="放大地图">＋</button>
+        <button class="reset-view" type="button" data-reset-view>复位</button>
+        <a href="/teach">教学主页</a>
+      </div>
+    </header>
+
+    <main class="map-workspace" id="roadmap">
+      <div class="map-viewport" data-map-viewport aria-label="可缩放和平移的数学课程地图">
+        <div class="map-canvas" data-map-canvas>
+          <div class="stage-bands" data-stage-bands></div>
+          <div class="grade-grid" data-grade-grid></div>
+        </div>
+      </div>
+      <div class="map-hud">
+        <div class="map-legend" aria-label="地图图例">
+          <span><i class="stage-dot primary"></i>小学</span><span><i class="stage-dot junior"></i>初中</span><span><i class="stage-dot senior"></i>高中</span>
+          <span><i class="status-swatch pending"></i>未备</span><span><i class="status-swatch planning"></i>规划中</span>
+        </div>
+        <div class="map-progress" data-stats aria-live="polite"></div>
+      </div>
+      <div class="map-help">滚轮缩放 · 拖拽移动 · 概览中点击章节聚焦</div>
+    </main>
+
+    <dialog class="lesson-dialog" data-lesson-dialog>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="关闭">×</button>
+      <div data-dialog-content></div>
+    </dialog>
+
+  </body>
+</html>
