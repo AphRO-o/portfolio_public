@@ -26,8 +26,20 @@ let activeCategory = "all";
 let filterMode = "all";
 let currentLesson = null;
 const view = { x: 0, y: 0, scale: 0.3 };
-const drag = { active: false, id: null, x: 0, y: 0 };
+const pointers = new Map();
+const gesture = {
+  mode: "idle",
+  primaryId: null,
+  lastX: 0,
+  lastY: 0,
+  lastCenterX: 0,
+  lastCenterY: 0,
+  lastDistance: 0,
+  moved: false,
+  suppressClickUntil: 0
+};
 const MIN_SCALE = 0.3;
+const MAX_SCALE = 1.65;
 const UNIT_FOCUS_SCALE = 1.2;
 
 
@@ -398,7 +410,7 @@ function zoomAt(clientX, clientY, factor) {
   const localX = clientX - rect.left;
   const localY = clientY - rect.top;
   const oldScale = view.scale;
-  const nextScale = Math.min(1.65, Math.max(MIN_SCALE, oldScale * factor));
+  const nextScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, oldScale * factor));
   if (Math.abs(nextScale - oldScale) < 0.001) return;
   const mapX = (localX - view.x) / oldScale;
   const mapY = (localY - view.y) / oldScale;
@@ -440,36 +452,132 @@ mapViewport.addEventListener("wheel", (event) => {
   zoomAt(event.clientX, event.clientY, Math.exp(-event.deltaY * 0.00135));
 }, { passive: false });
 
-mapViewport.addEventListener("pointerdown", (event) => {
-  if (event.button !== 0 || event.target.closest("button")) return;
-  event.preventDefault();
-  drag.active = true;
-  drag.id = event.pointerId;
-  drag.x = event.clientX;
-  drag.y = event.clientY;
+function pairMetrics() {
+  const [first, second] = [...pointers.values()];
+  if (!first || !second) return null;
+  return {
+    x: (first.x + second.x) / 2,
+    y: (first.y + second.y) / 2,
+    distance: Math.max(1, Math.hypot(second.x - first.x, second.y - first.y))
+  };
+}
+
+function capturePointer(pointer) {
+  if (!pointer || pointer.captured) return;
+  try {
+    mapViewport.setPointerCapture(pointer.id);
+    pointer.captured = true;
+  } catch {}
+}
+
+function beginPinch() {
+  const metrics = pairMetrics();
+  if (!metrics) return;
+  pointers.forEach(capturePointer);
+  gesture.mode = "pinch";
+  gesture.lastCenterX = metrics.x;
+  gesture.lastCenterY = metrics.y;
+  gesture.lastDistance = metrics.distance;
+  gesture.moved = true;
   mapViewport.classList.add("is-dragging");
-  mapViewport.setPointerCapture(event.pointerId);
+}
+
+mapViewport.addEventListener("pointerdown", (event) => {
+  if (event.pointerType === "mouse" && (event.button !== 0 || event.target.closest("button"))) return;
+  const pointer = {
+    id: event.pointerId,
+    x: event.clientX,
+    y: event.clientY,
+    captured: false,
+    startedOnButton: Boolean(event.target.closest("button"))
+  };
+  pointers.set(event.pointerId, pointer);
+  if (event.pointerType === "mouse" || !pointer.startedOnButton) capturePointer(pointer);
+
+  if (pointers.size >= 2) {
+    event.preventDefault();
+    beginPinch();
+    return;
+  }
+
+  gesture.mode = "pan";
+  gesture.primaryId = event.pointerId;
+  gesture.lastX = event.clientX;
+  gesture.lastY = event.clientY;
+  gesture.moved = false;
 });
 
 mapViewport.addEventListener("pointermove", (event) => {
-  if (!drag.active || drag.id !== event.pointerId) return;
-  view.x += event.clientX - drag.x;
-  view.y += event.clientY - drag.y;
-  drag.x = event.clientX;
-  drag.y = event.clientY;
+  if (!pointers.has(event.pointerId)) return;
+  const pointer = pointers.get(event.pointerId);
+  pointer.x = event.clientX;
+  pointer.y = event.clientY;
+
+  if (pointers.size >= 2) {
+    event.preventDefault();
+    const metrics = pairMetrics();
+    if (!metrics) return;
+    if (gesture.mode !== "pinch") {
+      beginPinch();
+      return;
+    }
+    view.x += metrics.x - gesture.lastCenterX;
+    view.y += metrics.y - gesture.lastCenterY;
+    const factor = Math.min(1.18, Math.max(0.85, metrics.distance / gesture.lastDistance));
+    gesture.lastCenterX = metrics.x;
+    gesture.lastCenterY = metrics.y;
+    gesture.lastDistance = metrics.distance;
+    gesture.moved = true;
+    zoomAt(metrics.x, metrics.y, factor);
+    return;
+  }
+
+  if (gesture.mode !== "pan" || gesture.primaryId !== event.pointerId) return;
+  const deltaX = event.clientX - gesture.lastX;
+  const deltaY = event.clientY - gesture.lastY;
+  gesture.lastX = event.clientX;
+  gesture.lastY = event.clientY;
+  if (!gesture.moved && Math.hypot(deltaX, deltaY) < 3) return;
+  event.preventDefault();
+  capturePointer(pointer);
+  gesture.moved = true;
+  mapViewport.classList.add("is-dragging");
+  view.x += deltaX;
+  view.y += deltaY;
   applyView();
 });
 
-function finishDrag(event) {
-  if (!drag.active || drag.id !== event.pointerId) return;
-  drag.active = false;
-  drag.id = null;
-  mapViewport.classList.remove("is-dragging");
+function finishGesture(event) {
+  if (!pointers.has(event.pointerId)) return;
+  const shouldSuppressClick = gesture.moved || gesture.mode === "pinch" || pointers.size > 1;
+  pointers.delete(event.pointerId);
   if (mapViewport.hasPointerCapture(event.pointerId)) mapViewport.releasePointerCapture(event.pointerId);
+  if (shouldSuppressClick) gesture.suppressClickUntil = performance.now() + 450;
+
+  const remaining = [...pointers.values()][0];
+  if (remaining) {
+    gesture.mode = "pan";
+    gesture.primaryId = remaining.id;
+    gesture.lastX = remaining.x;
+    gesture.lastY = remaining.y;
+    gesture.moved = shouldSuppressClick;
+    return;
+  }
+
+  gesture.mode = "idle";
+  gesture.primaryId = null;
+  gesture.moved = false;
+  mapViewport.classList.remove("is-dragging");
 }
 
-mapViewport.addEventListener("pointerup", finishDrag);
-mapViewport.addEventListener("pointercancel", finishDrag);
+mapViewport.addEventListener("pointerup", finishGesture);
+mapViewport.addEventListener("pointercancel", finishGesture);
+mapViewport.addEventListener("lostpointercapture", finishGesture);
+mapViewport.addEventListener("click", (event) => {
+  if (performance.now() >= gesture.suppressClickUntil) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+}, true);
 
 zoomInButton.addEventListener("click", () => {
   const rect = mapViewport.getBoundingClientRect();

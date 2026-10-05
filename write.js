@@ -48,6 +48,21 @@ function markdownToHtml(markdown) {
   return html.join("");
 }
 
+function lockedArticleToHtml(article) {
+  const widths = [94, 82, 89, 68, 91, 76, 86, 57];
+  return (article.segments || []).map((segment, segmentIndex) => {
+    if (segment.type === "public") {
+      return `<section class="locked-public">${markdownToHtml(segment.markdown || "")}</section>`;
+    }
+    const blocks = Math.max(1, Math.min(7, Number(segment.blocks) || 1));
+    const lines = Array.from({ length: blocks * 3 + 1 }, (_, lineIndex) => {
+      const width = widths[(segmentIndex * 3 + lineIndex) % widths.length];
+      return `<i style="--locked-line:${width}%"></i>`;
+    }).join("");
+    return `<section class="locked-copy" aria-label="此段正文暂未公开"><div class="locked-copy-glass" aria-hidden="true">${lines}</div><span class="locked-copy-note">正文暂未公开</span></section>`;
+  }).join("");
+}
+
 function showArticle(id, updateUrl = true) {
   const article = library.find((item) => item.id === id) || library[0];
   if (!article) return;
@@ -55,7 +70,8 @@ function showArticle(id, updateUrl = true) {
   authorNode.textContent = article.author || "未署名";
   yearNode.textContent = article.year || "未标日期";
   dateNode.textContent = article.date && article.date !== String(article.year) ? article.date : "";
-  bodyNode.innerHTML = markdownToHtml(article.markdown);
+  bodyNode.classList.toggle("is-locked", Boolean(article.locked));
+  bodyNode.innerHTML = article.locked ? lockedArticleToHtml(article) : markdownToHtml(article.markdown || "");
   listRoot.querySelectorAll("[data-article-id]").forEach((button) => button.classList.toggle("is-active", button.dataset.articleId === article.id));
   pane.scrollTo({ top: 0, behavior: "smooth" });
   if (updateUrl) history.replaceState(null, "", `/write?article=${encodeURIComponent(article.id)}`);
