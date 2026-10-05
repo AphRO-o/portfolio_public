@@ -4,6 +4,8 @@ const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const dialog = document.querySelector("[data-lesson-dialog]");
 const dialogContent = document.querySelector("[data-dialog-content]");
+const mapExplorer = document.querySelector("[data-map-explorer]");
+const mapFrame = document.querySelector("[data-map-frame]");
 const statusLabels = { pending: "尚未备课", planning: "已进入规划", drafted: "已有教案", recorded: "已完成试讲" };
 let currentLesson = null;
 
@@ -83,9 +85,12 @@ function animateVersionPanel(panel) {
 function renderVersionPanel(version) {
   const panel = dialogContent.querySelector("[data-version-panel]");
   if (!panel) return;
+  const shouldAnimate = panel.dataset.ready === "true";
+  panel.dataset.ready = "true";
+  panel.classList.remove("is-loading");
   if (version.state === "empty") {
     panel.innerHTML = `<div class="empty-version"><span aria-hidden="true">＋</span><h3>${escapeHtml(version.label)}</h3><p>这个版本尚未创建。完成后会加入视频、教案、板书和复盘。</p></div>`;
-    animateVersionPanel(panel);
+    if (shouldAnimate) animateVersionPanel(panel);
     return;
   }
   const videoContent = version.video
@@ -98,7 +103,7 @@ function renderVersionPanel(version) {
     ? `<p class="plan-kicker">LESSON ARCHIVE</p><div class="lesson-version-meta">${[version.date, version.duration, version.format].filter(Boolean).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>${version.designMarkdown ? `<section class="lesson-document"><h3>教学设计</h3><div class="lesson-markdown">${markdownToSafeHtml(version.designMarkdown)}</div></section>` : ""}${version.reflectionMarkdown ? `<section class="lesson-document reflection"><h3>本版复盘</h3><div class="lesson-markdown">${markdownToSafeHtml(version.reflectionMarkdown)}</div></section>` : ""}`
     : `<p class="plan-kicker">LESSON DESIGN</p><div class="plan-row"><span>核心问题</span><p>${escapeHtml(version.question || "待补充")}</p></div><div class="plan-row"><span>学习目标</span><p>${escapeHtml(version.objective || "待补充")}</p></div><div class="plan-row"><span>设计路径</span><p>${escapeHtml(version.design || "待补充")}</p></div><div class="plan-row"><span>板书思路</span><p>${escapeHtml(version.board || "待补充")}</p></div>${version.reflection ? `<div class="plan-row"><span>课后复盘</span><p>${escapeHtml(version.reflection)}</p></div>` : ""}`;
   panel.innerHTML = `<div class="version-layout"><section class="video-slot">${videoContent}</section><section class="lesson-plan">${lessonContent}${lessonFile}${boardImage}</section></div>`;
-  animateVersionPanel(panel);
+  if (shouldAnimate) animateVersionPanel(panel);
 }
 
 function selectVersion(versionId) {
@@ -115,11 +120,13 @@ function openLesson(lesson) {
   const category = data.categories[lesson.unit.category];
   const thought = lesson.point.thought || lesson.unit.thought || "第一次读教材和试讲后补充这里的追问。";
   const versions = lessonVersions(lesson);
-  dialogContent.innerHTML = `<article class="lesson-dialog-inner" style="--dialog-stage:${stage.color}"><header class="lesson-dialog-header"><div class="lesson-breadcrumb">${stage.label}数学 / ${escapeHtml(lesson.grade.label)} / ${escapeHtml(termDisplayLabel(lesson.grade, lesson.semester))} / ${category.label}</div><h2>${escapeHtml(lesson.point.title)}</h2><div class="lesson-submeta"><span>${escapeHtml(lesson.unit.title)}</span><span class="lesson-state ${lesson.point.status}">${statusLabels[lesson.point.status]}</span></div></header><aside class="thought-note"><span>我的吐槽 / 追问</span><p>${escapeHtml(thought)}</p></aside><div class="version-tabs" role="tablist" aria-label="课例版本">${versions.map((version, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(version.id)}" aria-selected="${index === 0}">${escapeHtml(version.label)}${version.state === "empty" ? " · 待创建" : ""}</button>`).join("")}</div><div class="version-panel" data-version-panel role="tabpanel"></div></article>`;
+  dialogContent.innerHTML = `<article class="lesson-dialog-inner" style="--dialog-stage:${stage.color}"><header class="lesson-dialog-header"><div class="lesson-breadcrumb">${stage.label}数学 / ${escapeHtml(lesson.grade.label)} / ${escapeHtml(termDisplayLabel(lesson.grade, lesson.semester))} / ${category.label}</div><h2>${escapeHtml(lesson.point.title)}</h2><div class="lesson-submeta"><span>${escapeHtml(lesson.unit.title)}</span><span class="lesson-state ${lesson.point.status}">${statusLabels[lesson.point.status]}</span></div></header><aside class="thought-note"><span>我的吐槽 / 追问</span><p>${escapeHtml(thought)}</p></aside><div class="version-tabs" role="tablist" aria-label="课例版本">${versions.map((version, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(version.id)}" aria-selected="${index === 0}">${escapeHtml(version.label)}${version.state === "empty" ? " · 待创建" : ""}</button>`).join("")}</div><div class="version-panel is-loading" data-version-panel role="tabpanel"><div class="panel-loading">正在展开课例…</div></div></article>`;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
   dialog.showModal();
-  requestAnimationFrame(() => renderVersionPanel(versions[0]));
+  window.setTimeout(() => {
+    if (dialog.open && currentLesson === lesson) renderVersionPanel(versions[0]);
+  }, 180);
 }
 
 function closeLessonDialog() {
@@ -129,23 +136,44 @@ function closeLessonDialog() {
   window.setTimeout(() => { dialog.close(); dialog.classList.remove("is-closing"); }, 180);
 }
 
+function openMapExplorer(unitId) {
+  if (!mapExplorer || !mapFrame || !unitId) return;
+  mapFrame.src = `/curriculum?embed=1&unit=${encodeURIComponent(unitId)}`;
+  mapExplorer.showModal();
+}
+
+function closeMapExplorer() {
+  if (!mapExplorer?.open) return;
+  mapExplorer.close();
+}
+
 function renderMiniMap() {
   const map = document.querySelector("[data-mini-map]");
   if (!map) return;
   const allUnits = [];
-  const rows = Object.keys(data.stages).map((stageId) => {
-    const stage = data.stages[stageId];
-    const grades = data.grades.filter((grade) => grade.stage === stageId);
-    return `<section class="mini-stage-row" style="--mini-stage:${stage.color}"><strong>${stage.label}</strong><div class="mini-grade-groups">${grades.map((grade) => `<div class="mini-grade-group"><span>${grade.label}</span><div class="mini-units">${grade.terms.flatMap((semester) => semester.units.map((unit) => {
+  const stageBands = Object.entries(data.stages).map(([stageId, stage]) => {
+    const gradeCount = data.grades.filter((grade) => grade.stage === stageId).length;
+    return `<div class="mini-overview-stage ${stageId}" style="--mini-stage:${stage.color};--stage-span:${gradeCount}"><strong>${stage.label}数学</strong><span>${stage.years}</span></div>`;
+  }).join("");
+  const grades = data.grades.map((grade) => {
+    const stage = data.stages[grade.stage];
+    const terms = grade.terms.map((semester) => `<section class="mini-column-term"><header><strong>${escapeHtml(termDisplayLabel(grade, semester))}</strong><span>${semester.units.length} units</span></header><div class="mini-column-units">${semester.units.map((unit) => {
       const started = unit.points.some((point) => point.status !== "pending");
       allUnits.push({ unit, started });
-      return `<a class="mini-unit ${started ? "is-started" : ""}" href="/curriculum?unit=${encodeURIComponent(unit.id)}" aria-label="在完整地图聚焦：${escapeHtml(grade.label)} ${escapeHtml(unit.title)}">${escapeHtml(unit.title)}</a>`;
-    })).join("")}</div></div>`).join("")}</div></section>`;
+      return `<a class="mini-unit ${started ? "is-started" : ""}" href="/curriculum?unit=${encodeURIComponent(unit.id)}" data-map-unit="${escapeHtml(unit.id)}" style="--mini-stage:${stage.color}" aria-label="展开完整地图并聚焦：${escapeHtml(grade.label)} ${escapeHtml(termDisplayLabel(grade, semester))} ${escapeHtml(unit.title)}"><strong>${escapeHtml(unit.title)}</strong></a>`;
+    }).join("")}</div></section>`).join("");
+    return `<article class="mini-overview-grade" style="--mini-stage:${stage.color}"><header class="mini-overview-grade-head"><div><strong>${escapeHtml(grade.label)}</strong><small>${escapeHtml(stage.label)}数学</small></div><span>${escapeHtml(grade.code)}</span></header>${terms}</article>`;
   }).join("");
-  map.innerHTML = rows;
+  map.innerHTML = `<div class="mini-overview-canvas"><div class="mini-overview-bands">${stageBands}</div><div class="mini-overview-grades">${grades}</div></div>`;
   const started = allUnits.filter((item) => item.started).length;
   document.querySelector("[data-mini-progress]").textContent = `${allUnits.length} 个单元 · ${started} 个已开始`;
 
+  map.querySelectorAll("[data-map-unit]").forEach((unit) => unit.addEventListener("click", (event) => {
+    event.preventDefault();
+    openMapExplorer(unit.dataset.mapUnit);
+  }));
+
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   const nodes = [...map.querySelectorAll(".mini-unit")];
   let nodeCenters = [];
   const measureNodes = () => {
@@ -167,10 +195,10 @@ function renderMiniMap() {
       const dx = x - pointerX;
       const dy = y - pointerY;
       const distance = Math.hypot(dx, dy);
-      const proximity = Math.max(0, 1 - distance / 128);
+      const proximity = Math.max(0, 1 - distance / 210);
       const isCenter = node === centerNode;
-      const scale = 1 + Math.pow(proximity, 1.45) * 1.45;
-      const push = isCenter || distance < 1 ? 0 : Math.pow(proximity, 1.25) * 15;
+      const scale = 1 + Math.pow(proximity, 1.35) * 0.9;
+      const push = isCenter || distance < 1 ? 0 : Math.pow(proximity, 1.2) * 22;
       const scaledHalfWidth = width * scale / 2;
       const scaledHalfHeight = height * scale / 2;
       const safeX = Math.min(mapRect.width - scaledHalfWidth - 6, Math.max(scaledHalfWidth + 6, x));
@@ -196,6 +224,21 @@ function renderMiniMap() {
   });
 }
 
+function setupFeaturedLessons() {
+  const tabs = [...document.querySelectorAll("[data-featured-stage]")];
+  const panels = [...document.querySelectorAll("[data-featured-panel]")];
+  tabs.forEach((tab) => tab.addEventListener("click", () => {
+    const stage = tab.dataset.featuredStage;
+    tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
+    panels.forEach((panel) => {
+      const inactive = panel.dataset.featuredPanel !== stage;
+      panel.classList.toggle("is-inactive", inactive);
+      panel.toggleAttribute("inert", inactive);
+      panel.setAttribute("aria-hidden", String(inactive));
+    });
+  }));
+}
+
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
 window.addEventListener("scroll", () => header.classList.toggle("is-scrolled", window.scrollY > 24), { passive: true });
 menuButton.addEventListener("click", () => { const nextState = menuButton.getAttribute("aria-expanded") !== "true"; menuButton.setAttribute("aria-expanded", String(nextState)); nav.classList.toggle("is-open", nextState); });
@@ -204,7 +247,10 @@ document.querySelectorAll("[data-open-topic]").forEach((button) => button.addEve
 document.querySelector("[data-close-dialog]").addEventListener("click", closeLessonDialog);
 dialog.addEventListener("click", (event) => { if (event.target === dialog) closeLessonDialog(); });
 dialog.addEventListener("cancel", (event) => { event.preventDefault(); closeLessonDialog(); });
+document.querySelector("[data-close-map]")?.addEventListener("click", closeMapExplorer);
+mapExplorer?.addEventListener("cancel", (event) => { event.preventDefault(); closeMapExplorer(); });
 renderMiniMap();
+setupFeaturedLessons();
 
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); } }), { threshold: 0.1 });
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));

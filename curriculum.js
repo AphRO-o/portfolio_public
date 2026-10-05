@@ -36,11 +36,13 @@ const gesture = {
   lastCenterY: 0,
   lastDistance: 0,
   moved: false,
-  suppressClickUntil: 0
+  suppressClickUntil: 0,
+  tapTarget: null
 };
 const MIN_SCALE = 0.3;
 const MAX_SCALE = 1.65;
 const UNIT_FOCUS_SCALE = 1.2;
+const mapBounds = { viewportWidth: 0, viewportHeight: 0, canvasWidth: 0, canvasHeight: 0 };
 
 
 function escapeHtml(value) {
@@ -101,6 +103,8 @@ function flattenTopics() {
   return topics;
 }
 
+const topicLookup = new Map(flattenTopics().map((topic) => [topic.id, topic]));
+
 function renderFilters() {
   filtersRoot.innerHTML = Object.entries(data.categories).map(([id, category]) => {
     const isActive = id === activeCategory && filterMode !== "all";
@@ -155,8 +159,7 @@ function renderGrades() {
       </section>`;
   }).join("");
 
-  const lookup = new Map(flattenTopics().map((topic) => [topic.id, topic]));
-  gradeGrid.querySelectorAll("[data-topic-id]").forEach((button) => button.addEventListener("click", () => openLesson(lookup.get(button.dataset.topicId))));
+  gradeGrid.querySelectorAll("[data-topic-id]").forEach((button) => button.addEventListener("click", () => openLesson(topicLookup.get(button.dataset.topicId))));
   gradeGrid.querySelectorAll(".unit-focus-button").forEach((button) => button.addEventListener("click", () => focusUnit(button.closest(".unit-card"))));
 }
 
@@ -240,6 +243,7 @@ function applyFilterState() {
     semester.classList.toggle("is-filtered-out", filterMode === "compact" && !hasActiveUnit);
   });
   updateStats();
+  refreshMapBounds();
   applyView();
   animateFilterLayout(previousPositions);
   applySearch(topicSearch.value);
@@ -290,6 +294,9 @@ function lessonVersions(lesson) {
 function renderVersionPanel(version) {
   const panel = dialogContent.querySelector("[data-version-panel]");
   if (!panel) return;
+  const shouldAnimate = panel.dataset.ready === "true";
+  panel.dataset.ready = "true";
+  panel.classList.remove("is-loading");
   if (version.state === "empty") {
     panel.innerHTML = `
       <div class="empty-version">
@@ -297,7 +304,7 @@ function renderVersionPanel(version) {
         <h3>${escapeHtml(version.label)}</h3>
         <p>这个版本尚未创建。完成后可在数据文件中加入视频地址、教案内容、板书和复盘。</p>
       </div>`;
-    animateVersionPanel(panel);
+    if (shouldAnimate) animateVersionPanel(panel);
     return;
   }
   const videoContent = version.video
@@ -314,7 +321,7 @@ function renderVersionPanel(version) {
     ? `<p class="plan-kicker">LESSON ARCHIVE</p><div class="lesson-version-meta">${[version.date, version.duration, version.format].filter(Boolean).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>${version.designMarkdown ? `<section class="lesson-document"><h3>教学设计</h3><div class="lesson-markdown">${markdownToSafeHtml(version.designMarkdown)}</div></section>` : ""}${version.reflectionMarkdown ? `<section class="lesson-document reflection"><h3>本版复盘</h3><div class="lesson-markdown">${markdownToSafeHtml(version.reflectionMarkdown)}</div></section>` : ""}`
     : `<p class="plan-kicker">LESSON DESIGN</p><div class="plan-row"><span>核心问题</span><p>${escapeHtml(version.question || "待补充")}</p></div><div class="plan-row"><span>学习目标</span><p>${escapeHtml(version.objective || "待补充")}</p></div><div class="plan-row"><span>设计路径</span><p>${escapeHtml(version.design || "待补充")}</p></div><div class="plan-row"><span>板书思路</span><p>${escapeHtml(version.board || "待补充")}</p></div>${version.reflection ? `<div class="plan-row"><span>课后复盘</span><p>${escapeHtml(version.reflection)}</p></div>` : ""}`;
   panel.innerHTML = `<div class="version-layout"><section class="video-slot">${videoContent}</section><section class="lesson-plan">${lessonContent}${lessonFile}${boardImage}</section></div>`;
-  animateVersionPanel(panel);
+  if (shouldAnimate) animateVersionPanel(panel);
 }
 
 function animateVersionPanel(panel) {
@@ -350,12 +357,14 @@ function openLesson(lesson) {
       <div class="version-tabs" role="tablist" aria-label="课例版本">
         ${versions.map((version, index) => `<button type="button" role="tab" data-version-id="${version.id}" aria-selected="${index === 0}">${escapeHtml(version.label)}${version.state === "empty" ? " · 待创建" : ""}</button>`).join("")}
       </div>
-      <div class="version-panel" data-version-panel role="tabpanel"></div>
+      <div class="version-panel is-loading" data-version-panel role="tabpanel"><div class="panel-loading">正在展开课例…</div></div>
     </article>`;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
   dialog.showModal();
-  requestAnimationFrame(() => renderVersionPanel(versions[0]));
+  window.setTimeout(() => {
+    if (dialog.open && currentLesson === lesson) renderVersionPanel(versions[0]);
+  }, 180);
 }
 
 function closeLessonDialog() {
@@ -372,22 +381,31 @@ function closeLessonDialog() {
 }
 
 function constrainView() {
-  const rect = mapViewport.getBoundingClientRect();
-  const scaledWidth = canvas.offsetWidth * view.scale;
-  const scaledHeight = canvas.offsetHeight * view.scale;
-  const marginX = rect.width / 2;
-  const marginY = rect.height / 2;
-  view.x = scaledWidth <= rect.width
-    ? (rect.width - scaledWidth) / 2
-    : Math.min(marginX, Math.max(rect.width - scaledWidth - marginX, view.x));
-  view.y = scaledHeight <= rect.height
-    ? (rect.height - scaledHeight) / 2
-    : Math.min(marginY, Math.max(rect.height - scaledHeight - marginY, view.y));
+  if (!mapBounds.viewportWidth || !mapBounds.canvasWidth) refreshMapBounds();
+  const scaledWidth = mapBounds.canvasWidth * view.scale;
+  const scaledHeight = mapBounds.canvasHeight * view.scale;
+  const marginX = mapBounds.viewportWidth / 2;
+  const marginY = mapBounds.viewportHeight / 2;
+  view.x = scaledWidth <= mapBounds.viewportWidth
+    ? (mapBounds.viewportWidth - scaledWidth) / 2
+    : Math.min(marginX, Math.max(mapBounds.viewportWidth - scaledWidth - marginX, view.x));
+  view.y = scaledHeight <= mapBounds.viewportHeight
+    ? (mapBounds.viewportHeight - scaledHeight) / 2
+    : Math.min(marginY, Math.max(mapBounds.viewportHeight - scaledHeight - marginY, view.y));
+}
+
+function refreshMapBounds() {
+  mapBounds.viewportWidth = mapViewport.clientWidth;
+  mapBounds.viewportHeight = mapViewport.clientHeight;
+  mapBounds.canvasWidth = canvas.offsetWidth;
+  mapBounds.canvasHeight = canvas.offsetHeight;
 }
 
 function applyView() {
   const nextZoomLevel = view.scale < 0.6 ? "overview" : "detail";
+  const zoomLevelChanged = canvas.dataset.zoomLevel !== nextZoomLevel;
   canvas.dataset.zoomLevel = nextZoomLevel;
+  if (zoomLevelChanged) refreshMapBounds();
   if (mapHelp) {
     mapHelp.textContent = nextZoomLevel === "overview"
       ? "概览模式 · 单击章节自动聚焦"
@@ -399,6 +417,7 @@ function applyView() {
 }
 
 function resetView() {
+  clearContextFocus(true);
   view.scale = MIN_SCALE;
   view.x = 0;
   view.y = 0;
@@ -420,8 +439,22 @@ function zoomAt(clientX, clientY, factor) {
   applyView();
 }
 
+function clearContextFocus(instant = false) {
+  if (instant) canvas.classList.add("is-context-clearing");
+  canvas.classList.remove("is-context-focused");
+  gradeGrid.querySelectorAll(".unit-card.is-context-focus").forEach((unit) => unit.classList.remove("is-context-focus"));
+  if (instant) requestAnimationFrame(() => canvas.classList.remove("is-context-clearing"));
+}
+
+function setContextFocus(unit) {
+  clearContextFocus();
+  unit.classList.add("is-context-focus");
+  canvas.classList.add("is-context-focused");
+}
+
 function focusUnit(unit) {
   if (!unit || canvas.dataset.zoomLevel !== "overview") return;
+  setContextFocus(unit);
   canvas.dataset.zoomLevel = "detail";
   if (mapHelp) mapHelp.textContent = "滚轮缩放 · 拖拽移动 · 复位可返回全图";
   requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -443,12 +476,14 @@ function focusUnit(unit) {
       view.x += finalViewportRect.left + finalViewportRect.width / 2 - (finalUnitRect.left + finalUnitRect.width / 2);
       view.y += finalViewportRect.top + finalViewportRect.height / 2 - (finalUnitRect.top + finalUnitRect.height / 2);
       canvas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+      refreshMapBounds();
     }, 460);
   }));
 }
 
 mapViewport.addEventListener("wheel", (event) => {
   event.preventDefault();
+  clearContextFocus(true);
   zoomAt(event.clientX, event.clientY, Math.exp(-event.deltaY * 0.00135));
 }, { passive: false });
 
@@ -483,6 +518,7 @@ function beginPinch() {
 }
 
 mapViewport.addEventListener("pointerdown", (event) => {
+  if (canvas.classList.contains("is-context-focused")) clearContextFocus(true);
   if (event.pointerType === "mouse" && (event.button !== 0 || event.target.closest("button"))) return;
   const pointer = {
     id: event.pointerId,
@@ -492,7 +528,13 @@ mapViewport.addEventListener("pointerdown", (event) => {
     startedOnButton: Boolean(event.target.closest("button"))
   };
   pointers.set(event.pointerId, pointer);
-  if (event.pointerType === "mouse" || !pointer.startedOnButton) capturePointer(pointer);
+  gesture.tapTarget = event.target.closest("button");
+  if (event.pointerType !== "mouse") {
+    event.preventDefault();
+    capturePointer(pointer);
+  } else {
+    capturePointer(pointer);
+  }
 
   if (pointers.size >= 2) {
     event.preventDefault();
@@ -550,6 +592,7 @@ mapViewport.addEventListener("pointermove", (event) => {
 function finishGesture(event) {
   if (!pointers.has(event.pointerId)) return;
   const shouldSuppressClick = gesture.moved || gesture.mode === "pinch" || pointers.size > 1;
+  const tapTarget = !shouldSuppressClick && pointers.size === 1 ? gesture.tapTarget : null;
   pointers.delete(event.pointerId);
   if (mapViewport.hasPointerCapture(event.pointerId)) mapViewport.releasePointerCapture(event.pointerId);
   if (shouldSuppressClick) gesture.suppressClickUntil = performance.now() + 450;
@@ -567,7 +610,13 @@ function finishGesture(event) {
   gesture.mode = "idle";
   gesture.primaryId = null;
   gesture.moved = false;
+  gesture.tapTarget = null;
   mapViewport.classList.remove("is-dragging");
+  if (tapTarget) {
+    gesture.suppressClickUntil = performance.now() + 450;
+    if (tapTarget.matches("[data-topic-id]")) openLesson(topicLookup.get(tapTarget.dataset.topicId));
+    if (tapTarget.matches(".unit-focus-button")) focusUnit(tapTarget.closest(".unit-card"));
+  }
 }
 
 mapViewport.addEventListener("pointerup", finishGesture);
@@ -580,14 +629,23 @@ mapViewport.addEventListener("click", (event) => {
 }, true);
 
 zoomInButton.addEventListener("click", () => {
+  clearContextFocus(true);
   const rect = mapViewport.getBoundingClientRect();
   zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 1.16);
 });
 zoomOutButton.addEventListener("click", () => {
+  clearContextFocus(true);
   const rect = mapViewport.getBoundingClientRect();
   zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 1 / 1.16);
 });
 resetViewButton.addEventListener("click", resetView);
+document.addEventListener("pointerdown", () => {
+  if (canvas.classList.contains("is-context-focused")) clearContextFocus(true);
+}, { capture: true, passive: true });
+window.addEventListener("resize", () => {
+  refreshMapBounds();
+  applyView();
+}, { passive: true });
 
 document.querySelector("[data-close-dialog]").addEventListener("click", closeLessonDialog);
 dialog.addEventListener("click", (event) => { if (event.target === dialog) closeLessonDialog(); });
@@ -607,6 +665,7 @@ renderGrades();
 updateStats();
 resetView();
 const requestedParams = new URLSearchParams(window.location.search);
+if (requestedParams.get("embed") === "1") document.documentElement.classList.add("is-embedded-map");
 const requestedUnitId = requestedParams.get("unit");
 const requestedTopicId = requestedParams.get("topic");
 if (requestedUnitId) {

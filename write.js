@@ -6,7 +6,10 @@ const yearNode = document.querySelector("[data-article-year]");
 const dateNode = document.querySelector("[data-article-date]");
 const bodyNode = document.querySelector("[data-article-body]");
 const countNode = document.querySelector("[data-library-count]");
+const yearNodeCurrent = document.querySelector("[data-year]");
 let library = [];
+
+if (yearNodeCurrent) yearNodeCurrent.textContent = new Date().getFullYear();
 
 function escapeHtml(value) {
   return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
