@@ -11,7 +11,6 @@ const zoomLabel = document.querySelector("[data-zoom-label]");
 const zoomInButton = document.querySelector("[data-zoom-in]");
 const zoomOutButton = document.querySelector("[data-zoom-out]");
 const resetViewButton = document.querySelector("[data-reset-view]");
-const mapHelp = document.querySelector(".map-help");
 const topicSearch = document.querySelector("[data-topic-search]");
 const searchCount = document.querySelector("[data-search-count]");
 
@@ -23,8 +22,13 @@ const statusLabels = {
 };
 
 let activeCategory = "all";
-let filterMode = "all";
+let layoutMode = "loose";
 let currentLesson = null;
+let currentLessonTabs = [];
+let currentLessonTabIndex = 0;
+let versionPanelAnimationTimer = 0;
+let viewFrame = 0;
+let interactionTimer = 0;
 const view = { x: 0, y: 0, scale: 0.3 };
 const pointers = new Map();
 const gesture = {
@@ -107,12 +111,31 @@ const topicLookup = new Map(flattenTopics().map((topic) => [topic.id, topic]));
 
 function renderFilters() {
   filtersRoot.innerHTML = Object.entries(data.categories).map(([id, category]) => {
-    const isActive = id === activeCategory && filterMode !== "all";
-    const stateLabel = isActive ? (filterMode === "focus" ? "聚焦" : "紧凑") : "";
-    const label = id === "all" ? "全部显示" : category.short;
-    return `<button class="domain-filter" type="button" data-domain="${id}" aria-pressed="${id === "all" ? filterMode === "all" : isActive}" aria-label="${label}${stateLabel ? `，${stateLabel}模式` : ""}" title="${id === "all" ? "恢复全部课程" : "重复点击切换：聚焦 → 紧凑 → 全部"}">${label}${stateLabel ? `<small>${stateLabel}</small>` : ""}</button>`;
+    if (id === "all") {
+      const compact = layoutMode === "compact";
+      return `<button class="layout-mode-toggle" type="button" data-layout-toggle aria-pressed="${compact}" aria-label="当前为${compact ? "紧凑" : "松散"}模式，点击切换为${compact ? "松散" : "紧凑"}" title="切换地图排列密度"><span class="layout-toggle-options" aria-hidden="true"><i></i><span>松散</span><span>紧凑</span></span></button>`;
+    }
+    const isActive = id === activeCategory;
+    return `<button class="domain-filter" type="button" data-domain="${id}" aria-pressed="${isActive}" aria-label="${category.short}${isActive ? "，取消筛选" : "，筛选"}" title="${isActive ? "取消此筛选" : `只看${category.label}`}">${category.short}</button>`;
   }).join("");
-  filtersRoot.querySelectorAll("[data-domain]").forEach((button) => button.addEventListener("click", () => cycleFilter(button.dataset.domain)));
+  filtersRoot.querySelector("[data-layout-toggle]")?.addEventListener("click", toggleLayoutMode);
+  filtersRoot.querySelectorAll("[data-domain]").forEach((button) => button.addEventListener("click", () => toggleCategoryFilter(button.dataset.domain)));
+}
+
+function syncFilterControls() {
+  const compact = layoutMode === "compact";
+  const layoutToggle = filtersRoot.querySelector("[data-layout-toggle]");
+  if (layoutToggle) {
+    layoutToggle.setAttribute("aria-pressed", String(compact));
+    layoutToggle.setAttribute("aria-label", `当前为${compact ? "紧凑" : "松散"}模式，点击切换为${compact ? "松散" : "紧凑"}`);
+  }
+  filtersRoot.querySelectorAll("[data-domain]").forEach((button) => {
+    const category = data.categories[button.dataset.domain];
+    const active = button.dataset.domain === activeCategory;
+    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-label", `${category.short}${active ? "，取消筛选" : "，筛选"}`);
+    button.title = active ? "取消此筛选" : `只看${category.label}`;
+  });
 }
 
 function renderStageBands() {
@@ -166,24 +189,32 @@ function renderGrades() {
 function updateStats() {
   const topics = flattenTopics();
   const visible = activeCategory === "all" ? topics : topics.filter((item) => item.unit.category === activeCategory);
-  const started = visible.filter((item) => item.point.status !== "pending").length;
-  statsRoot.innerHTML = `<strong>${visible.length}</strong><span>个知识点</span><small>${started} 个已开始备课</small>`;
+  const lessonPlans = visible.filter((item) => (item.point.versions || []).some((version) => version.designMarkdown)).length;
+  const playableTrials = visible.reduce((total, item) => total + (item.point.versions || []).filter((version) => version.video).length, 0);
+  statsRoot.innerHTML = `
+    <span class="map-metric"><strong>${visible.length}</strong><small>知识点</small></span>
+    <span class="map-metric"><strong>${lessonPlans}</strong><small>篇教案</small></span>
+    <span class="map-metric"><strong>${playableTrials}</strong><small>可播放试讲</small></span>`;
 }
 
-function cycleFilter(category) {
-  if (category === "all") {
-    activeCategory = "all";
-    filterMode = "all";
-  } else if (activeCategory !== category || filterMode === "all") {
-    activeCategory = category;
-    filterMode = "focus";
-  } else if (filterMode === "focus") {
-    filterMode = "compact";
-  } else {
-    activeCategory = "all";
-    filterMode = "all";
-  }
+function toggleLayoutMode() {
+  layoutMode = layoutMode === "loose" ? "compact" : "loose";
   applyFilterState();
+}
+
+function toggleCategoryFilter(category) {
+  activeCategory = activeCategory === category ? "all" : category;
+  applyFilterState();
+}
+
+function syncTermAlignment() {
+  const firstTerms = [...gradeGrid.querySelectorAll(".grade-column")]
+    .filter((column) => column.querySelectorAll(":scope > .term-block").length > 1)
+    .map((column) => column.querySelector(":scope > .term-block"));
+  firstTerms.forEach((term) => term.style.removeProperty("min-height"));
+  if (layoutMode !== "loose" || !firstTerms.length) return;
+  const tallest = Math.max(...firstTerms.map((term) => term.offsetHeight));
+  firstTerms.forEach((term) => { term.style.minHeight = `${tallest}px`; });
 }
 
 function captureFilterLayout() {
@@ -228,24 +259,26 @@ function animateFilterLayout(previousPositions) {
   });
 }
 
-function applyFilterState() {
+function applyFilterState(animate = true) {
   const previousPositions = captureFilterLayout();
-  renderFilters();
-  gradeGrid.dataset.filterMode = filterMode;
+  syncFilterControls();
+  const hasFilter = activeCategory !== "all";
+  gradeGrid.dataset.layoutMode = layoutMode;
   gradeGrid.querySelectorAll("[data-route-category]").forEach((unit) => {
-    const excluded = filterMode !== "all" && unit.dataset.routeCategory !== activeCategory;
-    unit.classList.toggle("is-dimmed", filterMode === "focus" && excluded);
-    unit.classList.toggle("is-filtered-out", filterMode === "compact" && excluded);
+    const excluded = hasFilter && unit.dataset.routeCategory !== activeCategory;
+    unit.classList.toggle("is-dimmed", layoutMode === "loose" && excluded);
+    unit.classList.toggle("is-filtered-out", layoutMode === "compact" && excluded);
   });
   gradeGrid.querySelectorAll(".term-block").forEach((semester) => {
-    const hasActiveUnit = Array.from(semester.querySelectorAll("[data-route-category]")).some((unit) => filterMode === "all" || unit.dataset.routeCategory === activeCategory);
-    semester.classList.toggle("is-muted", filterMode === "focus" && !hasActiveUnit);
-    semester.classList.toggle("is-filtered-out", filterMode === "compact" && !hasActiveUnit);
+    const hasActiveUnit = Array.from(semester.querySelectorAll("[data-route-category]")).some((unit) => !hasFilter || unit.dataset.routeCategory === activeCategory);
+    semester.classList.toggle("is-muted", layoutMode === "loose" && hasFilter && !hasActiveUnit);
+    semester.classList.toggle("is-filtered-out", layoutMode === "compact" && hasFilter && !hasActiveUnit);
   });
+  syncTermAlignment();
   updateStats();
   refreshMapBounds();
   applyView();
-  animateFilterLayout(previousPositions);
+  if (animate) animateFilterLayout(previousPositions);
   applySearch(topicSearch.value);
 }
 
@@ -263,132 +296,184 @@ function applySearch(rawQuery) {
 }
 
 function handleSearch() {
-  if (topicSearch.value.trim() && filterMode !== "all") {
+  if (topicSearch.value.trim() && activeCategory !== "all") {
     activeCategory = "all";
-    filterMode = "all";
     applyFilterState();
     return;
   }
   applySearch(topicSearch.value);
 }
 
-function lessonVersions(lesson) {
-  const label = lesson.point.title;
-  const thought = lesson.point.thought || lesson.unit.thought || "暂时还没有吐槽；等第一次读教材和试讲后补上。";
-  const existing = lesson.point.versions;
-  if (existing) return existing;
-  return [
-    {
-      id: "v0", label: "v0 · 备课起点", state: "available", video: null,
-      question: thought,
-      objective: `先厘清“${label}”在前后知识链中的位置，以及学生已有的生活经验和前置知识。`,
-      design: "对照教材、课标和不同版本材料，拆出概念形成、例题、练习与表达四条线。",
-      board: "待设计：只保留能显示数学关系和思考过程的板书。"
-    },
-    { id: "v1", label: "v1 · 第一版教案", state: lesson.point.status === "drafted" || lesson.point.status === "recorded" ? "available" : "empty" },
-    { id: "trial1", label: "试讲 v1", state: lesson.point.status === "recorded" ? "available" : "empty" },
-    { id: "review1", label: "复盘与改写", state: "empty" }
-  ];
+function resetMapFilters() {
+  activeCategory = "all";
+  topicSearch.value = "";
+  applyFilterState(false);
 }
 
-function renderVersionPanel(version) {
+function lessonVersions(lesson) {
+  return Array.isArray(lesson?.point?.versions) ? lesson.point.versions : [];
+}
+
+function lessonTabModel(lesson) {
+  const versions = lessonVersions(lesson);
+  const designVersion = versions.find((version) => version.designMarkdown);
+  const designMarkdown = designVersion?.designMarkdown || "";
+  const lessonFile = designVersion?.lessonFile || versions.find((version) => version.lessonFile)?.lessonFile || "";
+  const trials = versions.map((version, index) => {
+    const match = `${version.id || ""} ${version.label || ""}`.match(/v\s*(\d+)/i);
+    return { ...version, tabId: `trial-${version.id || index + 1}`, versionNumber: match ? Number(match[1]) : index + 1, sourceIndex: index };
+  }).filter((version) => Boolean(version.video || version.reflectionMarkdown || version.reflection || version.boardImage || version.board || version.date || version.duration || version.format))
+    .sort((a, b) => b.versionNumber - a.versionNumber || b.sourceIndex - a.sourceIndex);
+  const hasContent = Boolean(designMarkdown || trials.length);
+  const tabs = [{ id: "overview", label: "课程概览", kind: "overview", hasContent }];
+  if (designMarkdown) tabs.push({ id: "design", label: "教学设计", kind: "design", designMarkdown, lessonFile });
+  trials.forEach((version) => tabs.push({ ...version, id: version.tabId, label: `试讲 v${version.versionNumber}`, kind: "trial" }));
+  return { tabs, hasContent };
+}
+
+function overviewMarkdown(value) {
+  if (Array.isArray(value)) return value.map((item) => `- ${item}`).join("\n");
+  return String(value || "").trim();
+}
+
+function renderCourseOverview(lesson, hasContent) {
+  if (!hasContent) return `<section class="course-overview is-empty" aria-label="课程概览"></section>`;
+  const overview = lesson.point.overview || {};
+  const fields = [
+    ["教学目标", overview.objectives || overview.objective],
+    ["前置知识点", overview.prerequisites || overview.prerequisite],
+    ["后置知识点", overview.nextTopics || overview.next],
+    ["例题设计", overview.examples || overview.exampleDesign]
+  ];
+  return `<section class="course-overview">${fields.map(([label, value]) => {
+    const markdown = overviewMarkdown(value);
+    return `<article><span>${label}</span>${markdown ? `<div class="lesson-markdown">${markdownToSafeHtml(markdown)}</div>` : `<i>待补充</i>`}</article>`;
+  }).join("")}</section>`;
+}
+
+function renderVersionPanel(tab, direction = 1) {
   const panel = dialogContent.querySelector("[data-version-panel]");
   if (!panel) return;
   const shouldAnimate = panel.dataset.ready === "true";
   panel.dataset.ready = "true";
   panel.classList.remove("is-loading");
-  if (version.state === "empty") {
-    panel.innerHTML = `
-      <div class="empty-version">
-        <span aria-hidden="true">＋</span>
-        <h3>${escapeHtml(version.label)}</h3>
-        <p>这个版本尚未创建。完成后可在数据文件中加入视频地址、教案内容、板书和复盘。</p>
-      </div>`;
-    if (shouldAnimate) animateVersionPanel(panel);
-    return;
+  if (tab.kind === "overview") {
+    panel.innerHTML = renderCourseOverview(currentLesson, tab.hasContent);
+  } else if (tab.kind === "design") {
+    const lessonFile = tab.lessonFile ? `<a class="resource-link" href="${escapeHtml(tab.lessonFile)}" target="_blank" rel="noopener">打开完整 Markdown 教案 ↗</a>` : "";
+    panel.innerHTML = `<div class="version-layout"><section class="lesson-plan"><p class="plan-kicker">LESSON DESIGN</p><section class="lesson-document"><h3>教学设计</h3><div class="lesson-markdown">${markdownToSafeHtml(tab.designMarkdown)}</div></section>${lessonFile}</section></div>`;
+  } else {
+    const videoContent = tab.video
+      ? `<video class="lesson-video" controls preload="metadata" src="${escapeHtml(tab.video)}">你的浏览器暂不支持视频播放。</video>`
+      : `<div class="video-placeholder"><span aria-hidden="true">▶</span><strong>试讲视频待上传</strong><small>上传后将在这里保持 16:9 播放</small></div>`;
+    const reflection = tab.reflectionMarkdown
+      ? `<div class="lesson-markdown">${markdownToSafeHtml(tab.reflectionMarkdown)}</div>`
+      : tab.reflection ? `<p>${escapeHtml(tab.reflection)}</p>` : `<p class="lesson-empty-note">本版复盘待补充</p>`;
+    const board = tab.boardImage
+      ? `<figure class="board-preview"><a href="${escapeHtml(tab.boardImage)}" target="_blank" rel="noopener"><img src="${escapeHtml(tab.boardImage)}" alt="${escapeHtml(`试讲 v${tab.versionNumber} 板书`)}" /></a><figcaption>本版板书 · 点击查看原图</figcaption></figure>`
+      : tab.board ? `<div class="lesson-markdown"><p>${escapeHtml(tab.board)}</p></div>` : `<p class="lesson-empty-note">本版板书待补充</p>`;
+    panel.innerHTML = `<div class="version-layout"><section class="video-slot">${videoContent}</section><section class="lesson-plan"><p class="plan-kicker">TRIAL v${tab.versionNumber}</p><div class="lesson-version-meta">${[tab.date, tab.duration, tab.format].filter(Boolean).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div><section class="lesson-document reflection"><h3>本版复盘</h3>${reflection}</section><section class="lesson-document board-document"><h3>本版板书</h3>${board}</section></section></div>`;
   }
-  const videoContent = version.video
-    ? `<video class="lesson-video" controls preload="metadata" src="${escapeHtml(version.video)}">你的浏览器暂不支持视频播放。</video>`
-    : `<div class="video-placeholder"><span aria-hidden="true">▶</span><strong>视频尚未录制</strong><small>未来可嵌入对应版本的无生试讲</small></div>`;
-  const lessonFile = version.lessonFile
-    ? `<a class="resource-link" href="${escapeHtml(version.lessonFile)}" target="_blank" rel="noopener">打开完整 Markdown 教案 ↗</a>`
-    : "";
-  const boardImage = version.boardImage
-    ? `<figure class="board-preview"><a href="${escapeHtml(version.boardImage)}" target="_blank" rel="noopener"><img src="${escapeHtml(version.boardImage)}" alt="${escapeHtml(`${version.label}板书`)}" /></a><figcaption>板书设计 · 点击图片可在新标签查看</figcaption></figure>`
-    : "";
-  const publishedLesson = version.designMarkdown || version.reflectionMarkdown;
-  const lessonContent = publishedLesson
-    ? `<p class="plan-kicker">LESSON ARCHIVE</p><div class="lesson-version-meta">${[version.date, version.duration, version.format].filter(Boolean).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>${version.designMarkdown ? `<section class="lesson-document"><h3>教学设计</h3><div class="lesson-markdown">${markdownToSafeHtml(version.designMarkdown)}</div></section>` : ""}${version.reflectionMarkdown ? `<section class="lesson-document reflection"><h3>本版复盘</h3><div class="lesson-markdown">${markdownToSafeHtml(version.reflectionMarkdown)}</div></section>` : ""}`
-    : `<p class="plan-kicker">LESSON DESIGN</p><div class="plan-row"><span>核心问题</span><p>${escapeHtml(version.question || "待补充")}</p></div><div class="plan-row"><span>学习目标</span><p>${escapeHtml(version.objective || "待补充")}</p></div><div class="plan-row"><span>设计路径</span><p>${escapeHtml(version.design || "待补充")}</p></div><div class="plan-row"><span>板书思路</span><p>${escapeHtml(version.board || "待补充")}</p></div>${version.reflection ? `<div class="plan-row"><span>课后复盘</span><p>${escapeHtml(version.reflection)}</p></div>` : ""}`;
-  panel.innerHTML = `<div class="version-layout"><section class="video-slot">${videoContent}</section><section class="lesson-plan">${lessonContent}${lessonFile}${boardImage}</section></div>`;
-  if (shouldAnimate) animateVersionPanel(panel);
+  if (shouldAnimate) animateVersionPanel(panel, direction);
 }
 
-function animateVersionPanel(panel) {
+function animateVersionPanel(panel, direction) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  panel.classList.remove("is-switching");
+  window.clearTimeout(versionPanelAnimationTimer);
+  panel.classList.remove("is-switching", "is-switching-forward", "is-switching-backward");
   panel.getBoundingClientRect();
-  panel.classList.add("is-switching");
-  window.setTimeout(() => panel.classList.remove("is-switching"), 340);
+  panel.classList.add("is-switching", direction < 0 ? "is-switching-backward" : "is-switching-forward");
+  versionPanelAnimationTimer = window.setTimeout(() => {
+    panel.classList.remove("is-switching", "is-switching-forward", "is-switching-backward");
+  }, 300);
 }
 
 function selectVersion(versionId) {
-  const versions = lessonVersions(currentLesson);
-  const selected = versions.find((version) => version.id === versionId) || versions[0];
+  const nextIndex = Math.max(0, currentLessonTabs.findIndex((tab) => tab.id === versionId));
+  if (nextIndex === currentLessonTabIndex) return;
+  const direction = nextIndex > currentLessonTabIndex ? 1 : -1;
+  const selected = currentLessonTabs[nextIndex] || currentLessonTabs[0];
+  currentLessonTabIndex = nextIndex;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.versionId === selected.id)));
-  renderVersionPanel(selected);
+  renderVersionPanel(selected, direction);
 }
 
 function openLesson(lesson) {
   if (!lesson) return;
+  if (viewFrame) {
+    cancelAnimationFrame(viewFrame);
+    viewFrame = 0;
+    applyView();
+  }
   currentLesson = lesson;
   const stage = data.stages[lesson.grade.stage];
   const category = data.categories[lesson.unit.category];
-  const thought = lesson.point.thought || lesson.unit.thought || "暂时还没有吐槽；等第一次读教材和试讲后补上。";
-  const versions = lessonVersions(lesson);
+  const model = lessonTabModel(lesson);
+  currentLessonTabs = model.tabs;
+  currentLessonTabIndex = 0;
   dialogContent.innerHTML = `
-    <article class="lesson-dialog-inner" style="--dialog-stage:${stage.color}">
+    <article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${stage.color}">
       <header class="lesson-dialog-header">
         <div class="lesson-breadcrumb">${stage.label}数学 / ${lesson.grade.label} / ${termDisplayLabel(lesson.grade, lesson.semester)} / ${category.label}</div>
         <h2>${escapeHtml(lesson.point.title)}</h2>
         <div class="lesson-submeta"><span>${escapeHtml(lesson.unit.title)}</span><span class="lesson-state ${lesson.point.status}">${statusLabels[lesson.point.status]}</span></div>
       </header>
-      <aside class="thought-note"><span>我的吐槽 / 追问</span><p>${escapeHtml(thought)}</p></aside>
-      <div class="version-tabs" role="tablist" aria-label="课例版本">
-        ${versions.map((version, index) => `<button type="button" role="tab" data-version-id="${version.id}" aria-selected="${index === 0}">${escapeHtml(version.label)}${version.state === "empty" ? " · 待创建" : ""}</button>`).join("")}
+      <div class="version-tabs" role="tablist" aria-label="课例内容">
+        ${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}
       </div>
       <div class="version-panel is-loading" data-version-panel role="tabpanel"><div class="panel-loading">正在展开课例…</div></div>
     </article>`;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
+  document.documentElement.classList.add("is-lesson-open");
   dialog.showModal();
   window.setTimeout(() => {
-    if (dialog.open && currentLesson === lesson) renderVersionPanel(versions[0]);
+    if (dialog.open && currentLesson === lesson) renderVersionPanel(model.tabs[0]);
   }, 180);
 }
 
-function closeLessonDialog() {
-  if (!dialog.open || dialog.classList.contains("is-closing")) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    dialog.close();
+function clearLessonDialog() {
+  dialog.querySelectorAll("video").forEach((video) => video.pause());
+  if (dialog.open) dialog.close();
+  dialog.classList.remove("is-closing");
+  document.documentElement.classList.remove("is-lesson-open");
+  dialogContent.replaceChildren();
+  currentLesson = null;
+}
+
+function closeLessonDialog(immediate = false) {
+  if (!dialog.open || dialog.classList.contains("is-closing")) {
+    if (immediate) clearLessonDialog();
+    return;
+  }
+  if (immediate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    clearLessonDialog();
     return;
   }
   dialog.classList.add("is-closing");
   window.setTimeout(() => {
-    dialog.close();
-    dialog.classList.remove("is-closing");
+    clearLessonDialog();
   }, 180);
+}
+
+function overviewControlInset() {
+  if (!document.documentElement.classList.contains("is-embedded-map") || window.innerWidth <= 680 || view.scale >= 0.6) return 0;
+  const controlsRight = document.querySelector("[data-header]")?.getBoundingClientRect().right || 182;
+  const configuredGap = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--overview-control-gap")) || 0;
+  return controlsRight + configuredGap;
 }
 
 function constrainView() {
   if (!mapBounds.viewportWidth || !mapBounds.canvasWidth) refreshMapBounds();
   const scaledWidth = mapBounds.canvasWidth * view.scale;
   const scaledHeight = mapBounds.canvasHeight * view.scale;
-  const marginX = mapBounds.viewportWidth / 2;
+  const safeLeft = overviewControlInset();
+  const usableWidth = Math.max(1, mapBounds.viewportWidth - safeLeft);
+  const marginX = usableWidth / 2;
   const marginY = mapBounds.viewportHeight / 2;
-  view.x = scaledWidth <= mapBounds.viewportWidth
-    ? (mapBounds.viewportWidth - scaledWidth) / 2
-    : Math.min(marginX, Math.max(mapBounds.viewportWidth - scaledWidth - marginX, view.x));
+  view.x = scaledWidth <= usableWidth
+    ? (safeLeft > 0 ? safeLeft : (usableWidth - scaledWidth) / 2)
+    : Math.min(safeLeft + marginX, Math.max(safeLeft + usableWidth - scaledWidth - marginX, view.x));
   view.y = scaledHeight <= mapBounds.viewportHeight
     ? (mapBounds.viewportHeight - scaledHeight) / 2
     : Math.min(marginY, Math.max(mapBounds.viewportHeight - scaledHeight - marginY, view.y));
@@ -404,22 +489,44 @@ function refreshMapBounds() {
 function applyView() {
   const nextZoomLevel = view.scale < 0.6 ? "overview" : "detail";
   const zoomLevelChanged = canvas.dataset.zoomLevel !== nextZoomLevel;
-  canvas.dataset.zoomLevel = nextZoomLevel;
-  if (zoomLevelChanged) refreshMapBounds();
-  if (mapHelp) {
-    mapHelp.textContent = nextZoomLevel === "overview"
-      ? "概览模式 · 单击章节自动聚焦"
-      : "滚轮缩放 · 拖拽移动 · 复位可返回全图";
+  if (zoomLevelChanged) {
+    canvas.dataset.zoomLevel = nextZoomLevel;
+    document.documentElement.classList.toggle("is-map-overview", nextZoomLevel === "overview");
+    refreshMapBounds();
   }
   constrainView();
-  canvas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
-  zoomLabel.textContent = `${Math.round(view.scale * 100)}%`;
+  const transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+  if (canvas.style.transform !== transform) canvas.style.transform = transform;
+  const label = `${Math.round(view.scale * 100)}%`;
+  if (zoomLabel.textContent !== label) zoomLabel.textContent = label;
+}
+
+function scheduleView() {
+  if (viewFrame) return;
+  viewFrame = requestAnimationFrame(() => {
+    viewFrame = 0;
+    applyView();
+  });
+}
+
+function markMapInteracting() {
+  mapViewport.classList.add("is-interacting");
+  window.clearTimeout(interactionTimer);
+  interactionTimer = window.setTimeout(() => mapViewport.classList.remove("is-interacting"), 140);
 }
 
 function resetView() {
+  if (viewFrame) cancelAnimationFrame(viewFrame);
+  viewFrame = 0;
   clearContextFocus(true);
   view.scale = MIN_SCALE;
-  view.x = 0;
+  refreshMapBounds();
+  const safeLeft = overviewControlInset();
+  const usableWidth = Math.max(1, mapBounds.viewportWidth - safeLeft);
+  const scaledWidth = mapBounds.canvasWidth * view.scale;
+  view.x = scaledWidth <= usableWidth
+    ? (safeLeft > 0 ? safeLeft : (usableWidth - scaledWidth) / 2)
+    : safeLeft;
   view.y = 0;
   applyView();
 }
@@ -436,10 +543,11 @@ function zoomAt(clientX, clientY, factor) {
   view.scale = nextScale;
   view.x = localX - mapX * nextScale;
   view.y = localY - mapY * nextScale;
-  applyView();
+  scheduleView();
 }
 
 function clearContextFocus(instant = false) {
+  if (!canvas.classList.contains("is-context-focused")) return;
   if (instant) canvas.classList.add("is-context-clearing");
   canvas.classList.remove("is-context-focused");
   gradeGrid.querySelectorAll(".unit-card.is-context-focus").forEach((unit) => unit.classList.remove("is-context-focus"));
@@ -452,12 +560,14 @@ function setContextFocus(unit) {
   canvas.classList.add("is-context-focused");
 }
 
-function focusUnit(unit) {
+function focusUnit(unit, instant = false) {
   if (!unit || canvas.dataset.zoomLevel !== "overview") return;
+  if (viewFrame) cancelAnimationFrame(viewFrame);
+  viewFrame = 0;
   setContextFocus(unit);
   canvas.dataset.zoomLevel = "detail";
-  if (mapHelp) mapHelp.textContent = "滚轮缩放 · 拖拽移动 · 复位可返回全图";
-  requestAnimationFrame(() => requestAnimationFrame(() => {
+  document.documentElement.classList.remove("is-map-overview");
+  const moveToUnit = () => {
     const viewportRect = mapViewport.getBoundingClientRect();
     const canvasRect = canvas.getBoundingClientRect();
     const unitRect = unit.getBoundingClientRect();
@@ -466,6 +576,13 @@ function focusUnit(unit) {
     view.scale = UNIT_FOCUS_SCALE;
     view.x = viewportRect.width / 2 - centerX * view.scale;
     view.y = viewportRect.height / 2 - centerY * view.scale;
+    if (instant) {
+      canvas.classList.remove("is-focusing");
+      canvas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
+      zoomLabel.textContent = `${Math.round(view.scale * 100)}%`;
+      refreshMapBounds();
+      return;
+    }
     canvas.classList.add("is-focusing");
     canvas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
     zoomLabel.textContent = `${Math.round(view.scale * 100)}%`;
@@ -478,11 +595,14 @@ function focusUnit(unit) {
       canvas.style.transform = `translate3d(${view.x}px, ${view.y}px, 0) scale(${view.scale})`;
       refreshMapBounds();
     }, 460);
-  }));
+  };
+  if (instant) moveToUnit();
+  else requestAnimationFrame(() => requestAnimationFrame(moveToUnit));
 }
 
 mapViewport.addEventListener("wheel", (event) => {
   event.preventDefault();
+  markMapInteracting();
   clearContextFocus(true);
   zoomAt(event.clientX, event.clientY, Math.exp(-event.deltaY * 0.00135));
 }, { passive: false });
@@ -528,6 +648,7 @@ mapViewport.addEventListener("pointerdown", (event) => {
     startedOnButton: Boolean(event.target.closest("button"))
   };
   pointers.set(event.pointerId, pointer);
+  markMapInteracting();
   gesture.tapTarget = event.target.closest("button");
   if (event.pointerType !== "mouse") {
     event.preventDefault();
@@ -551,6 +672,7 @@ mapViewport.addEventListener("pointerdown", (event) => {
 
 mapViewport.addEventListener("pointermove", (event) => {
   if (!pointers.has(event.pointerId)) return;
+  markMapInteracting();
   const pointer = pointers.get(event.pointerId);
   pointer.x = event.clientX;
   pointer.y = event.clientY;
@@ -586,7 +708,7 @@ mapViewport.addEventListener("pointermove", (event) => {
   mapViewport.classList.add("is-dragging");
   view.x += deltaX;
   view.y += deltaY;
-  applyView();
+  scheduleView();
 });
 
 function finishGesture(event) {
@@ -612,6 +734,8 @@ function finishGesture(event) {
   gesture.moved = false;
   gesture.tapTarget = null;
   mapViewport.classList.remove("is-dragging");
+  window.clearTimeout(interactionTimer);
+  interactionTimer = window.setTimeout(() => mapViewport.classList.remove("is-interacting"), 80);
   if (tapTarget) {
     gesture.suppressClickUntil = performance.now() + 450;
     if (tapTarget.matches("[data-topic-id]")) openLesson(topicLookup.get(tapTarget.dataset.topicId));
@@ -643,6 +767,7 @@ document.addEventListener("pointerdown", () => {
   if (canvas.classList.contains("is-context-focused")) clearContextFocus(true);
 }, { capture: true, passive: true });
 window.addEventListener("resize", () => {
+  syncTermAlignment();
   refreshMapBounds();
   applyView();
 }, { passive: true });
@@ -659,13 +784,13 @@ topicSearch.addEventListener("keydown", (event) => {
   }
 });
 
+const requestedParams = new URLSearchParams(window.location.search);
+if (requestedParams.get("embed") === "1") document.documentElement.classList.add("is-embedded-map");
 renderFilters();
 renderStageBands();
 renderGrades();
-updateStats();
+applyFilterState(false);
 resetView();
-const requestedParams = new URLSearchParams(window.location.search);
-if (requestedParams.get("embed") === "1") document.documentElement.classList.add("is-embedded-map");
 const requestedUnitId = requestedParams.get("unit");
 const requestedTopicId = requestedParams.get("topic");
 if (requestedUnitId) {
@@ -681,4 +806,28 @@ if (requestedUnitId) {
     }, 80);
   }
 }
+window.addEventListener("message", (event) => {
+  if (event.origin !== window.location.origin) return;
+  if (event.data?.type === "curriculum-dismiss-overlays") {
+    closeLessonDialog(true);
+    clearContextFocus(true);
+    resetMapFilters();
+    return;
+  }
+  if (event.data?.type !== "curriculum-focus-unit") return;
+  closeLessonDialog(true);
+  resetMapFilters();
+  const unitId = String(event.data.unitId || "");
+  const requestedUnit = [...gradeGrid.querySelectorAll(".unit-card")].find((unit) => unit.dataset.unitId === unitId);
+  if (!requestedUnit) return;
+  resetView();
+  if (event.data.instant) {
+    requestAnimationFrame(() => {
+      focusUnit(requestedUnit, true);
+      event.source?.postMessage({ type: "curriculum-focus-ready", unitId }, event.origin);
+    });
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(() => focusUnit(requestedUnit)));
+  }
+});
 window.addEventListener("resize", applyView, { passive: true });

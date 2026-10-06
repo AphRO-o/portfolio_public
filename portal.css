@@ -31,8 +31,8 @@ body::before { position: fixed; inset: 0; pointer-events: none; content: ""; opa
 .identity-main { display: grid; }
 .identity-main small { color: var(--identity-color); font-size: clamp(0.53rem, 0.65vw, 0.65rem); font-weight: 800; letter-spacing: 0.15em; transition: color 0.25s; }
 .identity-main strong { margin-top: 0.15rem; font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 600; }
-.identity-signature { font-family: var(--serif); font-size: clamp(0.9rem, 1.3vw, 1.2rem); }
-.identity-arrow { font-size: 1.2rem; }
+.identity-signature { font-family: var(--serif); font-size: clamp(0.9rem, 1.3vw, 1.2rem); transform: translateY(calc(1em + 2px)); }
+.identity-arrow { font-size: 1.2rem; transform: translateY(calc(1em + 2px)); }
 .identity-link:hover .identity-number, .identity-link:hover .identity-main small, .identity-link:focus-visible .identity-number, .identity-link:focus-visible .identity-main small { color: rgba(255,255,255,0.68); }
 .index-footer { justify-content: flex-end; padding-top: clamp(0.8rem, 1.8vw, 1.5rem); letter-spacing: 0.07em; }
 .index-footer a { color: inherit; text-underline-offset: 0.25rem; }

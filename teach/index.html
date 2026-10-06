@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hans">
+<html class="portfolio-root" lang="zh-Hans">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,12 +19,6 @@
         <span class="brand-mark" aria-hidden="true">∑</span>
         <span><strong>数学备课实验室</strong><small>MATH TEACHING PORTFOLIO</small></span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="sr-only">打开导航</span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="主要导航">
-        <a href="#map">课程地图</a><a href="#resume">完整简历</a><a href="#about">关于本站</a>
-      </nav>
     </header>
 
     <main id="main-content">
@@ -32,7 +26,7 @@
         <div class="hero-copy reveal">
           <p class="eyebrow">数学教师候选人 · NUS 计算机科学硕士在读</p>
           <h1><span>让每个数学概念，</span><em>都有发生的理由。</em></h1>
-          <p class="hero-intro">我用真实教案、无生试讲和逐版复盘训练数学教学。这里不只陈列结果，也保留一个概念怎样被拆成学生能够走过的台阶。</p>
+          <p class="hero-intro">我用真实教案、无生试讲和逐版复盘训练数学教学。<br>探索一个概念如何被拆解成学生能够跨过的台阶。</p>
           <div class="hero-proof" aria-label="作品集概览"><div><strong>1 节</strong><span>完整试讲课例</span></div><div><strong>2 个</strong><span>可回看的试讲版本</span></div><div><strong>475+</strong><span>课程地图知识点</span></div></div>
           <div class="hero-actions"><a class="text-link" href="#map">继续查看备课地图 <span aria-hidden="true">↓</span></a></div>
           <p class="candidate-line"><strong>求职方向：</strong>中小学数学教师 · 可用英语开展沟通与学习支持 · 具备 AI / 数据分析 / STEM 背景</p>
@@ -44,23 +38,26 @@
             <button type="button" role="tab" data-featured-stage="junior" aria-selected="false">初中</button>
             <button type="button" role="tab" data-featured-stage="senior" aria-selected="false">高中</button>
           </div>
-          <article class="featured-lesson" data-featured-panel="primary" role="tabpanel" aria-label="小学代表课例：几分之一">
+          <article class="featured-lesson" data-featured-panel="primary" data-featured-topic="g4-up-u05-p01" role="tabpanel" tabindex="0" aria-label="小学代表课例：几分之一；点击打开完整课例">
             <div class="featured-topline"><span>代表课例 · 小学四年级</span><span>2 次试讲</span></div>
-            <div class="fraction-visual" aria-hidden="true"><div class="fraction-circle"><i></i></div><div class="fraction-symbol"><span>1</span><span>2</span></div><p>为什么需要<br />“几分之一”？</p></div>
-            <div class="featured-copy"><p>分数的初步认识</p><h2>从“公平分蛋糕”到准确的数学语言</h2><ul><li>用“公平”经验产生平均分的需要</li><li>用反例检验学生是否真正理解</li><li>v2 加入板书并重做课堂收束</li></ul><button class="featured-open" type="button" data-open-topic="g4-up-u05-p01">打开教案、版本与复盘 <span>↗</span></button></div>
+            <div class="featured-media">
+              <video class="featured-video" controls preload="metadata" data-featured-video hidden aria-label="几分之一试讲视频">你的浏览器暂不支持视频播放。</video>
+              <div class="fraction-visual" data-featured-video-placeholder role="img" aria-label="试讲视频待上传：几分之一概念示意"><span class="featured-video-status">▶ 试讲视频待上传</span><div class="fraction-circle"><i></i></div><div class="fraction-symbol"><span>1</span><span>2</span></div><p>为什么需要<br />“几分之一”？</p></div>
+            </div>
+            <div class="featured-copy"><p>几分之一</p><h2>从“公平分蛋糕”到准确的数学语言</h2><ul><li>用“公平”经验产生平均分的需要</li><li>用反例检验学生是否真正理解</li><li>v2 加入板书并重做课堂收束</li></ul><div class="featured-open">打开教案、版本与复盘 <span>↗</span></div></div>
           </article>
           <article class="featured-lesson featured-empty junior is-inactive" data-featured-panel="junior" role="tabpanel" aria-hidden="true" inert>
-            <div><span>JUNIOR MATH</span><strong>初</strong></div><p>初中代表课例尚未公开</p><small>完成教案、试讲与复盘后，这里将自动替换为该学段最完整的一课。</small>
+            <div><span>JUNIOR MATH</span><strong>初</strong></div><p>初中代表课例尚未公开</p><small>以后再来看看吧。</small>
           </article>
           <article class="featured-lesson featured-empty senior is-inactive" data-featured-panel="senior" role="tabpanel" aria-hidden="true" inert>
-            <div><span>SENIOR MATH</span><strong>高</strong></div><p>高中代表课例尚未公开</p><small>完成教案、试讲与复盘后，这里将自动替换为该学段最完整的一课。</small>
+            <div><span>SENIOR MATH</span><strong>高</strong></div><p>高中代表课例尚未公开</p><small>以后再来看看吧。</small>
           </article>
         </div>
       </section>
 
       <section class="curriculum-preview section" id="map">
         <div class="preview-copy reveal"><p class="eyebrow light">CURRICULUM KNOWLEDGE MAP</p><h2>让数学的认知地图持续生长。</h2><div class="preview-legend" aria-label="学段图例"><span><i class="primary"></i>小学</span><span><i class="junior"></i>初中</span><span><i class="senior"></i>高中</span><span><i class="started"></i>已开始备课</span></div></div>
-        <div class="mini-map-shell reveal"><div class="mini-map-head"><span>小学 → 初中 → 高中</span><strong data-mini-progress>正在读取课程结构…</strong></div><div class="mini-map" data-mini-map aria-label="可互动的数学单元地图缩略图"></div><p class="mini-map-hint">桌面端移动鼠标查看邻近单元；手机端左右滑动各学段。点击单元即可在完整地图中定位。</p></div>
+        <div class="mini-map-shell reveal"><div class="mini-map-head"><strong data-mini-progress>正在读取课程结构…</strong></div><div class="mini-map" data-mini-map aria-label="可互动的数学单元地图缩略图"></div></div>
       </section>
 
       <section class="experience section resume-section" id="resume">
@@ -79,21 +76,21 @@
             <article class="profile-entry"><time>2022.09 — 2023.08</time><h3>ASCE 美国土木工程师协会同济学生分会</h3><p>主席</p><ul><li>主导三届面向大一新生的结构设计竞赛，自主设计《火星撞地球》赛题，把竖向、水平、扭转及冲击等荷载工况融入任务；面向参赛学生主讲赛题要求并统一解答规则与技术问题。</li><li>参与两届全国中学生结构设计大赛；第十一届担任学生负责人，统筹赛程、参赛沟通、住宿饮食、志愿者协调及现场组织。</li><li>面向中学生讲解赛题与规则，结合结构受力、力学与数学原理答疑，将结构力学概念转化为可理解的语言和实例。</li></ul></article>
             <article class="profile-entry"><time>2018.08</time><h3>闵行区青少年活动中心</h3><p>暑期志愿者</p><ul><li>参与约 20 名二年级小学生暑期托班的日常管理与陪伴，协助维持班级秩序、组织早操及集体活动。</li><li>参与星期 8 小镇集体活动，协助学生分组、秩序维护、午餐发放及安全看护。</li></ul></article>
           </section>
-          <section class="profile-group"><p class="profile-kicker">资格与技能</p><div class="credential-list"><article><span>01</span><div><strong>教师资格</strong><p>拟参加 2027 年上半年高中数学教师资格考试（笔试备考中）</p></div></article><article><span>02</span><div><strong>普通话</strong><p>拟于 2027 年 1 月参加考试</p></div></article><article><span>03</span><div><strong>英语</strong><p>2024 IELTS Academic 7.5</p></div></article><article><span>04</span><div><strong>数字技能</strong><p>Python、Excel、SQL；具备数据分析、基础编程及 AI / ML 背景，可支持数学建模、STEM 及信息科技相关教学活动</p></div></article></div></section>
+          <section class="profile-group"><p class="profile-kicker">资格与技能</p><div class="credential-list"><article><span>01</span><div><strong>教师资格</strong><p>拟参加 2027 年上半年高中数学教师资格考试</p></div></article><article><span>02</span><div><strong>普通话</strong><p>拟于 2027 年 1 月参加考试</p></div></article><article><span>03</span><div><strong>英语</strong><p>2024 IELTS Academic 7.5</p></div></article><article><span>04</span><div><strong>数字技能</strong><p>Python、Excel、SQL；具备数据分析、基础编程及 AI / ML 背景，可支持数学建模、STEM 及信息科技相关教学活动</p></div></article></div></section>
         </div>
       </section>
 
       <section class="about-final section" id="about">
         <div class="about-statement reveal"><p class="eyebrow light">WHY THIS SITE</p><h2>把备课变成一项<br />可以检验、比较和积累的工作。</h2></div>
-        <div class="about-details reveal"><p>同一堂课会保留不同版本：最初的问题、教学设计、无生试讲、板书安排、录像复盘，以及下一次只准备改变的一两件事。长期目标是完整备完从小学到高中的数学课程，并建立我对数学知识之间联系的持续理解。</p><div class="about-links"><a class="contact-mail" href="mailto:job@xuchenhao.me"><span>联系我</span><strong>job@xuchenhao.me</strong><i aria-hidden="true">↗</i></a></div></div>
+        <div class="about-details reveal"><p>同一堂课会保留不同版本：最初的问题、教学设计、无生试讲、板书安排、录像复盘，以及下一次需要改进的一两件事。长期目标是完整备完从小学到高中的数学课程，并建立我对数学知识之间联系的持续理解。</p><div class="about-links"><a class="contact-mail" href="mailto:job@xuchenhao.me"><span>联系我</span><strong>contact@xuchenhao.me</strong><i aria-hidden="true">↗</i></a></div></div>
       </section>
     </main>
 
     <footer class="site-footer"><div class="footer-center"><p>教案 · 无生试讲 · 板书 · 复盘 · 课程地图</p><p class="site-copyright">© XU CHENHAO <span data-year></span></p></div></footer>
-    <dialog class="lesson-dialog" data-lesson-dialog><button class="dialog-close" type="button" data-close-dialog aria-label="关闭">×</button><div data-dialog-content></div></dialog>
+    <dialog class="lesson-dialog" data-lesson-dialog><button class="dialog-close" type="button" data-close-dialog aria-label="关闭"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></svg></button><div data-dialog-content></div></dialog>
     <dialog class="map-explorer" data-map-explorer aria-label="完整数学课程地图">
-      <button class="map-explorer-close" type="button" data-close-map aria-label="关闭完整课程地图"><span aria-hidden="true">×</span><small>返回主页</small></button>
-      <iframe data-map-frame title="完整数学课程地图" loading="lazy"></iframe>
+      <button class="map-explorer-close" type="button" data-close-map aria-label="关闭完整课程地图"><span aria-hidden="true">×</span></button>
+      <iframe data-map-frame title="完整数学课程地图" loading="eager"></iframe>
     </dialog>
   </body>
 </html>
