@@ -249,6 +249,7 @@ function openMapExplorer(unitId, trigger = null) {
   window.clearTimeout(mapTransitionTimer);
   window.clearTimeout(mapPrepareTimer);
   mapExplorer.classList.remove("is-closing", "is-expanded", "is-transitioning");
+  mapExplorer.classList.remove("has-lesson-open");
   mapExplorer.classList.add("is-preparing");
   mapExplorer.showModal();
   focusMapFrame(unitId, true);
@@ -260,7 +261,7 @@ function closeMapExplorer() {
   dismissMapFrameOverlays();
   const finish = () => {
     mapExplorer.close();
-    mapExplorer.classList.remove("is-closing", "is-expanded", "is-transitioning", "is-preparing");
+    mapExplorer.classList.remove("is-closing", "is-expanded", "is-transitioning", "is-preparing", "has-lesson-open");
     document.body.classList.remove("is-map-open");
     mapOriginTrigger?.focus({ preventScroll: true });
   };
@@ -413,10 +414,25 @@ function renderMiniMap() {
 }
 
 function setupFeaturedLessons() {
+  const area = document.querySelector(".featured-area");
   const tabs = [...document.querySelectorAll("[data-featured-stage]")];
   const panels = [...document.querySelectorAll("[data-featured-panel]")];
+  const referencePanel = panels.find((panel) => panel.dataset.featuredPanel === "primary");
+  let panelHeightFrame = 0;
+  const syncPanelHeight = () => {
+    if (!area || !referencePanel) return;
+    cancelAnimationFrame(panelHeightFrame);
+    area.style.removeProperty("--featured-panel-height");
+    panelHeightFrame = requestAnimationFrame(() => {
+      const height = Math.ceil(referencePanel.getBoundingClientRect().height);
+      if (height) area.style.setProperty("--featured-panel-height", `${height}px`);
+    });
+  };
   const setFeaturedStage = (stage) => { document.documentElement.dataset.featuredStage = stage; };
   setFeaturedStage(tabs.find((tab) => tab.getAttribute("aria-selected") === "true")?.dataset.featuredStage || "primary");
+  syncPanelHeight();
+  window.addEventListener("resize", syncPanelHeight, { passive: true });
+  document.fonts?.ready.then(syncPanelHeight);
   tabs.forEach((tab) => tab.addEventListener("click", () => {
     const stage = tab.dataset.featuredStage;
     setFeaturedStage(stage);
@@ -454,6 +470,23 @@ function setupFeaturedLessons() {
   });
 }
 
+document.querySelector(".hero-featured-link")?.addEventListener("click", (event) => {
+  const target = document.querySelector("#featured-lessons");
+  if (!target) return;
+  event.preventDefault();
+  let top = 0;
+  let node = target;
+  while (node) {
+    top += node.offsetTop;
+    node = node.offsetParent;
+  }
+  const headerOffset = document.querySelector("[data-header]")?.offsetHeight || 60;
+  window.scrollTo({
+    top: Math.max(0, top - headerOffset - 16),
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+  });
+});
+
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
 const homeHero = document.querySelector(".home-hero");
 function syncHeaderState() {
@@ -477,6 +510,7 @@ mapFrame?.addEventListener("load", () => {
 window.addEventListener("message", (event) => {
   if (event.origin !== window.location.origin || event.source !== mapFrame?.contentWindow) return;
   if (event.data?.type === "curriculum-focus-ready" && event.data.unitId === pendingMapUnitId) revealMapExplorer();
+  if (event.data?.type === "curriculum-lesson-state") mapExplorer?.classList.toggle("has-lesson-open", Boolean(event.data.open));
 });
 
 if (mapFrame) {

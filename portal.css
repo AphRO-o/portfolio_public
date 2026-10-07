@@ -10,6 +10,8 @@
 }
 
 * { box-sizing: border-box; }
+body, body * { -webkit-user-select: none; user-select: none; }
+input, textarea, [contenteditable="true"] { -webkit-user-select: text; user-select: text; }
 html, body { height: 100%; }
 body { margin: 0; overflow: hidden; color: var(--ink); background: var(--paper); font-family: var(--sans); }
 body::before { position: fixed; inset: 0; pointer-events: none; content: ""; opacity: 0.28; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E"); }

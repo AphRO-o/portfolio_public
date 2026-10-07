@@ -126,7 +126,11 @@ function authorAccent(author) {
 }
 
 function visibleLibrary() {
-  return activeAuthor === "all" ? library : library.filter((item) => item.author === activeAuthor);
+  return libraryForAuthor(activeAuthor);
+}
+
+function libraryForAuthor(author) {
+  return author === "all" ? library : library.filter((item) => item.author === author);
 }
 
 function updateLibraryCount() {
@@ -137,7 +141,33 @@ function updateLibraryCount() {
   countNode.classList.add("is-updating");
 }
 
-function commitArticle(article, updateUrl, markerDirection) {
+function syncArticleChoiceIndicator(animate = true, fromRect = null) {
+  const indicator = listRoot.querySelector(".article-choice-indicator");
+  const activeChoice = listRoot.querySelector(".article-choice.is-active");
+  if (!indicator || !activeChoice) return;
+  const listRect = listRoot.getBoundingClientRect();
+  const choiceRect = activeChoice.getBoundingClientRect();
+  const x = choiceRect.left - listRect.left + listRoot.scrollLeft;
+  const y = choiceRect.top - listRect.top + listRoot.scrollTop;
+  const shouldAnimate = animate && !reducedMotion.matches;
+  listRoot.classList.remove("is-choice-animated");
+  if (shouldAnimate && fromRect?.width && fromRect?.height) {
+    listRoot.style.setProperty("--choice-x", `${fromRect.left - listRect.left + listRoot.scrollLeft}px`);
+    listRoot.style.setProperty("--choice-y", `${fromRect.top - listRect.top + listRoot.scrollTop}px`);
+    listRoot.style.setProperty("--choice-width", `${fromRect.width}px`);
+    listRoot.style.setProperty("--choice-height", `${fromRect.height}px`);
+    void indicator.offsetWidth;
+  }
+  listRoot.classList.toggle("is-choice-animated", shouldAnimate);
+  listRoot.style.setProperty("--choice-x", `${x}px`);
+  listRoot.style.setProperty("--choice-y", `${y}px`);
+  listRoot.style.setProperty("--choice-width", `${choiceRect.width}px`);
+  listRoot.style.setProperty("--choice-height", `${choiceRect.height}px`);
+  listRoot.style.setProperty("--choice-color", activeChoice.style.getPropertyValue("--author-accent"));
+}
+
+function commitArticle(article, updateUrl, markerDirection, updateIndicator = true) {
+  const hadCurrentArticle = Boolean(currentArticleId);
   currentArticleId = article.id;
   document.documentElement.style.setProperty("--current-author-accent", authorAccent(article.author));
   titleNode.textContent = article.title;
@@ -150,6 +180,7 @@ function commitArticle(article, updateUrl, markerDirection) {
   if (article.locked) setupLockedGlassInteraction();
   listRoot.querySelectorAll("[data-article-id]").forEach((button) => button.classList.toggle("is-active", button.dataset.articleId === article.id));
   const activeChoice = listRoot.querySelector(`[data-article-id="${CSS.escape(article.id)}"]`);
+  if (updateIndicator) syncArticleChoiceIndicator(hadCurrentArticle);
   if (markerDirection && activeChoice) {
     const markerClass = `is-marker-entering-${markerDirection}`;
     activeChoice.classList.add(markerClass);
@@ -190,12 +221,104 @@ function showArticle(id, updateUrl = true, animate = true) {
   }, 105);
 }
 
-function renderLibrary() {
+function renderLibrary(updateIndicator = true) {
   const visibleItems = visibleLibrary();
   const years = [...new Set(visibleItems.map((item) => item.year))];
-  listRoot.innerHTML = years.map((year) => `<section class="year-group"><span class="year-label">${escapeHtml(year)}</span><div class="year-articles">${visibleItems.filter((item) => item.year === year).map((item) => `<button class="article-choice" type="button" data-article-id="${escapeHtml(item.id)}" style="--author-accent:${authorAccent(item.author)}"><span>《${escapeHtml(item.title)}》</span></button>`).join("")}</div></section>`).join("");
+  listRoot.innerHTML = `${years.map((year) => `<section class="year-group" data-library-year="${escapeHtml(year)}"><span class="year-label">${escapeHtml(year)}</span><div class="year-articles">${visibleItems.filter((item) => item.year === year).map((item) => `<button class="article-choice" type="button" data-article-id="${escapeHtml(item.id)}" style="--author-accent:${authorAccent(item.author)}"><span>《${escapeHtml(item.title)}》</span></button>`).join("")}</div></section>`).join("")}<i class="article-choice-indicator" aria-hidden="true"></i>`;
   listRoot.querySelectorAll("[data-article-id]").forEach((button) => button.addEventListener("click", () => showArticle(button.dataset.articleId)));
   listRoot.querySelector(`[data-article-id="${CSS.escape(currentArticleId || "")}"]`)?.classList.add("is-active");
+  if (updateIndicator) requestAnimationFrame(() => syncArticleChoiceIndicator(false));
+}
+
+function captureLibraryPositions() {
+  const choices = new Map([...listRoot.querySelectorAll("[data-article-id]")].map((node) => [node.dataset.articleId, node.getBoundingClientRect()]));
+  const years = new Map([...listRoot.querySelectorAll("[data-library-year]")].map((group) => [group.dataset.libraryYear, group.querySelector(".year-label")?.getBoundingClientRect()]));
+  return { choices, years };
+}
+
+function animateLibraryCompression(previous) {
+  if (reducedMotion.matches) return;
+  const moving = [];
+  listRoot.querySelectorAll("[data-article-id]").forEach((node) => {
+    const before = previous.choices.get(node.dataset.articleId);
+    if (!before) {
+      node.classList.add("is-filter-entering");
+      moving.push(node);
+      return;
+    }
+    const after = node.getBoundingClientRect();
+    const dx = before.left - after.left;
+    const dy = before.top - after.top;
+    if (Math.abs(dx) < .5 && Math.abs(dy) < .5) return;
+    node.style.setProperty("--library-shift-x", `${dx}px`);
+    node.style.setProperty("--library-shift-y", `${dy}px`);
+    node.classList.add("is-filter-arranging");
+    moving.push(node);
+  });
+  listRoot.querySelectorAll("[data-library-year]").forEach((group) => {
+    const label = group.querySelector(".year-label");
+    const before = previous.years.get(group.dataset.libraryYear);
+    if (!label || !before) return;
+    const after = label.getBoundingClientRect();
+    const dx = before.left - after.left;
+    const dy = before.top - after.top;
+    if (Math.abs(dx) < .5 && Math.abs(dy) < .5) return;
+    label.style.setProperty("--library-shift-x", `${dx}px`);
+    label.style.setProperty("--library-shift-y", `${dy}px`);
+    label.classList.add("is-filter-arranging");
+    moving.push(label);
+  });
+  window.setTimeout(() => moving.forEach((node) => {
+    node.classList.remove("is-filter-arranging", "is-filter-entering");
+    node.style.removeProperty("--library-shift-x");
+    node.style.removeProperty("--library-shift-y");
+  }), 380);
+}
+
+function filterLibrary(nextAuthor) {
+  if (nextAuthor === activeAuthor || listRoot.classList.contains("is-filter-transitioning")) return;
+  const nextItems = libraryForAuthor(nextAuthor);
+  const nextIds = new Set(nextItems.map((item) => item.id));
+  const currentIds = [...listRoot.querySelectorAll("[data-article-id]")].map((node) => node.dataset.articleId);
+  const listIsUnchanged = currentIds.length === nextItems.length && currentIds.every((id, index) => id === nextItems[index].id);
+  if (listIsUnchanged) {
+    activeAuthor = nextAuthor;
+    updateAuthorFilter();
+    updateLibraryCount();
+    return;
+  }
+  const previousPositions = captureLibraryPositions();
+  const previousIndicatorRect = listRoot.querySelector(".article-choice-indicator")?.getBoundingClientRect();
+  const selectionChanges = !nextIds.has(currentArticleId);
+  const nextArticle = selectionChanges ? nextItems[0] : null;
+  const exiting = [...listRoot.querySelectorAll("[data-article-id]")].filter((node) => !nextIds.has(node.dataset.articleId));
+
+  listRoot.classList.add("is-filter-transitioning");
+  exiting.forEach((node) => node.classList.add("is-filter-exiting"));
+  if (selectionChanges) {
+    articleShell.classList.remove("is-entering");
+    articleShell.classList.add("is-leaving");
+  }
+  activeAuthor = nextAuthor;
+  updateAuthorFilter();
+
+  const finish = () => {
+    if (nextArticle) currentArticleId = nextArticle.id;
+    renderLibrary(false);
+    if (nextArticle) {
+      commitArticle(nextArticle, true, false, false);
+      articleShell.classList.remove("is-leaving");
+      articleShell.classList.add("is-entering");
+      window.setTimeout(() => articleShell.classList.remove("is-entering"), 240);
+    }
+    updateLibraryCount();
+    syncArticleChoiceIndicator(true, previousIndicatorRect);
+    animateLibraryCompression(previousPositions);
+    listRoot.classList.remove("is-filter-transitioning");
+  };
+
+  if (reducedMotion.matches || !exiting.length) finish();
+  else window.setTimeout(finish, 170);
 }
 
 function renderAuthorFilter() {
@@ -203,17 +326,7 @@ function renderAuthorFilter() {
   const options = [{ id: "all", label: "全部", accent: "#315f4d" }, ...authors.map((author) => ({ id: author, label: author, accent: authorAccent(author) }))];
   authorFilterRoot.innerHTML = `${options.map((option) => `<button type="button" data-author-filter-value="${escapeHtml(option.id)}" aria-pressed="${String(activeAuthor === option.id)}" style="--author-accent:${option.accent}">${escapeHtml(option.label)}</button>`).join("")}<i class="author-filter-indicator" aria-hidden="true"></i>`;
   authorFilterRoot.querySelectorAll("[data-author-filter-value]").forEach((button) => button.addEventListener("click", () => {
-    if (activeAuthor === button.dataset.authorFilterValue) return;
-    activeAuthor = button.dataset.authorFilterValue;
-    updateAuthorFilter();
-    listRoot.classList.remove("is-filtering");
-    void listRoot.offsetWidth;
-    listRoot.classList.add("is-filtering");
-    renderLibrary();
-    updateLibraryCount();
-    const visibleItems = visibleLibrary();
-    if (!visibleItems.some((item) => item.id === currentArticleId)) showArticle(visibleItems[0]?.id);
-    window.setTimeout(() => listRoot.classList.remove("is-filtering"), 260);
+    filterLibrary(button.dataset.authorFilterValue);
   }));
   requestAnimationFrame(() => updateAuthorFilter(false));
 }
@@ -254,5 +367,8 @@ async function loadLibrary() {
   }
 }
 
-window.addEventListener("resize", () => updateAuthorFilter(false), { passive: true });
+window.addEventListener("resize", () => {
+  updateAuthorFilter(false);
+  syncArticleChoiceIndicator(false);
+}, { passive: true });
 loadLibrary();

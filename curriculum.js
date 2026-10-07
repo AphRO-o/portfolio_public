@@ -1,5 +1,9 @@
 const data = window.curriculumData;
+const requestedParams = new URLSearchParams(window.location.search);
+const isEmbeddedMap = requestedParams.get("embed") === "1";
+if (isEmbeddedMap) document.documentElement.classList.add("is-embedded-map");
 const filtersRoot = document.querySelector("[data-filters]");
+const layoutControlRoot = document.querySelector("[data-layout-control]");
 const stageBandsRoot = document.querySelector("[data-stage-bands]");
 const gradeGrid = document.querySelector("[data-grade-grid]");
 const canvas = document.querySelector("[data-map-canvas]");
@@ -29,7 +33,11 @@ let currentLessonTabIndex = 0;
 let versionPanelAnimationTimer = 0;
 let viewFrame = 0;
 let interactionTimer = 0;
-const view = { x: 0, y: 0, scale: 0.3 };
+let resetAnimationTimer = 0;
+const DESKTOP_MIN_SCALE = 0.3;
+const MOBILE_EMBEDDED_MIN_SCALE = 0.2;
+const minimumScale = () => isEmbeddedMap && window.matchMedia("(max-width: 680px)").matches ? MOBILE_EMBEDDED_MIN_SCALE : DESKTOP_MIN_SCALE;
+const view = { x: 0, y: 0, scale: minimumScale() };
 const pointers = new Map();
 const gesture = {
   mode: "idle",
@@ -43,7 +51,6 @@ const gesture = {
   suppressClickUntil: 0,
   tapTarget: null
 };
-const MIN_SCALE = 0.3;
 const MAX_SCALE = 1.65;
 const UNIT_FOCUS_SCALE = 1.2;
 const mapBounds = { viewportWidth: 0, viewportHeight: 0, canvasWidth: 0, canvasHeight: 0 };
@@ -110,21 +117,19 @@ function flattenTopics() {
 const topicLookup = new Map(flattenTopics().map((topic) => [topic.id, topic]));
 
 function renderFilters() {
-  filtersRoot.innerHTML = Object.entries(data.categories).map(([id, category]) => {
-    if (id === "all") {
-      const compact = layoutMode === "compact";
-      return `<button class="layout-mode-toggle" type="button" data-layout-toggle aria-pressed="${compact}" aria-label="当前为${compact ? "紧凑" : "松散"}模式，点击切换为${compact ? "松散" : "紧凑"}" title="切换地图排列密度"><span class="layout-toggle-options" aria-hidden="true"><i></i><span>松散</span><span>紧凑</span></span></button>`;
-    }
+  const compact = layoutMode === "compact";
+  layoutControlRoot.innerHTML = `<button class="layout-mode-toggle" type="button" data-layout-toggle aria-pressed="${compact}" aria-label="当前为${compact ? "紧凑" : "松散"}模式，点击切换为${compact ? "松散" : "紧凑"}" title="切换地图排列密度"><span class="layout-toggle-options" aria-hidden="true"><i></i><span>松散</span><span>紧凑</span></span></button>`;
+  filtersRoot.innerHTML = Object.entries(data.categories).filter(([id]) => id !== "all").map(([id, category]) => {
     const isActive = id === activeCategory;
     return `<button class="domain-filter" type="button" data-domain="${id}" aria-pressed="${isActive}" aria-label="${category.short}${isActive ? "，取消筛选" : "，筛选"}" title="${isActive ? "取消此筛选" : `只看${category.label}`}">${category.short}</button>`;
   }).join("");
-  filtersRoot.querySelector("[data-layout-toggle]")?.addEventListener("click", toggleLayoutMode);
+  layoutControlRoot.querySelector("[data-layout-toggle]")?.addEventListener("click", toggleLayoutMode);
   filtersRoot.querySelectorAll("[data-domain]").forEach((button) => button.addEventListener("click", () => toggleCategoryFilter(button.dataset.domain)));
 }
 
 function syncFilterControls() {
   const compact = layoutMode === "compact";
-  const layoutToggle = filtersRoot.querySelector("[data-layout-toggle]");
+  const layoutToggle = layoutControlRoot.querySelector("[data-layout-toggle]");
   if (layoutToggle) {
     layoutToggle.setAttribute("aria-pressed", String(compact));
     layoutToggle.setAttribute("aria-label", `当前为${compact ? "紧凑" : "松散"}模式，点击切换为${compact ? "松散" : "紧凑"}`);
@@ -427,6 +432,7 @@ function openLesson(lesson) {
   dialog.classList.remove("is-closing");
   document.documentElement.classList.add("is-lesson-open");
   dialog.showModal();
+  if (isEmbeddedMap) window.parent.postMessage({ type: "curriculum-lesson-state", open: true }, window.location.origin);
   window.setTimeout(() => {
     if (dialog.open && currentLesson === lesson) renderVersionPanel(model.tabs[0]);
   }, 180);
@@ -439,6 +445,7 @@ function clearLessonDialog() {
   document.documentElement.classList.remove("is-lesson-open");
   dialogContent.replaceChildren();
   currentLesson = null;
+  if (isEmbeddedMap) window.parent.postMessage({ type: "curriculum-lesson-state", open: false }, window.location.origin);
 }
 
 function closeLessonDialog(immediate = false) {
@@ -463,20 +470,35 @@ function overviewControlInset() {
   return controlsRight + configuredGap;
 }
 
+function overviewSafeArea() {
+  const area = { left: overviewControlInset(), right: 0, top: 0, bottom: 0 };
+  if (!isEmbeddedMap || window.innerWidth > 680 || view.scale >= 0.6) return area;
+  const viewportRect = mapViewport.getBoundingClientRect();
+  const headerRect = document.querySelector("[data-header]")?.getBoundingClientRect();
+  const hudRect = document.querySelector(".map-hud")?.getBoundingClientRect();
+  const gap = 12;
+  area.left = gap;
+  area.right = gap;
+  area.top = headerRect ? Math.max(0, headerRect.bottom - viewportRect.top + gap) : gap;
+  area.bottom = hudRect ? Math.max(0, viewportRect.bottom - hudRect.top + gap) : gap;
+  return area;
+}
+
 function constrainView() {
   if (!mapBounds.viewportWidth || !mapBounds.canvasWidth) refreshMapBounds();
   const scaledWidth = mapBounds.canvasWidth * view.scale;
   const scaledHeight = mapBounds.canvasHeight * view.scale;
-  const safeLeft = overviewControlInset();
-  const usableWidth = Math.max(1, mapBounds.viewportWidth - safeLeft);
+  const safe = overviewSafeArea();
+  const usableWidth = Math.max(1, mapBounds.viewportWidth - safe.left - safe.right);
+  const usableHeight = Math.max(1, mapBounds.viewportHeight - safe.top - safe.bottom);
   const marginX = usableWidth / 2;
-  const marginY = mapBounds.viewportHeight / 2;
+  const marginY = usableHeight / 2;
   view.x = scaledWidth <= usableWidth
-    ? (safeLeft > 0 ? safeLeft : (usableWidth - scaledWidth) / 2)
-    : Math.min(safeLeft + marginX, Math.max(safeLeft + usableWidth - scaledWidth - marginX, view.x));
-  view.y = scaledHeight <= mapBounds.viewportHeight
-    ? (mapBounds.viewportHeight - scaledHeight) / 2
-    : Math.min(marginY, Math.max(mapBounds.viewportHeight - scaledHeight - marginY, view.y));
+    ? safe.left + (usableWidth - scaledWidth) / 2
+    : Math.min(safe.left + marginX, Math.max(safe.left + usableWidth - scaledWidth - marginX, view.x));
+  view.y = scaledHeight <= usableHeight
+    ? safe.top + (usableHeight - scaledHeight) / 2
+    : Math.min(safe.top + marginY, Math.max(safe.top + usableHeight - scaledHeight - marginY, view.y));
 }
 
 function refreshMapBounds() {
@@ -515,20 +537,32 @@ function markMapInteracting() {
   interactionTimer = window.setTimeout(() => mapViewport.classList.remove("is-interacting"), 140);
 }
 
-function resetView() {
+function resetView(animate = false) {
   if (viewFrame) cancelAnimationFrame(viewFrame);
   viewFrame = 0;
   clearContextFocus(true);
-  view.scale = MIN_SCALE;
+  window.clearTimeout(resetAnimationTimer);
+  canvas.classList.remove("is-focusing", "is-resetting");
+  const shouldAnimate = animate && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (shouldAnimate) {
+    void canvas.offsetWidth;
+    canvas.classList.add("is-resetting");
+  }
+  view.scale = minimumScale();
   refreshMapBounds();
-  const safeLeft = overviewControlInset();
-  const usableWidth = Math.max(1, mapBounds.viewportWidth - safeLeft);
+  const safe = overviewSafeArea();
+  const usableWidth = Math.max(1, mapBounds.viewportWidth - safe.left - safe.right);
+  const usableHeight = Math.max(1, mapBounds.viewportHeight - safe.top - safe.bottom);
   const scaledWidth = mapBounds.canvasWidth * view.scale;
+  const scaledHeight = mapBounds.canvasHeight * view.scale;
   view.x = scaledWidth <= usableWidth
-    ? (safeLeft > 0 ? safeLeft : (usableWidth - scaledWidth) / 2)
-    : safeLeft;
-  view.y = 0;
+    ? safe.left + (usableWidth - scaledWidth) / 2
+    : safe.left;
+  view.y = scaledHeight <= usableHeight
+    ? safe.top + (usableHeight - scaledHeight) / 2
+    : safe.top;
   applyView();
+  if (shouldAnimate) resetAnimationTimer = window.setTimeout(() => canvas.classList.remove("is-resetting"), 460);
 }
 
 function zoomAt(clientX, clientY, factor) {
@@ -536,7 +570,7 @@ function zoomAt(clientX, clientY, factor) {
   const localX = clientX - rect.left;
   const localY = clientY - rect.top;
   const oldScale = view.scale;
-  const nextScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, oldScale * factor));
+  const nextScale = Math.min(MAX_SCALE, Math.max(minimumScale(), oldScale * factor));
   if (Math.abs(nextScale - oldScale) < 0.001) return;
   const mapX = (localX - view.x) / oldScale;
   const mapY = (localY - view.y) / oldScale;
@@ -762,7 +796,7 @@ zoomOutButton.addEventListener("click", () => {
   const rect = mapViewport.getBoundingClientRect();
   zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 1 / 1.16);
 });
-resetViewButton.addEventListener("click", resetView);
+resetViewButton.addEventListener("click", () => resetView(true));
 document.addEventListener("pointerdown", () => {
   if (canvas.classList.contains("is-context-focused")) clearContextFocus(true);
 }, { capture: true, passive: true });
@@ -784,8 +818,6 @@ topicSearch.addEventListener("keydown", (event) => {
   }
 });
 
-const requestedParams = new URLSearchParams(window.location.search);
-if (requestedParams.get("embed") === "1") document.documentElement.classList.add("is-embedded-map");
 renderFilters();
 renderStageBands();
 renderGrades();
