@@ -9,7 +9,6 @@ const statusLabels = { pending: "尚未备课", planning: "已进入规划", dra
 let currentLesson = null;
 let currentLessonTabs = [];
 let currentLessonTabIndex = 0;
-let versionPanelAnimationTimer = 0;
 let resetMiniMapFisheye = null;
 let mapTransitionTimer = 0;
 let mapPrepareTimer = 0;
@@ -112,13 +111,11 @@ function renderCourseOverview(lesson, hasContent) {
 
 function animateVersionPanel(panel, direction) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  window.clearTimeout(versionPanelAnimationTimer);
-  panel.classList.remove("is-switching", "is-switching-forward", "is-switching-backward");
-  panel.getBoundingClientRect();
-  panel.classList.add("is-switching", direction < 0 ? "is-switching-backward" : "is-switching-forward");
-  versionPanelAnimationTimer = window.setTimeout(() => {
-    panel.classList.remove("is-switching", "is-switching-forward", "is-switching-backward");
-  }, 300);
+  panel.getAnimations().forEach((animation) => animation.cancel());
+  panel.animate(
+    [{ opacity: 0.62, transform: `translate3d(${direction < 0 ? -8 : 8}px,0,0)` }, { opacity: 1, transform: "translate3d(0,0,0)" }],
+    { duration: 150, easing: "cubic-bezier(.22,.8,.28,1)" }
+  );
 }
 
 function renderVersionPanel(tab, direction = 1) {
@@ -165,13 +162,11 @@ function openLesson(lesson) {
   const model = lessonTabModel(lesson);
   currentLessonTabs = model.tabs;
   currentLessonTabIndex = 0;
-  dialogContent.innerHTML = `<article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${stage.color}"><header class="lesson-dialog-header"><div class="lesson-breadcrumb">${stage.label}数学 / ${escapeHtml(lesson.grade.label)} / ${escapeHtml(termDisplayLabel(lesson.grade, lesson.semester))} / ${category.label}</div><h2>${escapeHtml(lesson.point.title)}</h2><div class="lesson-submeta"><span>${escapeHtml(lesson.unit.title)}</span><span class="lesson-state ${lesson.point.status}">${statusLabels[lesson.point.status]}</span></div></header><div class="version-tabs" role="tablist" aria-label="课例内容">${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}</div><div class="version-panel is-loading" data-version-panel role="tabpanel"><div class="panel-loading">正在展开课例…</div></div></article>`;
+  dialogContent.innerHTML = `<article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${stage.color}"><header class="lesson-dialog-header"><div class="lesson-breadcrumb">${stage.label}数学 / ${escapeHtml(lesson.grade.label)} / ${escapeHtml(termDisplayLabel(lesson.grade, lesson.semester))} / ${category.label}</div><h2>${escapeHtml(lesson.point.title)}</h2><div class="lesson-submeta"><span>${escapeHtml(lesson.unit.title)}</span><span class="lesson-state ${lesson.point.status}">${statusLabels[lesson.point.status]}</span></div></header><div class="version-tabs" role="tablist" aria-label="课例内容">${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}</div><div class="version-panel" data-version-panel role="tabpanel"></div></article>`;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
+  renderVersionPanel(model.tabs[0]);
   dialog.showModal();
-  window.setTimeout(() => {
-    if (dialog.open && currentLesson === lesson) renderVersionPanel(model.tabs[0]);
-  }, 180);
 }
 
 function closeLessonDialog() {

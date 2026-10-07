@@ -30,7 +30,6 @@ let layoutMode = "loose";
 let currentLesson = null;
 let currentLessonTabs = [];
 let currentLessonTabIndex = 0;
-let versionPanelAnimationTimer = 0;
 let viewFrame = 0;
 let interactionTimer = 0;
 let resetAnimationTimer = 0;
@@ -384,13 +383,11 @@ function renderVersionPanel(tab, direction = 1) {
 
 function animateVersionPanel(panel, direction) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  window.clearTimeout(versionPanelAnimationTimer);
-  panel.classList.remove("is-switching", "is-switching-forward", "is-switching-backward");
-  panel.getBoundingClientRect();
-  panel.classList.add("is-switching", direction < 0 ? "is-switching-backward" : "is-switching-forward");
-  versionPanelAnimationTimer = window.setTimeout(() => {
-    panel.classList.remove("is-switching", "is-switching-forward", "is-switching-backward");
-  }, 300);
+  panel.getAnimations().forEach((animation) => animation.cancel());
+  panel.animate(
+    [{ opacity: 0.62, transform: `translate3d(${direction < 0 ? -8 : 8}px,0,0)` }, { opacity: 1, transform: "translate3d(0,0,0)" }],
+    { duration: 150, easing: "cubic-bezier(.22,.8,.28,1)" }
+  );
 }
 
 function selectVersion(versionId) {
@@ -426,16 +423,14 @@ function openLesson(lesson) {
       <div class="version-tabs" role="tablist" aria-label="课例内容">
         ${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}
       </div>
-      <div class="version-panel is-loading" data-version-panel role="tabpanel"><div class="panel-loading">正在展开课例…</div></div>
+      <div class="version-panel" data-version-panel role="tabpanel"></div>
     </article>`;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
   document.documentElement.classList.add("is-lesson-open");
+  renderVersionPanel(model.tabs[0]);
   dialog.showModal();
   if (isEmbeddedMap) window.parent.postMessage({ type: "curriculum-lesson-state", open: true }, window.location.origin);
-  window.setTimeout(() => {
-    if (dialog.open && currentLesson === lesson) renderVersionPanel(model.tabs[0]);
-  }, 180);
 }
 
 function clearLessonDialog() {
@@ -806,7 +801,7 @@ window.addEventListener("resize", () => {
   applyView();
 }, { passive: true });
 
-document.querySelector("[data-close-dialog]").addEventListener("click", closeLessonDialog);
+document.querySelector("[data-close-dialog]").addEventListener("click", () => closeLessonDialog());
 dialog.addEventListener("click", (event) => { if (event.target === dialog) closeLessonDialog(); });
 dialog.addEventListener("cancel", (event) => { event.preventDefault(); closeLessonDialog(); });
 topicSearch.addEventListener("input", handleSearch);
