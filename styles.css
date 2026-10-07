@@ -96,16 +96,18 @@ button { font: inherit; }
   text-decoration: none;
   line-height: 1.15;
 }
-.brand-mark {
-  display: grid;
+.brand-equals {
+  display: inline-grid;
   place-items: center;
+  flex: 0 0 auto;
   width: 36px;
   height: 36px;
   color: var(--paper);
   background: var(--green);
-  border-radius: 50%;
-  font-family: var(--serif);
-  font-size: 1.08rem;
+  font-family: var(--sans);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1;
 }
 .brand strong { display: block; font-family: var(--serif); font-size: 0.98rem; }
 .brand small { display: block; margin-top: 0.18rem; color: var(--muted); font-size: 0.5rem; letter-spacing: 0.16em; }
@@ -427,7 +429,6 @@ button { font: inherit; }
 }
 
 /* Mathematics teaching lab */
-.brand-mark { font-family: Georgia, var(--serif); font-weight: 700; }
 .math-visual { width: min(100%, 500px); }
 .math-board-card {
   position: relative;
@@ -561,9 +562,9 @@ button { font: inherit; }
 .hero-proof span { color: var(--muted); font-size: 0.68rem; }
 .candidate-line { max-width: 680px; margin: 1.7rem 0 0; padding-top: 1rem; color: var(--muted); border-top: 1px solid color-mix(in srgb, var(--hero-stage) 28%, transparent); font-size: 0.76rem; }
 .candidate-line strong { color: var(--ink); }
-.portfolio-home .site-header:not(.is-past-hero) .brand-mark { background: var(--hero-stage-deep); }
 .portfolio-home .site-header:not(.is-past-hero) .brand small { color: var(--hero-stage-deep); }
-.home-hero .eyebrow,.home-hero h1 em,.home-hero .text-link span,.hero-proof strong,.portfolio-home .site-header .brand-mark,.portfolio-home .site-header .brand small,.candidate-line { transition: color .28s ease,background-color .28s ease,border-color .28s ease; }
+.portfolio-home .site-header:not(.is-past-hero) .brand-equals { color: var(--paper); background: var(--hero-stage-deep); }
+.home-hero .eyebrow,.home-hero h1 em,.home-hero .text-link span,.hero-proof strong,.portfolio-home .site-header .brand-equals,.portfolio-home .site-header .brand small,.candidate-line { transition: color .28s ease,background-color .28s ease,border-color .28s ease; }
 .hero-featured-link,.featured-next-mobile,.mobile-map-hint,.mobile-resume-link { display: none; }
 .featured-area { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: auto minmax(0,1fr); align-self: stretch; width: 100%; max-width: none; margin-top: -70px; padding: 78px 0 1.4rem; background: transparent; }
 .featured-stage-tabs { z-index: 4; display: grid; grid-template-columns: repeat(3, 1fr); grid-column: 1; grid-row: 1; gap: .32rem; margin-bottom: 0.65rem; padding: 0.32rem; background: rgba(255,250,242,0.9); border: 1px solid rgba(143,55,24,0.16); border-radius: 99px; box-shadow: 0 10px 24px rgba(105,52,25,.1); }

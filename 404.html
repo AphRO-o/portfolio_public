@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="徐晨昊的个人索引：老师、作者与开发者。" />
     <meta name="theme-color" content="#f5f2eb" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-index-v2.svg" />
     <title>页面不存在｜徐晨昊</title>
     <link rel="stylesheet" href="/portal.css" />
   </head>
   <body>
     <main class="identity-index">
-      <header class="index-meta"><span>PERSONAL INDEX</span></header>
+      <header class="index-meta"><span class="index-brand"><img class="index-mark" src="/assets/icons/favicon-index-v2.svg" alt="" aria-hidden="true" /><span>PERSONAL INDEX</span></span></header>
 
       <section class="nameplate" aria-labelledby="owner-name">
-        <p>CHENHAO XU</p>
         <h1 id="owner-name">徐晨昊</h1>
       </section>
 
@@ -37,6 +37,8 @@
           <span class="identity-arrow" aria-hidden="true">↗</span>
         </a>
       </nav>
+      <footer class="index-footer"><span class="index-copyright">©&nbsp;<span data-year></span>&nbsp;XU CHENHAO</span></footer>
     </main>
+    <script>document.querySelector("[data-year]").textContent = new Date().getFullYear();</script>
   </body>
 </html>
