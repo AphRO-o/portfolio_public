@@ -7,36 +7,105 @@
     <meta name="theme-color" content="#1559a6" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-dev.svg" />
     <title>AphRO｜Developer</title>
-    <link rel="stylesheet" href="/dev.css" />
+    <link rel="stylesheet" href="/dev-showcase.css" />
   </head>
   <body>
-    <header class="dev-header"><a class="dev-mark" href="/dev"><span class="dev-prompt" aria-hidden="true">&gt;<i>_</i></span><span class="dev-wordmark">AphRO</span></a><nav><a href="#work">Projects</a><a href="#stack">Stack</a><a href="mailto:contact@xuchenhao.me">Contact</a></nav></header>
-    <main>
-      <section class="dev-hero">
-        <div><p class="dev-kicker">DEVELOPER / DATA / MACHINE LEARNING</p><h1>把复杂系统，<br /><em>做成可理解、可验证的东西。</em></h1><p class="dev-intro">新加坡国立大学计算机科学硕士在读，关注数据处理、机器学习与交互系统。</p><div class="dev-actions"><a href="#work">查看项目 ↓</a></div></div>
-        <div class="code-window" aria-label="开发方向概览"><div class="window-top"><i></i><i></i><i></i><span>aphro.profile</span></div><pre><code><b>const</b> aphro = {
-  education: <q>NUS Computer Science</q>,
-  interests: [
-    <q>machine learning</q>,
-    <q>data systems</q>,
-    <q>human-centered tools</q>
-  ],
-  builds: <q>ideas → working systems</q>
-};</code></pre></div>
-      </section>
+    <div class="showcase-site" data-showcase-site>
+      <header class="showcase-header" id="top">
+        <a class="showcase-brand" href="/dev" aria-label="AphRO 开发作品集首页">
+          <span aria-hidden="true">&gt;</span><strong>AphRO</strong><i aria-hidden="true">_</i>
+        </a>
 
-      <section class="projects" id="work">
-        <div class="section-title"><p>SELECTED WORK</p><h2>项目样例</h2></div>
-        <div class="project-list">
-          <article><span>01 / WEB TOOL</span><h3>数学备课实验室与本地发布器</h3><p>把 475 个数学知识点组织成可缩放、可筛选的课程地图，并为教案、试讲版本、板书和视频设计本地内容发布流程。</p><ul><li>Vanilla JavaScript</li><li>Node.js</li><li>Content model</li></ul><a href="/teach">查看成品 ↗</a></article>
-          <article><span>02 / RESEARCH</span><h3>物联网数据处理与通信效率权衡</h3><p>运用概率统计与机器学习方法比较不同数据处理方案，分析传输开销、模型表现与系统约束之间的关系。</p><ul><li>Python</li><li>Machine Learning</li><li>Statistical analysis</li></ul></article>
-          <article><span>03 / COMPUTER VISION</span><h3>道路安全影响因素分析</h3><p>结合语义分割、机器学习与 GIS 处理道路环境数据，形成同济大学校级优秀毕业论文。</p><ul><li>Semantic segmentation</li><li>GIS</li><li>Data analysis</li></ul></article>
-        </div>
-      </section>
+        <nav class="category-nav" aria-label="作品分类">
+          <div class="category-menu" data-category-menu="games">
+            <button type="button" data-category="games" aria-haspopup="true" aria-expanded="false">游戏</button>
+            <div class="category-popover" role="menu" aria-label="游戏项目">
+              <p>GAMES <span>01</span></p>
+              <button type="button" role="menuitem" data-project-id="winter"><i>01</i><span><strong>寻冬</strong><small>类银河城独立游戏 · 制作中</small></span></button>
+            </div>
+          </div>
+          <div class="category-menu" data-category-menu="papers">
+            <button type="button" data-category="papers" aria-haspopup="true" aria-expanded="false">项目</button>
+            <div class="category-popover" role="menu" aria-label="研究项目列表">
+              <p>PROJECTS <span>02</span></p>
+              <button type="button" role="menuitem" data-project-id="iot"><i>01</i><span><strong>Machine Learning at the Network Edge</strong><small>NUS · 网络边缘机器学习</small></span></button>
+              <button type="button" role="menuitem" data-project-id="roads"><i>02</i><span><strong>基于城市街景图的道路设施环境安全评价</strong><small>TONGJI · 计算机视觉与机器学习的应用</small></span></button>
+            </div>
+          </div>
+          <div class="category-menu" data-category-menu="projects">
+            <button type="button" data-category="projects" aria-haspopup="true" aria-expanded="false">工具</button>
+            <div class="category-popover" role="menu" aria-label="工具列表">
+              <p>TOOLS <span>02</span></p>
+              <button type="button" role="menuitem" data-project-id="reader"><i>01</i><span><strong>GPT Reader</strong><small>AI 阅读工具</small></span></button>
+              <button type="button" role="menuitem" data-project-id="cv"><i>02</i><span><strong>CV Creator</strong><small>结构化简历工具</small></span></button>
+            </div>
+          </div>
+        </nav>
+        <a class="resume-nav-link" href="#resume" aria-label="前往简历">简历 <span aria-hidden="true">↘</span></a>
+      </header>
 
-      <section class="stack" id="stack"><div><p>WORKING STACK</p><h2>Python / SQL / JavaScript / Excel</h2></div><p>数据结构与算法、人工智能、概率建模、神经网络与深度学习。</p></section>
-    </main>
-    <footer><div><strong>AphRO</strong><a href="mailto:contact@xuchenhao.me">contact@xuchenhao.me</a></div><span>© <span data-year></span> XU CHENHAO</span></footer>
-    <script>document.querySelector("[data-year]").textContent = new Date().getFullYear();</script>
+      <main>
+        <section class="showcase-hero" data-showcase-hero aria-labelledby="project-title">
+          <img class="hero-backdrop is-visible" data-hero-backdrop alt="" decoding="async" fetchpriority="high" draggable="false" />
+          <img class="hero-backdrop" data-hero-next alt="" decoding="async" draggable="false" />
+          <div class="hero-vignette" aria-hidden="true"></div>
+          <p class="concept-disclaimer" data-concept-disclaimer>*概念美术不代表最终游戏画面。实际效果请以实机 Demo 为准。</p>
+
+          <div class="project-copy" aria-live="polite">
+            <p class="project-eyebrow" data-project-eyebrow>FLAGSHIP METROIDVANIA · IN DEVELOPMENT</p>
+            <h1 id="project-title" data-project-title>寻冬</h1>
+            <p class="project-english" data-project-english hidden></p>
+            <p class="project-summary" data-project-summary>一块住在温暖浴室里的小肥皂，从来没有见过冬天。为了寻找传说中的雪，它钻进墙缝后的机械王国，开始一场小小的童话冒险。</p>
+            <div class="project-meta" data-project-meta><span>METROIDVANIA</span><span>GAME DESIGN</span><span>UNITY</span></div>
+            <a class="project-link" data-project-link href="#" aria-disabled="true">项目正在制作中 <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <aside class="winter-preview" data-winter-preview aria-label="寻冬预览图" hidden>
+            <div class="winter-preview-window"><div class="winter-preview-track" data-winter-preview-track></div></div>
+          </aside>
+
+          <div class="showcase-controls" aria-label="切换作品">
+            <button class="showcase-arrow previous" type="button" data-project-previous aria-label="上一个作品"><span class="arrow-icon" aria-hidden="true">←</span><span class="arrow-copy"><b data-previous-context>上一个 · 工具</b><small data-previous-label>CV Creator</small></span></button>
+            <div class="project-rail" aria-label="快速选择作品"><div class="project-rail-bars" data-project-rail></div><div class="project-rail-title" data-rail-title>寻冬</div></div>
+            <button class="showcase-arrow next" type="button" data-project-next aria-label="下一个作品"><span class="arrow-copy"><b data-next-context>下一个 · 项目</b><small data-next-label>Machine Learning at the Network Edge</small></span><span class="arrow-icon" aria-hidden="true">→</span></button>
+          </div>
+
+        </section>
+
+        <section class="developer-resume" id="resume" aria-labelledby="resume-title">
+          <div class="resume-intro">
+            <p class="resume-kicker">FULL RESUME / 2026</p>
+            <h2 id="resume-title">徐晨昊</h2>
+            <p class="resume-role">Developer · Researcher · Game Maker</p>
+            <p class="resume-lead">新加坡国立大学计算机科学硕士在读。</p>
+            <div class="resume-facts"><span>NUS 计算机科学硕士</span><span>同济大学优秀毕业论文</span><span>IELTS 7.5</span><span>Python / SQL / JavaScript / Unity</span></div>
+            <a class="resume-mail" href="mailto:contact@xuchenhao.me">contact@xuchenhao.me <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <div class="resume-content">
+            <section class="resume-group">
+              <p class="resume-label">01 / EDUCATION</p>
+              <article class="resume-entry"><time>2025.08 — 2027.01</time><div><h3>新加坡国立大学</h3><p>计算机科学 · 硕士研究生</p><ul><li>GPA 4.07 / 5（截至 2026.08）。</li><li>数据结构与算法、机器学习概率建模、人工智能、神经网络与深度学习。</li><li>研究物联网数据处理方案中通信开销、模型表现与系统约束之间的权衡。</li></ul></div></article>
+              <article class="resume-entry"><time>2020.09 — 2025.06</time><div><h3>同济大学</h3><p>土木工程 · 本科</p><ul><li>GPA 86 / 100（前 30%），校三等奖学金、优秀团员。</li><li>以语义分割、机器学习与 GIS 分析道路安全影响因素，获校级优秀毕业论文。</li></ul></div></article>
+            </section>
+
+            <section class="resume-group">
+              <p class="resume-label">02 / SELECTED PRACTICE</p>
+              <article class="resume-entry"><time>2022.09 — 2023.08</time><div><h3>ASCE 同济学生分会</h3><p>主席 · 竞赛设计与组织</p><ul><li>主导三届结构设计竞赛，自主设计《火星撞地球》赛题并统筹参赛沟通与现场组织。</li><li>将结构受力、力学与数学原理转化为面向中学生的可理解语言和实例。</li></ul></div></article>
+              <article class="resume-entry"><time>2020.10 — 2024.08</time><div><h3>一对一教学</h3><p>小学至高中 · 数学与综合辅导</p><ul><li>通过问题拆解、反例和针对性练习定位理解断点，并重建知识之间的连接。</li></ul></div></article>
+            </section>
+
+            <section class="resume-group resume-skills">
+              <p class="resume-label">03 / TOOLBOX</p>
+              <div class="skill-grid"><article><span>CODE</span><p>Python, JavaScript, SQL</p></article><article><span>ML / DATA</span><p>PyTorch, statistical analysis, GIS</p></article><article><span>GAME</span><p>Unity, game design, art direction</p></article><article><span>LANGUAGE</span><p>中文 · English (IELTS 7.5)</p></article></div>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <footer class="showcase-footer"><strong>&gt;&nbsp;AphRO_</strong><span>© <span data-showcase-year></span> XU CHENHAO</span><a href="#top">BACK TO TOP ↑</a></footer>
+    </div>
+
+    <script src="/dev-showcase.js"></script>
   </body>
 </html>

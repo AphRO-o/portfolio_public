@@ -8,6 +8,6 @@ footer{display:grid;place-items:center;gap:.65rem;text-align:center}footer>div{d
 .window-top{font-size:.66rem}.code-window pre{font-size:clamp(.82rem,1.25vw,1.08rem)}.project-list article>span{font-size:.66rem}.project-list li{font-size:.64rem}.project-list a{font-size:.78rem}footer{font-size:.74rem}footer strong{font-family:var(--mono),var(--sans);font-size:1.05em}footer>span{font-size:.64rem}
 
 /* Shared identity lockup. */
-.dev-mark{display:inline-flex;align-items:baseline;gap:.42rem;letter-spacing:0}.dev-mark .dev-prompt{color:var(--blue);font-family:var(--mono),var(--sans);font-size:1.28rem;font-weight:700;letter-spacing:-.08em;animation:none}.dev-prompt i{font-style:normal;animation:terminal-cursor-pulse .9s ease-in-out infinite;will-change:opacity}.dev-mark .dev-wordmark{color:var(--ink);font-family:var(--mono),var(--sans);font-size:1.28rem;font-weight:800;letter-spacing:-.03em;animation:none}
-@keyframes terminal-cursor-pulse{0%,100%{opacity:1}50%{opacity:.08}}
-@media(max-width:600px){.dev-mark{gap:.36rem}.dev-mark .dev-prompt,.dev-mark .dev-wordmark{font-size:1.12rem}}@media(prefers-reduced-motion:reduce){.dev-prompt i{animation:none}}
+.dev-mark{display:inline-flex;align-items:baseline;gap:.42rem;letter-spacing:0}.dev-mark .dev-prompt{color:var(--blue);font-family:var(--mono),var(--sans);font-size:1.28rem;font-weight:700;letter-spacing:-.08em;animation:none}.dev-prompt i{display:none}.dev-mark .dev-wordmark{color:var(--ink);font-family:var(--mono),var(--sans);font-size:1.28rem;font-weight:800;letter-spacing:-.03em;animation:none}.dev-wordmark::after{content:"_";color:var(--ink);animation:terminal-cursor-blink 1s step-end infinite}
+@keyframes terminal-cursor-blink{50%{opacity:0}}
+@media(max-width:600px){.dev-mark{gap:.36rem}.dev-mark .dev-prompt,.dev-mark .dev-wordmark{font-size:1.12rem}}@media(prefers-reduced-motion:reduce){.dev-wordmark::after{animation:none}}
