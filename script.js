@@ -82,32 +82,25 @@ function lessonTabModel(lesson) {
     return { ...version, tabId: `trial-${version.id || index + 1}`, versionNumber: match ? Number(match[1]) : index + 1, sourceIndex: index };
   }).filter((version) => Boolean(version.video || version.reflectionMarkdown || version.reflection || version.boardImage || version.board || version.date || version.duration || version.format))
     .sort((a, b) => b.versionNumber - a.versionNumber || b.sourceIndex - a.sourceIndex);
-  const hasContent = Boolean(designMarkdown || trials.length);
+  const hasContent = Boolean(designMarkdown || trials.length || window.courseOverview.hasContent(lesson.point));
   const tabs = [{ id: "overview", label: "课程概览", kind: "overview", hasContent }];
   if (designMarkdown) tabs.push({ id: "design", label: "教学设计", kind: "design", designMarkdown, lessonFile });
   trials.forEach((version) => tabs.push({ ...version, id: version.tabId, label: `试讲 v${version.versionNumber}`, kind: "trial" }));
   return { tabs, hasContent };
 }
 
-function overviewMarkdown(value) {
-  if (Array.isArray(value)) return value.map((item) => `- ${item}`).join("\n");
-  return String(value || "").trim();
+function renderCourseOverview(lesson) {
+  return window.courseOverview.render(lesson.point, topicLookup, markdownToSafeHtml);
 }
 
-function renderCourseOverview(lesson, hasContent) {
-  if (!hasContent) return `<section class="course-overview is-empty" aria-label="课程概览"></section>`;
-  const overview = lesson.point.overview || {};
-  const fields = [
-    ["教学目标", overview.objectives || overview.objective],
-    ["前置知识点", overview.prerequisites || overview.prerequisite],
-    ["后置知识点", overview.nextTopics || overview.next],
-    ["例题设计", overview.examples || overview.exampleDesign]
-  ];
-  return `<section class="course-overview">${fields.map(([label, value]) => {
-    const markdown = overviewMarkdown(value);
-    return `<article><span>${label}</span>${markdown ? `<div class="lesson-markdown">${markdownToSafeHtml(markdown)}</div>` : `<i>待补充</i>`}</article>`;
-  }).join("")}</section>`;
-}
+dialogContent.addEventListener("click", (event) => {
+  const link = event.target.closest("[data-overview-topic]");
+  if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  const topic = topicLookup.get(link.dataset.overviewTopic);
+  if (!topic) return;
+  event.preventDefault();
+  openLesson(topic);
+});
 
 function animateVersionPanel(panel, direction) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

@@ -247,10 +247,19 @@
 .lesson-dialog[open] .version-panel.is-switching { will-change: opacity, transform; animation: panel-switch 0.28s cubic-bezier(0.22, 0.8, 0.28, 1); }
 .version-panel.is-switching-forward { --panel-switch-x: 28px; }
 .version-panel.is-switching-backward { --panel-switch-x: -28px; }
-.course-overview { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; width: min(100%,920px); margin-inline: auto; }
-.course-overview article { min-height: 150px; padding: 1.15rem 1.25rem; background: rgba(255,255,255,.72); border: 1px solid #e1d8cf; }
-.course-overview article > span { display: block; margin-bottom: .8rem; color: var(--green); font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.course-overview { width: min(100%,760px); margin-inline: auto; }
+.course-overview article { margin-bottom: 1.8rem; }
+.course-overview article:last-child { margin-bottom: 0; }
+.course-overview article > h3 { margin: 0 0 .6rem; color: var(--green); font-family: var(--serif); font-size: 1.1rem; font-weight: 700; }
 .course-overview article > i { color: #aaa19a; font-size: .72rem; font-style: normal; }
+.course-overview article { min-width: 0; overflow-wrap: anywhere; }
+.overview-topic-links { display: grid; gap: .5rem; margin-top: .6rem; }
+.overview-topic-link { display: block; width: fit-content; max-width: 100%; color: var(--green); text-decoration: none; }
+.overview-topic-link:hover strong { text-decoration: underline; }
+.overview-topic-link:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.overview-topic-link strong { display: block; font-size: .76rem; }
+.overview-topic-link small { display: block; margin-top: .2rem; color: var(--muted); font-size: .62rem; }
+.overview-topic-missing { color: var(--muted); font-size: .72rem; }
 .course-overview.is-empty { display: block; min-height: 300px; }
 .version-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
 .video-slot { width: min(100%, 920px); aspect-ratio: 16 / 9; min-height: 0; margin-inline: auto; overflow: hidden; background: #211814; }
@@ -336,8 +345,7 @@
   .version-tabs::-webkit-scrollbar { display: none; }
   .version-tabs button { min-height: 44px; padding: 0.65rem 0.72rem; font-size: 0.7rem; }
   .version-panel { padding: 0.9rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); }
-  .course-overview { grid-template-columns: 1fr; gap: .7rem; }
-  .course-overview article { min-height: 112px; padding: .9rem 1rem; }
+  .course-overview article { margin-bottom: 1.4rem; }
   .course-overview.is-empty { min-height: 220px; }
   .version-layout { gap: 1.15rem; }
   .video-slot { width: 100%; aspect-ratio: 16 / 9; border-radius: 3px; }

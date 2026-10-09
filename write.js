@@ -352,9 +352,16 @@ function updateAuthorFilter(animate = true) {
 
 async function loadLibrary() {
   try {
-    const response = await fetch("/writing-library.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("无法读取作品目录");
-    library = (await response.json()).items || [];
+    const embedded = document.querySelector("#writing-data");
+    let data;
+    if (embedded) data = JSON.parse(embedded.textContent);
+    else {
+      const response = await fetch("/writing-library.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("无法读取作品目录");
+      data = await response.json();
+    }
+    library = data.items || [];
+    if (!library.length) throw new Error("暂时没有公开作品");
     renderAuthorFilter();
     updateLibraryCount();
     renderLibrary();
@@ -364,6 +371,9 @@ async function loadLibrary() {
     countNode.textContent = "读取失败";
     titleNode.textContent = "作品暂时无法打开";
     bodyNode.innerHTML = `<p>${escapeHtml(error.message)}</p>`;
+  } finally {
+    document.body.classList.remove("reading-room-loading");
+    document.body.classList.add("reading-room-ready");
   }
 }
 

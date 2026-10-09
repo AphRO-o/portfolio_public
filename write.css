@@ -12,9 +12,10 @@
 
 /* Match the teacher site's quiet first-screen reveal. */
 @keyframes reading-room-enter{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.reader-header,.library,.reading-pane{animation:reading-room-enter .7s ease-out both}
-.library{animation-delay:.08s}.reading-pane{animation-delay:.16s}
-@media(prefers-reduced-motion:reduce){.reader-header,.library,.reading-pane{animation:none}}
+.reading-room-loading .reader-header,.reading-room-loading .library,.reading-room-loading .reading-pane{visibility:hidden}
+.reading-room-ready .reader-header,.reading-room-ready .library,.reading-room-ready .reading-pane{animation:reading-room-enter .7s ease-out both}
+.reading-room-ready .library{animation-delay:.08s}.reading-room-ready .reading-pane{animation-delay:.16s}
+@media(prefers-reduced-motion:reduce){.reading-room-ready .reader-header,.reading-room-ready .library,.reading-room-ready .reading-pane{animation:none}}
 
 /* Quiet motion language for the reading room. */
 .reader-actions>[data-library-count]{width:5.6rem;min-width:5.6rem;text-align:right;font-variant-numeric:tabular-nums}.author-filter{position:relative}.author-filter button{z-index:1;font-weight:600;transition:color .18s ease,opacity .18s ease}.author-filter button[aria-pressed="true"]{font-weight:600}.author-filter button[aria-pressed="true"]::after{display:none}.author-filter-indicator{position:absolute;z-index:2;bottom:.16rem;left:0;width:var(--filter-width,0);height:1px;background:var(--filter-color,var(--green));pointer-events:none;transform:translateX(var(--filter-x,0));transform-origin:left center}.author-filter.is-animated .author-filter-indicator{transition:width .26s cubic-bezier(.2,.8,.2,1),transform .26s cubic-bezier(.2,.8,.2,1),background-color .18s ease}

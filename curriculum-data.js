@@ -1004,22 +1004,19 @@ window.curriculumData = {
                   "id": "g3-up-u04-p01"
                 },
                 {
-                  "title": "除法应用题：每份",
-                  "thought": "我至今记得的规则是“每”就是除数，但关键词法会不会制造新的理解断点？",
-                  "status": "pending",
-                  "id": "g3-up-u04-p02"
-                },
-                {
-                  "title": "除式的读法",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u04-p03"
-                },
-                {
                   "title": "一位数除两位数",
-                  "thought": "",
                   "status": "pending",
-                  "id": "g3-up-u04-p04"
+                  "id": "g3-up-u04-p04",
+                  "overview": {
+                    "objectives": "",
+                    "focus": "",
+                    "difficulties": "",
+                    "prerequisites": "",
+                    "nextTopics": "",
+                    "reflections": "",
+                    "prerequisiteIds": [],
+                    "nextTopicIds": []
+                  }
                 },
                 {
                   "title": "除法竖式",
@@ -1053,9 +1050,18 @@ window.curriculumData = {
                 },
                 {
                   "title": "单价、数量、总价",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u04-p10"
+                  "status": "recorded",
+                  "id": "g3-up-u04-p10",
+                  "overview": {
+                    "objectives": "1. 知道“单价、数量、总价”的实际含义；\n2.掌握“单价×数量=总价”，并推出求单价与数量的另两个数量关系式；\n3、理解数量之间的相互关系，并运用这组关系式解决简单的生活问题。",
+                    "focus": "掌握“单价×数量=总价”，并运用该式解决实际问题。",
+                    "difficulties": "理解单价、数量、总价这三个量之间的相互关系。",
+                    "prerequisites": "",
+                    "nextTopics": "",
+                    "reflections": "",
+                    "prerequisiteIds": [],
+                    "nextTopicIds": []
+                  }
                 }
               ],
               "thought": "",

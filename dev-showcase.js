@@ -2,16 +2,16 @@
   const root = document.querySelector("[data-showcase-site]");
   if (!root) return;
 
-  const imageRoot = "/content/dev/pic/";
+  const imageRoot = "/content/dev/pic/optimized/desktop/";
   const images = {
-    reader: `${imageRoot}gpt.png`,
-    edge: `${imageRoot}iot.jpg`,
-    road: `${imageRoot}road2.jpg`,
-    cv: `${imageRoot}cv.png`,
-    soap_cover:`${imageRoot}soap_cover.png`,
-    soap_wheel:`${imageRoot}soap_wheel.png`,
-    soap_dust: `${imageRoot}soap_dust.png`,
-    soap_lava: `${imageRoot}soap_lava.png`
+    reader: `${imageRoot}gpt.webp`,
+    edge: `${imageRoot}iot.webp`,
+    road: `${imageRoot}road2.webp`,
+    cv: `${imageRoot}cv.webp`,
+    soap_cover: `${imageRoot}soap_cover.webp`,
+    soap_wheel: `${imageRoot}soap_wheel.webp`,
+    soap_dust: `${imageRoot}soap_dust.webp`,
+    soap_lava: `${imageRoot}soap_lava.webp`
   };
   const winterPreviews = [
     { image: images.soap_cover, label: "小肥皂的启程" },
@@ -29,8 +29,8 @@
     { id: "winter", category: "games", categoryLabel: "游戏", eyebrow: "INDIE GAME · IN DEV", title: "寻冬", english: "SEEKING WINTER", summary: "冬天已经很久没有来过了。为了不在漫长的夏天里融化，一块小肥皂决定出发，寻找传说中的寒冷。", meta: ["GAME DESIGN", "SYSTEM DESIGN", "UNITY"], image: images.soap_dust, link: "", linkLabel: "项目正在制作中" },
     { id: "iot", category: "papers", categoryLabel: "项目", eyebrow: "NUS CAPSTONE · EDGE MACHINE LEARNING", title: "Machine Learning at the Network Edge: Compressed Sensor Data for Gateway-Based Activity Recognition", navTitle: "Machine Learning at the Network Edge", english: "网络边缘的机器学习：面向网关活动识别的压缩传感器数据", summary: "以手机惯性传感器的人体活动识别为例，比较无损压缩、量化、PCA 与自编码器。逐特征 int8 将单条数据从 2,244 字节降至 561 字节，Macro-F1 仍保持在约 95.5%。", meta: ["EDGE COMPUTING", "SENSOR DATA", "INT8 / PCA / AE"], image: images.edge, link: paperFiles.edge, linkLabel: "阅读完整论文" },
     { id: "roads", category: "papers", categoryLabel: "项目", eyebrow: "TONGJI THESIS · COMPUTER VISION", title: "基于城市街景图的道路设施环境安全评价", english: "Safety Evaluation of Road Facilities Surroundings Based on Urban Street View Imagery", summary: "融合加州北部事故数据与旧金山路网，使用街景图像、YOLO 语义分割、XGBoost 和 GIS 评估道路安全。隔离设施与信号灯是事故严重程度的重要影响因素；获同济大学优秀毕业论文。", meta: ["STREET VIEW", "YOLO / XGBOOST", "GIS"], image: images.road, link: paperFiles.roads, linkLabel: "阅读完整论文" },
-    { id: "reader", category: "projects", categoryLabel: "工具", eyebrow: "AI TOOL · READING EXPERIENCE", title: "GPT Reader", english: "READ WITH CONTEXT", summary: "一个把长文本、上下文和 AI 对话放进同一阅读流的实验工具，减少在资料与问答之间来回切换的摩擦。", meta: ["AI", "INTERACTION", "PROTOTYPING"], image: images.reader, link: "", linkLabel: "项目整理中" },
-    { id: "cv", category: "projects", categoryLabel: "工具", eyebrow: "PRODUCTIVITY · STRUCTURED WRITING", title: "CV Creator", english: "BUILD A BETTER CV", summary: "以结构化内容驱动排版，让经历编辑、版本管理和简历导出成为一条清晰、可复用的工作流。", meta: ["PRODUCT DESIGN", "STRUCTURED DATA", "DOCUMENTS"], image: images.cv, link: "", linkLabel: "项目整理中" }
+    { id: "reader", category: "projects", categoryLabel: "工具", eyebrow: "LOCAL TOOL · CONVERSATION READER", title: "GPT Reader", english: "READ WITH CONTEXT", summary: "把 ChatGPT 导出包变成可搜索的对话书架。按每轮问答快速定位、阅读历史讨论，并导出 Markdown；对话文件完全在你的浏览器中处理。", meta: ["OFFLINE", "CHATGPT EXPORT", "MARKDOWN"], image: images.reader, link: "/tools/gpt-reader/", linkLabel: "打开 GPT Reader" },
+    { id: "cv", category: "projects", categoryLabel: "工具", eyebrow: "PRODUCTIVITY · STRUCTURED WRITING", title: "CV Creator", english: "BUILD A BETTER CV", summary: "模块化编辑经历，实时预览 A4 简历并自动压缩到一页。支持模块排序、字体与间距调整、JSON 备份及 PDF 导出；内容自动保存在本机浏览器。", meta: ["A4 PREVIEW", "LOCAL SAVE", "PDF EXPORT"], image: images.cv, link: "/tools/cv-creator/", linkLabel: "打开 CV Creator" }
   ];
 
   const imageEditorEnabled = new URLSearchParams(location.search).has("editImages") &&
@@ -76,12 +76,18 @@
   function ensureImage(source) {
     if (imageReady.has(source)) return imageReady.get(source);
     const image = new Image();
+    image.fetchPriority = document.documentElement.classList.contains("showcase-loading") ? "high" : "low";
     image.src = source;
     const ready = image.decode ? image.decode().catch(() => {}) : Promise.resolve();
     imageReady.set(source, ready);
     return ready;
   }
-  [...new Set(projects.map((project) => project.image))].forEach(ensureImage);
+  const mobileViewport = window.matchMedia("(max-width: 620px)");
+  const hoverPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const responsiveSource = (source) => mobileViewport.matches
+    ? source.replace("/desktop/", "/mobile/") : source;
+  const sourceFor = (project) => responsiveSource(project.id === "winter"
+    ? winterPreviews[winterPreviewIndex].image : project.image);
 
   const hero = root.querySelector("[data-showcase-hero]");
   const backdrops = [root.querySelector("[data-hero-backdrop]"), root.querySelector("[data-hero-next]")];
@@ -152,7 +158,9 @@
     button.setAttribute("aria-label", `寻冬预览图 ${index % winterPreviews.length + 1}：${preview.label}`);
     if (index < winterPreviews.length || index >= winterPreviews.length * 2) button.tabIndex = -1;
     const image = document.createElement("img");
-    image.src = preview.image;
+    image.src = preview.image.replace("/desktop/", "/thumb/");
+    image.loading = "lazy";
+    image.fetchPriority = "low";
     image.alt = "";
     image.decoding = "async";
     image.draggable = false;
@@ -166,6 +174,7 @@
   const previewButtons = [...previewTrack.querySelectorAll(".winter-preview-thumb")];
   const previewStepWidth = () => previewButtons[0].offsetWidth + parseFloat(getComputedStyle(previewTrack).gap || "0");
   function positionWinterPreview(step, animate = true) {
+    if (mobileViewport.matches) return;
     const centerOffset = (previewWindow.offsetWidth - previewButtons[0].offsetWidth) / 2;
     previewTrack.style.transition = animate ? "" : "none";
     previewTrack.style.transform = `translate3d(${centerOffset - step * previewStepWidth()}px, 0, 0)`;
@@ -191,10 +200,10 @@
   }
   function scheduleWinterPreview() {
     clearTimeout(previewTimer);
-    if (activeIndex !== projectIndex("winter") || document.hidden || !heroVisible || imageEditorEnabled ||
-      previewRoot.matches(":hover") ||
+    if (document.documentElement.classList.contains("showcase-loading") || activeIndex !== projectIndex("winter") || document.hidden || !heroVisible || imageEditorEnabled ||
+      (!previewRoot.hidden && previewRoot.matches(":hover")) ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    ensureImage(winterPreviews[(winterPreviewIndex + 1) % winterPreviews.length].image);
+    ensureImage(responsiveSource(winterPreviews[(winterPreviewIndex + 1) % winterPreviews.length].image));
     previewTimer = setTimeout(() => {
       switchWinterPreview(winterPreviewIndex + 1, winterPreviewStep + 1);
       scheduleWinterPreview();
@@ -211,7 +220,13 @@
       scheduleWinterPreview();
     }, { threshold: 0.15 }).observe(hero);
   }
-  window.addEventListener("resize", () => positionWinterPreview(winterPreviewStep, false));
+  window.addEventListener("resize", () => {
+    previewRoot.hidden = projects[activeIndex].id !== "winter" || mobileViewport.matches;
+    positionWinterPreview(winterPreviewStep, false);
+    if (document.documentElement.classList.contains("showcase-ready")) showImage(projects[activeIndex], false);
+    scheduleWinterPreview();
+    refreshImageEditor();
+  });
 
   function frameImage(image, project) {
     const frame = imageLayouts[frameId(project)] || {};
@@ -219,17 +234,17 @@
     image.style.setProperty("--image-position-mobile", project.mobilePosition ?? project.position ?? "center");
     image.style.setProperty("--image-offset-x", `${frame.x ?? 0}%`);
     image.style.setProperty("--image-offset-y", `${frame.y ?? 0}%`);
-    image.style.setProperty("--image-offset-x-mobile", `${frame.mobileX ?? frame.x ?? 0}%`);
-    image.style.setProperty("--image-offset-y-mobile", `${frame.mobileY ?? frame.y ?? 0}%`);
+    image.style.setProperty("--image-offset-x-mobile", `${frame.mobileX ?? 0}%`);
+    image.style.setProperty("--image-offset-y-mobile", `${frame.mobileY ?? 0}%`);
     image.style.setProperty("--image-zoom", String(frame.zoom ?? project.zoom ?? 1));
-    image.style.setProperty("--image-zoom-mobile", String(frame.mobileZoom ?? frame.zoom ?? project.mobileZoom ?? project.zoom ?? 1));
+    image.style.setProperty("--image-zoom-mobile", String(frame.mobileZoom ?? project.mobileZoom ?? 1));
   }
 
   function showImage(project, immediate) {
     const token = ++imageToken;
     const outgoing = backdrops[activeLayer];
     const isHalfImage = project.category !== "games";
-    const source = project.id === "winter" ? winterPreviews[winterPreviewIndex].image : project.image;
+    const source = sourceFor(project);
     if (immediate || (outgoing.getAttribute("src") === source && outgoing.classList.contains("is-half-image") === isHalfImage)) {
       outgoing.src = source;
       frameImage(outgoing, project);
@@ -260,7 +275,7 @@
       showImage(project, immediate);
       hero.classList.toggle("is-half-image", project.category !== "games");
       hero.classList.toggle("is-road-paper", project.id === "roads");
-      previewRoot.hidden = project.id !== "winter";
+      previewRoot.hidden = project.id !== "winter" || mobileViewport.matches;
       root.querySelector("[data-concept-disclaimer]").hidden = project.id !== "winter";
       if (project.id === "winter") positionWinterPreview(winterPreviewStep, false);
       scheduleWinterPreview();
@@ -321,32 +336,49 @@
   }
   previousButton.addEventListener("click", (event) => navigateByArrow(-1, event));
   nextButton.addEventListener("click", (event) => navigateByArrow(1, event));
-  const closeMenus = () => root.querySelectorAll("[data-category-menu]").forEach((menu) => {
+  const closeMenu = (menu) => {
     menu.classList.remove("is-open");
     menu.querySelector(":scope > button")?.setAttribute("aria-expanded", "false");
-  });
+  };
+  const closeMenus = () => root.querySelectorAll("[data-category-menu]").forEach(closeMenu);
   const openMenu = (menu) => {
     closeMenus();
     menu.classList.add("is-open");
     menu.querySelector(":scope > button")?.setAttribute("aria-expanded", "true");
   };
 
-  root.querySelectorAll("[data-category]").forEach((button) => button.addEventListener("click", () => {
-    const index = projects.findIndex((project) => project.category === button.dataset.category);
-    setActive(index);
-    if (window.matchMedia("(max-width: 620px)").matches) openMenu(button.closest("[data-category-menu]"));
-    else closeMenus();
-  }));
-  root.querySelectorAll("[data-project-id]").forEach((button) => button.addEventListener("click", () => {
+  root.querySelectorAll("[data-category]").forEach((button) => {
+    const menu = button.closest("[data-category-menu]");
+    button.addEventListener("click", () => {
+      if (menu.classList.contains("is-open")) closeMenus();
+      else openMenu(menu);
+    });
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+      event.preventDefault();
+      event.stopPropagation();
+      openMenu(menu);
+      const choices = menu.querySelectorAll("[data-project-id]");
+      (event.key === "ArrowDown" ? choices[0] : choices[choices.length - 1])?.focus();
+    });
+  });
+  root.querySelectorAll("[data-project-id]").forEach((button) => button.addEventListener("click", (event) => {
+    event.stopPropagation();
     setActive(projectIndex(button.dataset.projectId));
     closeMenus();
+    button.closest("[data-category-menu]").querySelector(":scope > button").focus({ preventScroll: true });
   }));
   root.querySelectorAll("[data-category-menu]").forEach((menu) => {
-    const trigger = menu.querySelector(":scope > button");
-    menu.addEventListener("pointerenter", () => openMenu(menu));
-    menu.addEventListener("pointerleave", closeMenus);
-    menu.addEventListener("focusin", () => openMenu(menu));
-    menu.addEventListener("focusout", (event) => { if (!menu.contains(event.relatedTarget)) closeMenus(); });
+    menu.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse" && hoverPointer.matches && !mobileViewport.matches) openMenu(menu);
+    });
+    menu.addEventListener("pointerleave", (event) => {
+      if (event.pointerType === "mouse" && hoverPointer.matches && !mobileViewport.matches) closeMenu(menu);
+    });
+    menu.addEventListener("focusout", (event) => { if (!menu.contains(event.relatedTarget)) closeMenu(menu); });
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!event.target.closest(".category-nav")) closeMenus();
   });
   document.addEventListener("keydown", (event) => {
     if (event.repeat) return;
@@ -389,7 +421,7 @@
     const mobileKey = { x: "mobileX", y: "mobileY", zoom: "mobileZoom" };
     const currentFrame = () => imageLayouts[frameId(projects[activeIndex])] || {};
     const displayValue = (key, value) => key === "zoom" ? `${Number(value).toFixed(2)}×` : `${Number(value).toFixed(1)}%`;
-    const frameValue = (frame, key) => mobile.matches ? (frame[mobileKey[key]] ?? frame[key] ?? (key === "zoom" ? 1 : 0)) : (frame[key] ?? (key === "zoom" ? 1 : 0));
+    const frameValue = (frame, key) => mobile.matches ? (frame[mobileKey[key]] ?? (key === "zoom" ? 1 : 0)) : (frame[key] ?? (key === "zoom" ? 1 : 0));
     const persistDraft = () => { hasDraft = true; writeLocal(draftKey, JSON.stringify(imageLayouts)); };
 
     refreshImageEditor = () => {
@@ -398,7 +430,8 @@
       editor.querySelector("[data-editor-project]").textContent = project.id === "winter"
         ? `寻冬 · 预览图 ${pad(winterPreviewIndex + 1)} / ${pad(winterPreviews.length)}`
         : project.navTitle || project.title;
-      editor.querySelector("[data-editor-device]").textContent = mobile.matches ? "手机取景（≤620px）" : "桌面取景";
+      editor.querySelector("[data-editor-device]").textContent = mobile.matches
+        ? `手机取景（${hero.clientWidth} × ${hero.clientHeight}，右上角锚点）` : `桌面取景（${hero.clientWidth} × ${hero.clientHeight}）`;
       editor.querySelector("[data-editor-preview-controls]").hidden = project.id !== "winter";
       editor.querySelectorAll("[data-frame]").forEach((input) => {
         const value = frameValue(frame, input.dataset.frame);
@@ -427,11 +460,13 @@
 
     editor.querySelector("[data-editor-reset]").addEventListener("click", () => {
       const project = projects[activeIndex];
-      delete imageLayouts[frameId(project)];
+      const id = frameId(project);
+      const keys = mobile.matches ? Object.values(mobileKey) : Object.keys(mobileKey);
+      if (imageLayouts[id]) keys.forEach((key) => delete imageLayouts[id][key]);
       frameImage(backdrops[activeLayer], project);
       refreshImageEditor();
       persistDraft();
-      status.textContent = "当前图片已回到居中、原比例。";
+      status.textContent = mobile.matches ? "手机取景已回到右上角、原比例。" : "桌面取景已回到居中、原比例。";
     });
     editor.querySelector("[data-editor-copy]").addEventListener("click", async () => {
       try {
@@ -550,7 +585,7 @@
   const initialIndex = projects.findIndex((project) => project.id === rememberedProject);
   setActive(initialIndex < 0 ? 0 : initialIndex, true);
   if (imageEditorEnabled) setupImageEditor();
-  fetch("/content/dev/image-layout.json", { cache: "no-store" })
+  const layoutsReady = fetch("/content/dev/image-layout.json", { cache: "no-store", signal: AbortSignal.timeout(3000) })
     .then((response) => response.ok ? response.json() : {})
     .then((savedLayouts) => {
       if (!hasDraft) imageLayouts = normalizeLayouts(savedLayouts);
@@ -558,4 +593,29 @@
       refreshImageEditor();
     })
     .catch(() => { /* Default centered framing remains available. */ });
+  async function startShowcase() {
+    await Promise.all([layoutsReady, ensureImage(sourceFor(projects[activeIndex]))]);
+    // The user may choose a different project while the first image is loading.
+    let source;
+    do {
+      source = sourceFor(projects[activeIndex]);
+      await ensureImage(source);
+    } while (source !== sourceFor(projects[activeIndex]));
+    setActive(activeIndex, true);
+    await backdrops[activeLayer].decode().catch(() => {});
+    document.documentElement.classList.remove("showcase-loading");
+    document.documentElement.classList.add("showcase-ready");
+    scheduleWinterPreview();
+    const preloadRemaining = () => {
+      let next = 0;
+      const sources = [...new Set(projects.map(sourceFor))];
+      const loadNext = () => {
+        if (next < sources.length) ensureImage(sources[next++]).then(loadNext);
+      };
+      loadNext();
+    };
+    if ("requestIdleCallback" in window) requestIdleCallback(preloadRemaining, { timeout: 2000 });
+    else setTimeout(preloadRemaining, 800);
+  }
+  startShowcase();
 })();

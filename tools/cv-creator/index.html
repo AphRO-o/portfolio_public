@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="本地运行的单页简历编辑器，支持模块化编辑、自动排版和 PDF 导出。">
+  <title>CV Creator · 简历排版器</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-dev.svg" />
+    <link rel="stylesheet" href="/tools/cv-creator/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <a class="brand-mark portfolio-return" href="/dev" aria-label="返回开发站" title="返回开发站">↖</a>
+      <div>
+        <strong>CV Creator</strong>
+        <span>本地保存 · 单页 A4</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span class="save-state" id="saveState"><span class="save-dot"></span>已保存</span>
+      <button class="button button-ghost" id="exportJsonButton" type="button">备份数据</button>
+      <button class="button button-ghost" id="importJsonButton" type="button">导入数据</button>
+      <input id="importJsonInput" type="file" accept="application/json,.json" hidden>
+      <button class="button button-primary" id="printButton" type="button">
+        <span aria-hidden="true">↗</span> 导出 PDF
+      </button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="editor-panel" aria-label="简历内容编辑区">
+      <div class="editor-scroll">
+        <section class="editor-intro">
+          <div>
+            <p class="eyebrow">内容编辑</p>
+            <h1>填内容，版式交给它</h1>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" title="恢复样例" aria-label="恢复样例">↺</button>
+        </section>
+
+        <section class="editor-group" aria-labelledby="basicHeading">
+          <div class="group-heading">
+            <span class="step-number">01</span>
+            <div>
+              <h2 id="basicHeading">基本信息</h2>
+              <p>显示在简历最上方</p>
+            </div>
+          </div>
+          <div class="form-grid basic-info-grid">
+            <label class="field field-wide">
+              <span>姓名</span>
+              <input data-personal-field="name" autocomplete="name" placeholder="你的姓名">
+            </label>
+            <div class="header-line-row field-wide">
+              <label class="field">
+                <span>第一行</span>
+                <input data-header-line-index="0" data-header-line-field="text" placeholder="自行填写；多个字段可用 ｜ 分隔">
+              </label>
+            </div>
+            <div class="header-line-row field-wide">
+              <label class="field">
+                <span>第二行</span>
+                <input data-header-line-index="1" data-header-line-field="text" placeholder="自行填写；留空则不显示">
+              </label>
+            </div>
+            <div class="header-line-row field-wide">
+              <label class="field">
+                <span>第三行</span>
+                <input data-header-line-index="2" data-header-line-field="text" placeholder="例如：[Portfolio](https://example.com)">
+              </label>
+            </div>
+            <p class="field-help field-wide">所有文本框都支持链接语法：[显示文字](链接地址)。地址按原样使用；空白行自动省略。</p>
+          </div>
+        </section>
+
+        <section class="editor-group editor-group-style" aria-labelledby="styleHeading">
+          <div class="group-heading">
+            <span class="step-number">02</span>
+            <div>
+              <h2 id="styleHeading">版式设置</h2>
+              <p>统一控制字体、字号与纵向间距</p>
+            </div>
+          </div>
+          <div class="style-controls">
+            <label class="field field-wide">
+              <span>简历字体</span>
+              <select id="fontFamilySelect" aria-label="简历字体">
+                <option value="song">宋体 / Times New Roman</option>
+                <option value="yahei">微软雅黑 / Arial</option>
+                <option value="kaiti">楷体 / Georgia</option>
+              </select>
+            </label>
+            <label class="range-field">
+              <span>正文字号</span>
+              <div class="range-row">
+                <input id="bodySizeRange" type="range" min="9" max="12" step="0.25" value="10.5" aria-label="正文字号">
+                <output id="bodySizeOutput" for="bodySizeRange">10.5 pt</output>
+              </div>
+            </label>
+            <label class="range-field">
+              <span>姓名字号</span>
+              <div class="range-row">
+                <input id="nameSizeRange" type="range" min="18" max="28" step="1" value="22" aria-label="姓名字号">
+                <output id="nameSizeOutput" for="nameSizeRange">22 pt</output>
+              </div>
+            </label>
+            <label class="range-field">
+              <span>模块标题字号</span>
+              <div class="range-row">
+                <input id="sectionTitleSizeRange" type="range" min="10" max="16" step="0.25" value="12" aria-label="模块标题字号">
+                <output id="sectionTitleSizeOutput" for="sectionTitleSizeRange">12 pt</output>
+              </div>
+            </label>
+            <label class="range-field">
+              <span>模块间距</span>
+              <div class="range-row">
+                <input id="sectionGapRange" type="range" min="4" max="16" step="0.5" value="8.5" aria-label="模块间距">
+                <output id="sectionGapOutput" for="sectionGapRange">8.5 pt</output>
+              </div>
+            </label>
+            <label class="range-field">
+              <span>模块内部条目间距</span>
+              <div class="range-row">
+                <input id="entryGapRange" type="range" min="1" max="10" step="0.2" value="4.2" aria-label="模块内部条目间距">
+                <output id="entryGapOutput" for="entryGapRange">4.2 pt</output>
+              </div>
+            </label>
+            <label class="range-field">
+              <span>条目内部要点间距</span>
+              <div class="range-row">
+                <input id="bulletGapRange" type="range" min="0" max="3" step="0.1" value="0.7" aria-label="条目内部要点间距">
+                <output id="bulletGapOutput" for="bulletGapRange">0.7 pt</output>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <section class="editor-group" aria-labelledby="sectionsHeading">
+          <div class="group-heading group-heading-actions">
+            <div class="heading-copy">
+              <span class="step-number">03</span>
+              <div>
+                <h2 id="sectionsHeading">简历模块</h2>
+                <p><span id="sectionCount">0</span> 个模块 · 可折叠、拖拽和排序</p>
+              </div>
+            </div>
+            <div class="section-tools">
+              <button class="button button-small button-subtle" id="collapseAllButton" type="button">全部折叠</button>
+              <button class="button button-small" id="addSectionButton" type="button">＋ 添加模块</button>
+            </div>
+          </div>
+          <div id="sectionsEditor" class="sections-editor"></div>
+        </section>
+      </div>
+    </aside>
+
+    <section class="preview-panel" aria-label="A4 实时预览">
+      <div class="preview-toolbar">
+        <div>
+          <p class="eyebrow">实时预览</p>
+          <strong>A4 · 单页</strong>
+        </div>
+        <div class="preview-meta">
+          <span class="fit-badge" id="fitBadge"><span></span>正在排版</span>
+          <label class="density-control">
+            <span>行距</span>
+            <input id="spacingRange" type="range" min="0" max="2" step="1" value="1" aria-label="正文行距">
+          </label>
+        </div>
+      </div>
+      <div class="preview-viewport" id="previewViewport">
+        <div class="paper-stage" id="paperStage">
+          <article class="resume-page" id="resumePage" aria-label="简历打印预览">
+            <div class="resume-page-inner">
+              <div class="resume-content" id="resumeContent"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <p class="preview-hint">内容会自动压缩到一页；若信息过多，会提示你精简后再导出。</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/tools/cv-creator/app.js"></script>
+</body>
+</html>
+

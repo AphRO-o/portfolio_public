@@ -1,12 +1,20 @@
 <!doctype html>
-<html lang="zh-Hans">
+<html lang="zh-Hans" class="showcase-loading">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="徐晨昊的软件、数据与机器学习项目。" />
     <meta name="theme-color" content="#1559a6" />
+    <script>
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.addEventListener("pageshow", (event) => {
+        if (!event.persisted && !location.hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      });
+    </script>
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon-dev.svg" />
     <title>AphRO｜Developer</title>
+    <link rel="preload" as="image" href="/content/dev/pic/optimized/desktop/soap_cover.webp" media="(min-width: 621px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/content/dev/pic/optimized/mobile/soap_cover.webp" media="(max-width: 620px)" fetchpriority="high" />
     <link rel="stylesheet" href="/dev-showcase.css" />
   </head>
   <body>

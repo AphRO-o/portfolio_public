@@ -10,7 +10,7 @@
   --showcase-mono: "Cascadia Code", Consolas, monospace;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-anchor: none; }
 
 body {
   margin: 0;
@@ -104,12 +104,14 @@ body {
   border: 1px solid rgba(147, 203, 239, .36);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translate(-50%, -8px);
   transition: opacity 160ms ease, transform 160ms ease;
 }
 .category-menu.is-open .category-popover {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: translate(-50%, 0);
 }
@@ -408,11 +410,12 @@ body {
 @keyframes showcase-enter { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes showcase-image-enter { from { opacity: 0; } to { opacity: 1; } }
 .showcase-header { animation: showcase-enter .7s ease-out both; }
-.showcase-hero { animation: showcase-image-enter .7s ease-out both; }
-.project-copy, .winter-preview, .showcase-controls { animation: showcase-enter .7s ease-out both; }
-.project-copy { animation-delay: .08s; }
-.winter-preview { animation-delay: .16s; }
-.showcase-controls { animation-delay: .2s; }
+.showcase-loading .showcase-hero { opacity: 0; }
+.showcase-ready .showcase-hero { animation: showcase-image-enter .7s ease-out both; }
+.showcase-ready .project-copy, .showcase-ready .winter-preview, .showcase-ready .showcase-controls { animation: showcase-enter .7s ease-out both; }
+.showcase-ready .project-copy { animation-delay: .08s; }
+.showcase-ready .winter-preview { animation-delay: .16s; }
+.showcase-ready .showcase-controls { animation-delay: .2s; }
 
 @media (max-width: 900px) {
   .showcase-header { grid-template-columns: 1fr auto; height: 74px; }
@@ -449,16 +452,18 @@ body {
   .showcase-arrow small { max-width: 100%; overflow: hidden; font-size: 0.62rem; text-overflow: ellipsis; white-space: nowrap; }
   .project-rail { display: none; }
   .showcase-arrow .arrow-icon { width: 48px; height: 48px; }
-  .hero-backdrop.is-half-image { left: 38%; width: 62%; }
+  .hero-backdrop.is-half-image { right: 0; left: auto; width: 62%; }
   .hero-backdrop {
-    object-position: var(--image-position-mobile, var(--image-position, center));
+    /* Keep the artwork tied to the top-right, not the phone's changing height. */
+    inset: 0 0 auto auto;
+    height: auto;
+    object-position: right top;
+    transform-origin: right top;
     transform: translate3d(var(--image-offset-x-mobile, var(--image-offset-x, 0%)), var(--image-offset-y-mobile, var(--image-offset-y, 0%)), 0) scale(var(--image-zoom-mobile, var(--image-zoom, 1)));
   }
   .hero-vignette { background: linear-gradient(0deg, rgba(3,14,28,.96), rgba(3,14,28,.2) 70%, rgba(3,14,28,.52)); }
   .hero-vignette::after { background: linear-gradient(90deg, rgba(6,21,38,.82), rgba(6,21,38,.18) 72%), linear-gradient(0deg, rgba(3,14,28,.78), transparent 65%); }
-  .winter-preview { top: 150px; right: auto; bottom: auto; left: 14px; width: 214px; }
-  .winter-preview-window { width: 188px; height: 58px; }
-  .winter-preview-thumb { flex-basis: 86px; width: 86px; height: 58px; }
+  .winter-preview { display: none; }
   .showcase-hero.has-long-title .project-copy,
   .showcase-hero.has-very-long-title .project-copy { width: calc(100% - 40px); }
   .showcase-hero.has-long-title .project-copy h1 { font-size: clamp(2.45rem, 11vw, 4rem); }
