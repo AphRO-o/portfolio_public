@@ -28,6 +28,7 @@ const statusLabels = {
 let activeCategory = "all";
 let layoutMode = "loose";
 let currentLesson = null;
+let lessonOpenRequest = 0;
 let currentLessonTabs = [];
 let currentLessonTabIndex = 0;
 let viewFrame = 0;
@@ -64,35 +65,7 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-function markdownToSafeHtml(markdown) {
-  const inline = (value) => escapeHtml(value)
-    .replace(/`([^`]+)`/g, "<code>$1</code>")
-    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  const html = [];
-  let list = null;
-  const closeList = () => { if (list) html.push(`</${list}>`); list = null; };
-  String(markdown || "").replaceAll("\r\n", "\n").split("\n").forEach((line) => {
-    const trimmed = line.trim();
-    if (!trimmed) { closeList(); return; }
-    const heading = trimmed.match(/^(#{1,4})\s+(.+)$/);
-    if (heading) { closeList(); const level = Math.min(4, heading[1].length + 2); html.push(`<h${level}>${inline(heading[2])}</h${level}>`); return; }
-    const quote = trimmed.match(/^>\s?(.*)$/);
-    if (quote) { closeList(); html.push(`<blockquote>${inline(quote[1])}</blockquote>`); return; }
-    const unordered = trimmed.match(/^[-*]\s+(.+)$/);
-    const ordered = trimmed.match(/^\d+[.)]\s+(.+)$/);
-    if (unordered || ordered) {
-      const next = unordered ? "ul" : "ol";
-      if (list !== next) { closeList(); list = next; html.push(`<${list}>`); }
-      html.push(`<li>${inline((unordered || ordered)[1])}</li>`);
-      return;
-    }
-    if (/^---+$/.test(trimmed)) { closeList(); html.push("<hr>"); return; }
-    closeList(); html.push(`<p>${inline(trimmed)}</p>`);
-  });
-  closeList();
-  return html.join("");
-}
+function markdownToSafeHtml(markdown) { return window.lessonContent.markdown(markdown); }
 
 function topicId(gradeIndex, termIndex, unitIndex, pointIndex, point) {
   return point?.id || `topic-${gradeIndex}-${termIndex}-${unitIndex}-${pointIndex}`;
@@ -193,8 +166,8 @@ function renderGrades() {
 function updateStats() {
   const topics = flattenTopics();
   const visible = activeCategory === "all" ? topics : topics.filter((item) => item.unit.category === activeCategory);
-  const lessonPlans = visible.filter((item) => (item.point.versions || []).some((version) => version.designMarkdown)).length;
-  const playableTrials = visible.reduce((total, item) => total + (item.point.versions || []).filter((version) => version.video).length, 0);
+  const lessonPlans = visible.filter((item) => (item.point.designs || []).length > 0).length;
+  const playableTrials = visible.reduce((total, item) => total + (item.point.rehearsals || []).filter((version) => version.video).length, 0);
   statsRoot.innerHTML = `
     <span class="map-metric"><strong>${visible.length}</strong><small>知识点</small></span>
     <span class="map-metric"><strong>${lessonPlans}</strong><small>篇教案</small></span>
@@ -314,26 +287,7 @@ function resetMapFilters() {
   applyFilterState(false);
 }
 
-function lessonVersions(lesson) {
-  return Array.isArray(lesson?.point?.versions) ? lesson.point.versions : [];
-}
-
-function lessonTabModel(lesson) {
-  const versions = lessonVersions(lesson);
-  const designVersion = versions.find((version) => version.designMarkdown);
-  const designMarkdown = designVersion?.designMarkdown || "";
-  const lessonFile = designVersion?.lessonFile || versions.find((version) => version.lessonFile)?.lessonFile || "";
-  const trials = versions.map((version, index) => {
-    const match = `${version.id || ""} ${version.label || ""}`.match(/v\s*(\d+)/i);
-    return { ...version, tabId: `trial-${version.id || index + 1}`, versionNumber: match ? Number(match[1]) : index + 1, sourceIndex: index };
-  }).filter((version) => Boolean(version.video || version.reflectionMarkdown || version.reflection || version.boardImage || version.board || version.date || version.duration || version.format))
-    .sort((a, b) => b.versionNumber - a.versionNumber || b.sourceIndex - a.sourceIndex);
-  const hasContent = Boolean(designMarkdown || trials.length || window.courseOverview.hasContent(lesson.point));
-  const tabs = [{ id: "overview", label: "课程概览", kind: "overview", hasContent }];
-  if (designMarkdown) tabs.push({ id: "design", label: "教学设计", kind: "design", designMarkdown, lessonFile });
-  trials.forEach((version) => tabs.push({ ...version, id: version.tabId, label: `试讲 v${version.versionNumber}`, kind: "trial" }));
-  return { tabs, hasContent };
-}
+function lessonTabModel(lesson) { return window.lessonContent.model(lesson.point); }
 
 function renderCourseOverview(lesson) {
   return window.courseOverview.render(lesson.point, topicLookup, markdownToSafeHtml);
@@ -348,38 +302,26 @@ dialogContent.addEventListener("click", (event) => {
   openLesson(topic);
 });
 
-function renderVersionPanel(tab, direction = 1) {
+function renderVersionPanel(tab, direction = 1, resetScroll = false) {
   const panel = dialogContent.querySelector("[data-version-panel]");
   if (!panel) return;
   const shouldAnimate = panel.dataset.ready === "true";
+  panel.querySelectorAll("video").forEach(video => video.pause());
   panel.dataset.ready = "true";
-  panel.classList.remove("is-loading");
-  if (tab.kind === "overview") {
-    panel.innerHTML = renderCourseOverview(currentLesson, tab.hasContent);
-  } else if (tab.kind === "design") {
-    const lessonFile = tab.lessonFile ? `<a class="resource-link" href="${escapeHtml(tab.lessonFile)}" target="_blank" rel="noopener">打开完整 Markdown 教案 ↗</a>` : "";
-    panel.innerHTML = `<div class="version-layout"><section class="lesson-plan"><p class="plan-kicker">LESSON DESIGN</p><section class="lesson-document"><h3>教学设计</h3><div class="lesson-markdown">${markdownToSafeHtml(tab.designMarkdown)}</div></section>${lessonFile}</section></div>`;
-  } else {
-    const videoContent = tab.video
-      ? `<video class="lesson-video" controls preload="metadata" src="${escapeHtml(tab.video)}">你的浏览器暂不支持视频播放。</video>`
-      : `<div class="video-placeholder"><span aria-hidden="true">▶</span><strong>试讲视频待上传</strong><small>上传后将在这里保持 16:9 播放</small></div>`;
-    const reflection = tab.reflectionMarkdown
-      ? `<div class="lesson-markdown">${markdownToSafeHtml(tab.reflectionMarkdown)}</div>`
-      : tab.reflection ? `<p>${escapeHtml(tab.reflection)}</p>` : `<p class="lesson-empty-note">本版复盘待补充</p>`;
-    const board = tab.boardImage
-      ? `<figure class="board-preview"><a href="${escapeHtml(tab.boardImage)}" target="_blank" rel="noopener"><img src="${escapeHtml(tab.boardImage)}" alt="${escapeHtml(`试讲 v${tab.versionNumber} 板书`)}" /></a><figcaption>本版板书 · 点击查看原图</figcaption></figure>`
-      : tab.board ? `<div class="lesson-markdown"><p>${escapeHtml(tab.board)}</p></div>` : `<p class="lesson-empty-note">本版板书待补充</p>`;
-    panel.innerHTML = `<div class="version-layout"><section class="video-slot">${videoContent}</section><section class="lesson-plan"><p class="plan-kicker">TRIAL v${tab.versionNumber}</p><div class="lesson-version-meta">${[tab.date, tab.duration, tab.format].filter(Boolean).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div><section class="lesson-document reflection"><h3>本版复盘</h3>${reflection}</section><section class="lesson-document board-document"><h3>本版板书</h3>${board}</section></section></div>`;
-  }
+  panel.innerHTML = window.lessonContent.render(tab, currentLesson.point, topicLookup);
+  window.lessonContent.bindMedia(panel);
+  if (resetScroll) panel.scrollTop = 0;
+  window.lessonContent.bindVersionPicker(panel, tab, () => renderVersionPanel(tab));
   if (shouldAnimate) animateVersionPanel(panel, direction);
 }
 
 function animateVersionPanel(panel, direction) {
+  if (panel.closest('.is-collapsing')) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   panel.getAnimations().forEach((animation) => animation.cancel());
   panel.animate(
-    [{ opacity: 0.62, transform: `translate3d(${direction < 0 ? -8 : 8}px,0,0)` }, { opacity: 1, transform: "translate3d(0,0,0)" }],
-    { duration: 150, easing: "cubic-bezier(.22,.8,.28,1)" }
+    [{ opacity: 0, transform: `translate3d(${direction < 0 ? -16 : 16}px,0,0)` }, { opacity: 1, transform: "translate3d(0,0,0)" }],
+    { duration: 260, easing: "cubic-bezier(.22,.8,.28,1)" }
   );
 }
 
@@ -390,7 +332,7 @@ function selectVersion(versionId) {
   const selected = currentLessonTabs[nextIndex] || currentLessonTabs[0];
   currentLessonTabIndex = nextIndex;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.versionId === selected.id)));
-  renderVersionPanel(selected, direction);
+  renderVersionPanel(selected, direction, true);
 }
 
 function openLesson(lesson) {
@@ -400,29 +342,35 @@ function openLesson(lesson) {
     viewFrame = 0;
     applyView();
   }
+  const requestId = ++lessonOpenRequest;
   currentLesson = lesson;
   const stage = data.stages[lesson.grade.stage];
-  const category = data.categories[lesson.unit.category];
   const model = lessonTabModel(lesson);
   currentLessonTabs = model.tabs;
   currentLessonTabIndex = 0;
   dialogContent.innerHTML = `
     <article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${stage.color}">
-      <header class="lesson-dialog-header">
-        <div class="lesson-breadcrumb">${stage.label}数学 / ${lesson.grade.label} / ${termDisplayLabel(lesson.grade, lesson.semester)} / ${category.label}</div>
-        <h2>${escapeHtml(lesson.point.title)}</h2>
-        <div class="lesson-submeta"><span>${escapeHtml(lesson.unit.title)}</span><span class="lesson-state ${lesson.point.status}">${statusLabels[lesson.point.status]}</span></div>
-      </header>
+      ${window.lessonContent.header(lesson, stage, termDisplayLabel(lesson.grade, lesson.semester), statusLabels[lesson.point.status], data.categories[lesson.unit.category].label)}
       <div class="version-tabs" role="tablist" aria-label="课例内容">
         ${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}
       </div>
-      <div class="version-panel" data-version-panel role="tabpanel"></div>
+      <div class="version-panel" data-version-panel role="tabpanel" tabindex="0"></div>
     </article>`;
+  window.lessonContent.bindDialog(dialogContent.querySelector('.lesson-dialog-inner'));
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
   document.documentElement.classList.add("is-lesson-open");
   renderVersionPanel(model.tabs[0]);
-  dialog.showModal();
+  if (!dialog.open) dialog.showModal();
+  window.lessonContent.refresh(lesson.point).then(() => {
+    if (requestId !== lessonOpenRequest || currentLesson !== lesson || !dialog.open) return;
+    const activeId = currentLessonTabs[currentLessonTabIndex]?.id;
+    currentLessonTabs = lessonTabModel(lesson).tabs;
+    currentLessonTabIndex = Math.max(0, currentLessonTabs.findIndex(tab => tab.id === activeId));
+    renderVersionPanel(currentLessonTabs[currentLessonTabIndex]);
+  }).catch(() => {
+    // Static snapshots remain usable if the network is unavailable.
+  });
   if (isEmbeddedMap) window.parent.postMessage({ type: "curriculum-lesson-state", open: true }, window.location.origin);
 }
 
