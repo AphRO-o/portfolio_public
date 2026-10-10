@@ -47,9 +47,72 @@
       { id: 'rehearsal', kind: 'trial', label: '试讲复盘', versions: rehearsals, selectedId: rehearsals[0]?.id }
     ] };
   }
+  function status(point) {
+    if (['classroom', 'public'].includes(point.status)) return point.status;
+    if (point.rehearsals?.length) return 'recorded';
+    return point.status === 'recorded' ? 'recorded' : 'pending';
+  }
+  const statusLabels = Object.freeze({ pending: '尚未备课', recorded: '无生试讲', classroom: '真实课堂', public: '公开课' });
+  function isPrepared(point) {
+    return Boolean(point.designs?.length || status(point) !== 'pending');
+  }
+  function unitState(points) {
+    if (points.length && points.every(isPrepared)) return 'complete';
+    return points.some(isPrepared) ? 'partial' : 'pending';
+  }
+  function dialogColor(point, stage) {
+    return status(point) === 'recorded' ? stage.color : '#85817c';
+  }
+  function syncDialogState(root, point, stage) {
+    root.style.setProperty('--dialog-stage', dialogColor(point, stage));
+  }
+  function statistics(points) {
+    return {
+      topics: points.length,
+      designs: points.filter(point => point.designs?.length).length,
+      completeLessons: points.filter(point => point.designs?.length && point.rehearsals?.length).length,
+      playableTrials: points.reduce((total, point) => total + (point.rehearsals || []).filter(version => version.video).length, 0)
+    };
+  }
+  function watchCurriculum(data, onChange) {
+    let signature = JSON.stringify(data), pending;
+    async function update() {
+      if (document.visibilityState === 'hidden') return;
+      if (pending) return pending;
+      pending = (async () => {
+        const response = await fetch('/curriculum-public.json', { cache: 'no-store' });
+        if (!response.ok) return;
+        const next = await response.json();
+        if (!Array.isArray(next.grades) || !next.stages || !next.categories) return;
+        const nextSignature = JSON.stringify(next);
+        if (nextSignature === signature) return;
+        Object.assign(data, next);
+        signature = nextSignature;
+        onChange();
+      })().catch(() => {}).finally(() => { pending = null; });
+      return pending;
+    }
+    window.addEventListener('focus', update);
+    window.addEventListener('pageshow', update);
+    document.addEventListener('visibilitychange', update);
+    window.setInterval(update, 15000);
+    if (window.BroadcastChannel) {
+      try {
+        const channel = new window.BroadcastChannel('portfolio-curriculum');
+        channel.addEventListener('message', update);
+      } catch { /* Focus and periodic updates also work without cross-tab messages. */ }
+    }
+    update();
+    return update;
+  }
+  function videoAddress(value) {
+    const text = String(value || '').trim();
+    const bv = text.match(/^bv([0-9A-Za-z]{10})$/i);
+    return bv ? `https://www.bilibili.com/video/BV${bv[1]}/` : text;
+  }
   function bilibiliPlayer(value) {
     let url;
-    try { url = new URL(value); } catch { return ''; }
+    try { url = new URL(videoAddress(value)); } catch { return ''; }
     if (!['https:', 'http:'].includes(url.protocol)) return '';
     if (!['bilibili.com', 'www.bilibili.com', 'm.bilibili.com', 'player.bilibili.com'].includes(url.hostname)) return '';
     const id = url.pathname.match(/^\/video\/(BV[0-9A-Za-z]{10}|av\d+)(?:\/|$)/)?.[1];
@@ -118,13 +181,15 @@
   }
   function readerMarkdown(version) {
     let header = true;
-    const fields = { '日期': 'date', '试讲时长': 'duration', '时长': 'duration', '试讲形式': 'format', '形式': 'format' };
+    const fields = { '日期': 'date', '试讲日期': 'date', '试讲时长': 'duration', '时长': 'duration', '试讲形式': 'format', '形式': 'format' };
     return String(version.markdown || '').split(/\r?\n/).filter(line => {
       const text = line.trim();
       if (!header || !text || /^#\s/.test(text)) return true;
-      if (/^\*\*(?:设计版本|试讲版本|采用的教学设计版本|版本说明)[：:]/.test(text)) return false;
-      const entry = text.match(/^(?:\*\*)?(日期|试讲时长|时长|试讲形式|形式)[：:](?:\*\*)?\s*(.*)$/);
-      if (entry) return entry[2].trim() !== version[fields[entry[1]]];
+      if (/^(?:\*\*)?(?:设计版本|试讲版本|采用的教学设计版本|对应教学设计|版本说明|课题)[：:]/.test(text)) return false;
+      const entry = text.match(/^(?:\*\*)?(日期|试讲日期|试讲时长|时长|试讲形式|形式)[：:](?:\*\*)?\s*(.*)$/);
+      if (entry) return Boolean(entry[2].trim()) && entry[2].trim() !== version[fields[entry[1]]];
+      // Other introductory fields may sit between metadata without ending the header.
+      if (/^(?:\*\*)?[^：:*]+[：:](?:\*\*)?/.test(text)) return true;
       header = false;
       return true;
     }).join('\n');
@@ -153,7 +218,7 @@
     const resources = version.lessonFile ? `<a class="resource-link" href="${escape(version.lessonFile)}" target="_blank" rel="noopener">打开 Markdown ↗</a>` : '';
     const showMedia = tab.kind === 'trial' || Boolean(version.video || version.boardImage);
     const versionMedia = showMedia ? media(version) : null;
-    return `<div class="version-layout">${versionMedia?.video || ''}<section class="lesson-plan">${toolbar}${document}${resources}${versionMedia?.board || ''}</section></div>`;
+    return `<div class="version-layout${tab.kind === 'trial' ? ' is-rehearsal-content' : ''}">${versionMedia?.video || ''}<section class="lesson-plan">${toolbar}${document}${resources}${versionMedia?.board || ''}</section></div>`;
   }
   function header(lesson, stage, term, status, category = lesson.unit.title) {
     const breadcrumb = `${stage.label}数学 / ${lesson.grade.label} / ${term} / ${lesson.unit.title}`;
@@ -288,6 +353,7 @@
     point.overview = { prerequisiteIds: lesson.prerequisiteIds, nextTopicIds: lesson.nextTopicIds };
     point.designs = lesson.designs;
     point.rehearsals = lesson.rehearsals;
+    point.status = status(point);
   }
-  window.lessonContent = Object.freeze({ escape, markdown, model, render, refresh, header, bindDialog, bindVersionPicker, bindMedia });
+  window.lessonContent = Object.freeze({ escape, markdown, model, render, refresh, header, bindDialog, bindVersionPicker, bindMedia, videoAddress, status, statusLabels, unitState, dialogColor, syncDialogState, statistics, watchCurriculum });
 })();

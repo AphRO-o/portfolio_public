@@ -5,12 +5,13 @@ const dialogContent = document.querySelector("[data-dialog-content]");
 const mapExplorer = document.querySelector("[data-map-explorer]");
 const mapFrame = document.querySelector("[data-map-frame]");
 const miniMapShell = document.querySelector(".mini-map-shell");
-const statusLabels = { pending: "尚未备课", planning: "已进入规划", drafted: "已有教案", recorded: "已完成试讲" };
+const statusLabels = window.lessonContent.statusLabels;
 let currentLesson = null;
 let lessonOpenRequest = 0;
 let currentLessonTabs = [];
 let currentLessonTabIndex = 0;
 let resetMiniMapFisheye = null;
+let disposeMiniMapFisheye = null;
 let mapTransitionTimer = 0;
 let mapPrepareTimer = 0;
 let pendingMapUnitId = null;
@@ -93,18 +94,22 @@ function openLesson(lesson) {
   if (!lesson) return;
   const requestId = ++lessonOpenRequest;
   currentLesson = lesson;
+  lesson.point.status = window.lessonContent.status(lesson.point);
   const stage = data.stages[lesson.grade.stage];
   const model = lessonTabModel(lesson);
   currentLessonTabs = model.tabs;
   currentLessonTabIndex = 0;
-  dialogContent.innerHTML = `<article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${stage.color}">${window.lessonContent.header(lesson, stage, termDisplayLabel(lesson.grade, lesson.semester), statusLabels[lesson.point.status], data.categories[lesson.unit.category].label)}<div class="version-tabs" role="tablist" aria-label="课例内容">${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}</div><div class="version-panel" data-version-panel role="tabpanel" tabindex="0"></div></article>`;
+  dialogContent.innerHTML = `<article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${window.lessonContent.dialogColor(lesson.point, stage)}">${window.lessonContent.header(lesson, stage, termDisplayLabel(lesson.grade, lesson.semester), statusLabels[lesson.point.status], data.categories[lesson.unit.category].label)}<div class="version-tabs" role="tablist" aria-label="课例内容">${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}</div><div class="version-panel" data-version-panel role="tabpanel" tabindex="0"></div></article>`;
   window.lessonContent.bindDialog(dialogContent.querySelector('.lesson-dialog-inner'));
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.addEventListener("click", () => selectVersion(button.dataset.versionId)));
   dialog.classList.remove("is-closing");
   renderVersionPanel(model.tabs[0]);
   if (!dialog.open) dialog.showModal();
   window.lessonContent.refresh(lesson.point).then(() => {
+    renderHeroStats();
+    updateMiniMapState();
     if (requestId !== lessonOpenRequest || currentLesson !== lesson || !dialog.open) return;
+    window.lessonContent.syncDialogState(dialogContent.querySelector('.lesson-dialog-inner'), lesson.point, stage);
     const activeId = currentLessonTabs[currentLessonTabIndex]?.id;
     currentLessonTabs = lessonTabModel(lesson).tabs;
     currentLessonTabIndex = Math.max(0, currentLessonTabs.findIndex(tab => tab.id === activeId));
@@ -217,10 +222,25 @@ function closeMapExplorer() {
   mapTransitionTimer = window.setTimeout(finish, 240);
 }
 
+function renderHeroStats() {
+  const stats = window.lessonContent.statistics(flattenTopics().map(topic => topic.point));
+  document.querySelector('[data-hero-lessons]').textContent = `${stats.completeLessons} 节`;
+  document.querySelector('[data-hero-trials]').textContent = `${stats.playableTrials} 个`;
+  document.querySelector('[data-hero-topics]').textContent = String(stats.topics);
+}
+
+function updateMiniMapState() {
+  const units = data.grades.flatMap(grade => grade.terms.flatMap(term => term.units));
+  const states = new Map(units.map(unit => [unit.id, window.lessonContent.unitState(unit.points)]));
+  document.querySelectorAll('[data-map-unit]').forEach(node => { node.dataset.state = states.get(node.dataset.mapUnit); });
+  document.querySelector('[data-mini-progress]').textContent = `${units.length} 个单元 · ${[...states.values()].filter(state => state === 'partial').length} 个进行中 · ${[...states.values()].filter(state => state === 'complete').length} 个已备完`;
+}
+
 function renderMiniMap() {
+  disposeMiniMapFisheye?.();
+  disposeMiniMapFisheye = null;
   const map = document.querySelector("[data-mini-map]");
   if (!map) return;
-  const allUnits = [];
   const stageBands = Object.entries(data.stages).map(([stageId, stage]) => {
     const gradeCount = data.grades.filter((grade) => grade.stage === stageId).length;
     return `<div class="mini-overview-stage ${stageId}" style="--mini-stage:${stage.color};--stage-span:${gradeCount}"><strong>${stage.label}数学</strong><span>${stage.years}</span></div>`;
@@ -228,15 +248,13 @@ function renderMiniMap() {
   const grades = data.grades.map((grade) => {
     const stage = data.stages[grade.stage];
     const terms = grade.terms.map((semester) => `<section class="mini-column-term"><header><strong>${escapeHtml(termDisplayLabel(grade, semester))}</strong><span>${semester.units.length} units</span></header><div class="mini-column-units">${semester.units.map((unit) => {
-      const started = unit.points.some((point) => point.status !== "pending");
-      allUnits.push({ unit, started });
-      return `<a class="mini-unit ${started ? "is-started" : ""}" href="/curriculum?unit=${encodeURIComponent(unit.id)}" data-map-unit="${escapeHtml(unit.id)}" style="--mini-stage:${stage.color}" aria-label="展开完整地图并聚焦：${escapeHtml(grade.label)} ${escapeHtml(termDisplayLabel(grade, semester))} ${escapeHtml(unit.title)}"><strong>${escapeHtml(unit.title)}</strong></a>`;
+      const state = window.lessonContent.unitState(unit.points);
+      return `<a class="mini-unit" href="/curriculum?unit=${encodeURIComponent(unit.id)}" data-map-unit="${escapeHtml(unit.id)}" data-state="${state}" style="--mini-stage:${stage.color};--unit-stage:${stage.color}" aria-label="展开完整地图并聚焦：${escapeHtml(grade.label)} ${escapeHtml(termDisplayLabel(grade, semester))} ${escapeHtml(unit.title)}"><strong>${escapeHtml(unit.title)}</strong></a>`;
     }).join("")}</div></section>`).join("");
     return `<article class="mini-overview-grade" style="--mini-stage:${stage.color}"><header class="mini-overview-grade-head"><div><strong>${escapeHtml(grade.label)}</strong><small>${escapeHtml(stage.label)}数学</small></div><span>${escapeHtml(grade.code)}</span></header>${terms}</article>`;
   }).join("");
   map.innerHTML = `<div class="mini-overview-canvas"><div class="mini-overview-bands">${stageBands}</div><div class="mini-overview-grades">${grades}</div></div>`;
-  const started = allUnits.filter((item) => item.started).length;
-  document.querySelector("[data-mini-progress]").textContent = `${allUnits.length} 个单元 · ${started} 个已开始`;
+  updateMiniMapState();
 
   map.querySelectorAll("[data-map-unit]").forEach((unit) => unit.addEventListener("click", (event) => {
     event.preventDefault();
@@ -335,23 +353,34 @@ function renderMiniMap() {
     measureNodes();
     scheduleFisheye();
   };
-  map.addEventListener("pointerenter", (event) => {
+  const onPointerEnter = (event) => {
     pointerInside = true;
     pointerClientX = event.clientX;
     pointerClientY = event.clientY;
     measureNodes();
     scheduleFisheye();
-  }, { passive: true });
-  map.addEventListener("pointermove", (event) => {
+  };
+  const onPointerMove = (event) => {
     pointerInside = true;
     pointerClientX = event.clientX;
     pointerClientY = event.clientY;
     if (!mapRect) measureNodes();
     scheduleFisheye();
-  }, { passive: true });
+  };
+  map.addEventListener("pointerenter", onPointerEnter, { passive: true });
+  map.addEventListener("pointermove", onPointerMove, { passive: true });
   map.addEventListener("pointerleave", resetFisheye);
   window.addEventListener("scroll", refreshFisheyeAfterLayout, { passive: true });
   window.addEventListener("resize", refreshFisheyeAfterLayout, { passive: true });
+  disposeMiniMapFisheye = () => {
+    resetFisheye();
+    if (fishFrame) cancelAnimationFrame(fishFrame);
+    map.removeEventListener("pointerenter", onPointerEnter);
+    map.removeEventListener("pointermove", onPointerMove);
+    map.removeEventListener("pointerleave", resetFisheye);
+    window.removeEventListener("scroll", refreshFisheyeAfterLayout);
+    window.removeEventListener("resize", refreshFisheyeAfterLayout);
+  };
 }
 
 function setupFeaturedLessons() {
@@ -462,6 +491,13 @@ if (mapFrame) {
   else window.setTimeout(warmMap, 500);
 }
 renderMiniMap();
+renderHeroStats();
+window.lessonContent.watchCurriculum(data, () => {
+  topicLookup.clear();
+  flattenTopics().forEach(topic => topicLookup.set(topic.id, topic));
+  renderHeroStats();
+  renderMiniMap();
+});
 setupFeaturedLessons();
 
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); } }), { threshold: 0.1 });

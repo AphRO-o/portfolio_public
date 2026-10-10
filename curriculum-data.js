@@ -57,42 +57,35 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "上",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u01-p01"
                 },
                 {
                   "title": "下",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u01-p02"
                 },
                 {
                   "title": "左",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u01-p03"
                 },
                 {
                   "title": "右",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u01-p04"
                 },
                 {
                   "title": "前",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u01-p05"
                 },
                 {
                   "title": "后",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u01-p06"
                 }
               ],
-              "thought": "这些词来自生活经验，但课堂需要把它们变成稳定、可交流的空间关系。",
               "id": "g1-up-u01"
             },
             {
@@ -101,42 +94,35 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "长方体",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u02-p01"
                 },
                 {
                   "title": "长方形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u02-p02"
                 },
                 {
                   "title": "正方体",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u02-p03"
                 },
                 {
                   "title": "正方形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u02-p04"
                 },
                 {
                   "title": "球",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u02-p05"
                 },
                 {
                   "title": "圆",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u02-p06"
                 }
               ],
-              "thought": "这个现在就教？会不会不识字啊？图形名称、实物经验和二维三维的区别到底怎样进入？",
               "id": "g1-up-u02"
             },
             {
@@ -145,78 +131,55 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "写数字",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p01"
                 },
                 {
                   "title": "数数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p02"
                 },
                 {
                   "title": "认识 1—5",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p03"
                 },
                 {
                   "title": "认识 0",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p04"
                 },
                 {
                   "title": "认识 6—9",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p05"
                 },
                 {
                   "title": "认识 10",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p06"
                 },
                 {
                   "title": "数的分与合",
                   "status": "pending",
-                  "id": "g1-up-u03-p07",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《数的分与合》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 上学期 / 10 以内的数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这已经在引入加减法了；分与合其实是后续计算策略的结构基础。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-up-u03-p07"
                 },
                 {
                   "title": "比多少",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p08"
                 },
                 {
                   "title": "大于、等于、小于",
                   "status": "pending",
-                  "id": "g1-up-u03-p09",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《大于、等于、小于》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 上学期 / 10 以内的数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这些真的需要怎样教？如果只是记鳄鱼嘴，可能会掩盖关系本身，课本的呈现也值得重新设计。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-up-u03-p09"
                 },
                 {
                   "title": "序数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u03-p10"
                 }
               ],
-              "thought": "",
               "id": "g1-up-u03"
             },
             {
@@ -225,24 +188,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "围绕 10 的加减",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u04-p01"
                 },
                 {
                   "title": "连加连减",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u04-p02"
                 },
                 {
                   "title": "加减混合",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-up-u04-p03"
                 }
               ],
-              "thought": "需要把增加、减少、合并、剩余等生活动作逐步抽象成运算，而不是直接套算式。",
               "id": "g1-up-u04"
             },
             {
@@ -252,41 +211,19 @@ window.curriculumData = {
                 {
                   "title": "19 后面是几",
                   "status": "pending",
-                  "id": "g1-up-u05-p01",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《19 后面是几》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 上学期 / 20 以内的数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里已经很难讲了。课本给出了答案，但没有真正回答为什么 19 后面是 20。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-up-u05-p01"
                 },
                 {
                   "title": "十几就是十和几",
                   "status": "pending",
-                  "id": "g1-up-u05-p02",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《十几就是十和几》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 上学期 / 20 以内的数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这是第一次正式触碰十进制位值结构：一个十和几个一。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-up-u05-p02"
                 },
                 {
                   "title": "排列与数轴雏形",
                   "status": "pending",
-                  "id": "g1-up-u05-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《排列与数轴雏形》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 上学期 / 20 以内的数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里已经出现数轴了，但学生看到的是排列，还是连续的数与位置关系？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-up-u05-p03"
                 }
               ],
-              "thought": "",
               "id": "g1-up-u05"
             },
             {
@@ -296,17 +233,9 @@ window.curriculumData = {
                 {
                   "title": "进位加法：凑十法",
                   "status": "pending",
-                  "id": "g1-up-u06-p01",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《进位加法：凑十法》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 上学期 / 20 以内加法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n课本采用凑十。需要讲清楚为什么凑十，以及它依赖怎样的数的分与合。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-up-u06-p01"
                 }
               ],
-              "thought": "",
               "id": "g1-up-u06"
             }
           ],
@@ -322,12 +251,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "退位减法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u01-p01"
                 }
               ],
-              "thought": "需要连接破十法、想加算减与数的分解，避免只剩步骤。",
               "id": "g1-down-u01"
             },
             {
@@ -336,60 +263,45 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "数到 100",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p01"
                 },
                 {
                   "title": "读数与写数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p02"
                 },
                 {
                   "title": "数的组成",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p03"
                 },
                 {
                   "title": "数轴上的位置",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p04"
                 },
                 {
                   "title": "认识 100",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p05"
                 },
                 {
                   "title": "100 以内比大小",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p06"
                 },
                 {
                   "title": "从小到大排列",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u02-p07"
                 },
                 {
                   "title": "相邻的数",
                   "status": "pending",
-                  "id": "g1-down-u02-p08",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《相邻的数》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 下学期 / 100 以内的数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n其实已经在引入数轴上的加减：前一个、后一个与相差 1。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-down-u02-p08"
                 }
               ],
-              "thought": "",
               "id": "g1-down-u02"
             },
             {
@@ -398,18 +310,15 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "认识整点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u03-p01"
                 },
                 {
                   "title": "认识半点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u03-p02"
                 }
               ],
-              "thought": "这里只教整点和半点，时间作为连续量还没有真正出现。",
               "id": "g1-down-u03"
             },
             {
@@ -418,36 +327,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "不进位加法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u04-p01"
                 },
                 {
                   "title": "进位加法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u04-p02"
                 },
                 {
                   "title": "加法竖式",
                   "status": "pending",
-                  "id": "g1-down-u04-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《加法竖式》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 下学期 / 100 以内加法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n竖式应该是重点，但教材只用了半页。位值对齐和进位到底如何被理解？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-down-u04-p03"
                 },
                 {
                   "title": "连加",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u04-p04"
                 }
               ],
-              "thought": "",
               "id": "g1-down-u04"
             },
             {
@@ -456,42 +354,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "认识尺子",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u05-p01"
                 },
                 {
                   "title": "认识厘米",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u05-p02"
                 },
                 {
                   "title": "认识米",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u05-p03"
                 },
                 {
                   "title": "认识线段",
                   "status": "pending",
-                  "id": "g1-down-u05-p04",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《认识线段》\n\n**学段 / 年级：** 小学 / 一年级\n\n**教材位置：** 下学期 / 长度的比较和测量\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里没有说明线段和直线的区别，只提到它是直的、有长度。这个定义边界需要补足吗？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g1-down-u05-p04"
                 },
                 {
                   "title": "厘米和米的换算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u05-p05"
                 }
               ],
-              "thought": "",
               "id": "g1-down-u05"
             },
             {
@@ -500,12 +386,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "用身体估测长度",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u06-p01"
                 }
               ],
-              "thought": "很好的量感活动，关键是让估测、实测和误差比较形成闭环。",
               "id": "g1-down-u06"
             },
             {
@@ -514,12 +398,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "数墙规律",
-                  "thought": "",
                   "status": "pending",
                   "id": "g1-down-u07-p01"
                 }
               ],
-              "thought": "它训练的是加法关系、逆向推理，还是单纯填空？值得重新定义学习目标。",
               "id": "g1-down-u07"
             }
           ],
@@ -544,42 +426,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "不退位减法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u01-p01"
                 },
                 {
                   "title": "退位减法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u01-p02"
                 },
                 {
                   "title": "减法竖式",
                   "status": "pending",
-                  "id": "g2-up-u01-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《减法竖式》\n\n**学段 / 年级：** 小学 / 二年级\n\n**教材位置：** 上学期 / 100 以内的加减法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n同样，竖式获得的教材篇幅很少。需要把退位与十进制位值真正连接起来。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g2-up-u01-p03"
                 },
                 {
                   "title": "加减应用题",
                   "status": "pending",
-                  "id": "g2-up-u01-p04",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《加减应用题》\n\n**学段 / 年级：** 小学 / 二年级\n\n**教材位置：** 上学期 / 100 以内的加减法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里开始正式读题、识别数量关系并列算式。语言理解可能比计算更关键。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g2-up-u01-p04"
                 }
               ],
-              "thought": "",
               "id": "g2-up-u01"
             },
             {
@@ -588,18 +453,15 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "认识人民币",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u02-p01"
                 },
                 {
                   "title": "模拟买卖",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u02-p02"
                 }
               ],
-              "thought": "真实情境很好，但需要避免活动热闹、数学关系却没有沉淀。",
               "id": "g2-up-u02"
             },
             {
@@ -608,72 +470,50 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "同数连加",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p01"
                 },
                 {
                   "title": "乘法算式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p02"
                 },
                 {
                   "title": "乘法交换律",
                   "status": "pending",
-                  "id": "g2-up-u03-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《乘法交换律》\n\n**学段 / 年级：** 小学 / 二年级\n\n**教材位置：** 上学期 / 表内乘法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n为什么交换律要在这里说？加法交换律似乎还没有正式讲。需要处理直观经验与正式命名的关系。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g2-up-u03-p03"
                 },
                 {
                   "title": "5 的乘法口诀",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p04"
                 },
                 {
                   "title": "2、4、8 的乘法口诀",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p05"
                 },
                 {
                   "title": "7 的乘法口诀",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p06"
                 },
                 {
                   "title": "3、6、9 的乘法口诀",
                   "status": "pending",
-                  "id": "g2-up-u03-p07",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《3、6、9 的乘法口诀》\n\n**学段 / 年级：** 小学 / 二年级\n\n**教材位置：** 上学期 / 表内乘法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n为什么按 5 → 2/4/8 → 7 → 3/6/9 的顺序？这个编排逻辑值得研究。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g2-up-u03-p07"
                 },
                 {
                   "title": "乘法口诀表",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p08"
                 },
                 {
                   "title": "基础乘法应用题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u03-p09"
                 }
               ],
-              "thought": "",
               "id": "g2-up-u03"
             },
             {
@@ -682,30 +522,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "东",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u04-p01"
                 },
                 {
                   "title": "南",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u04-p02"
                 },
                 {
                   "title": "西",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u04-p03"
                 },
                 {
                   "title": "北",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u04-p04"
                 }
               ],
-              "thought": "东南西北竟然也是数学课教的？它属于空间观念，还是生活常识？怎样教出数学味？",
               "id": "g2-up-u04"
             },
             {
@@ -714,18 +549,15 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "确定分类标准",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u05-p01"
                 },
                 {
                   "title": "逐层分类",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u05-p02"
                 }
               ],
-              "thought": "分类标准不是唯一的，真正重要的是标准明确、分类不重不漏。",
               "id": "g2-up-u05"
             },
             {
@@ -734,12 +566,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "幻方",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-up-u06-p01"
                 }
               ],
-              "thought": "可以用来观察和、位置与对称，但需要避免沦为试数游戏。",
               "id": "g2-up-u06"
             }
           ],
@@ -755,54 +585,40 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "平均分",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u01-p01"
                 },
                 {
                   "title": "同数连减",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u01-p02"
                 },
                 {
                   "title": "除法算式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u01-p03"
                 },
                 {
                   "title": "用乘法口诀求商",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u01-p04"
                 },
                 {
                   "title": "基础除法应用题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u01-p05"
                 },
                 {
                   "title": "余数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u01-p06"
                 },
                 {
                   "title": "除法竖式",
                   "status": "pending",
-                  "id": "g2-down-u01-p07",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《除法竖式》\n\n**学段 / 年级：** 小学 / 二年级\n\n**教材位置：** 下学期 / 表内除法\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n除法竖式非常简短，而且本节没有介绍被除数、除数等概念。先会做还是先会说？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g2-down-u01-p07"
                 }
               ],
-              "thought": "",
               "id": "g2-down-u01"
             },
             {
@@ -811,42 +627,35 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "千位",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u02-p01"
                 },
                 {
                   "title": "认识算盘",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u02-p02"
                 },
                 {
                   "title": "数位表",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u02-p03"
                 },
                 {
                   "title": "相邻的整十数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u02-p04"
                 },
                 {
                   "title": "相邻的整百数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u02-p05"
                 },
                 {
                   "title": "万位",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u02-p06"
                 }
               ],
-              "thought": "位值体系继续扩张，数位表应成为统一结构，而不是每扩一次数域就重新记一遍。",
               "id": "g2-down-u02"
             },
             {
@@ -855,30 +664,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "制作钟面",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u03-p01"
                 },
                 {
                   "title": "读时刻",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u03-p02"
                 },
                 {
                   "title": "感受分与秒",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u03-p03"
                 },
                 {
                   "title": "合理安排时间",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u03-p04"
                 }
               ],
-              "thought": "从整点半点走向更细时间单位，活动要帮助建立时长感而不只是读表。",
               "id": "g2-down-u03"
             },
             {
@@ -887,24 +691,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "口算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u04-p01"
                 },
                 {
                   "title": "加法竖式进位",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u04-p02"
                 },
                 {
                   "title": "减法竖式退位",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u04-p03"
                 }
               ],
-              "thought": "原来这里才正式教竖式。需要回看一年级教材中竖式究竟承担了什么。",
               "id": "g2-down-u04"
             },
             {
@@ -913,18 +713,15 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "发现周期",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u05-p01"
                 },
                 {
                   "title": "用余数确定位置",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u05-p02"
                 }
               ],
-              "thought": "这是余数意义很好的迁移场景。",
               "id": "g2-down-u05"
             },
             {
@@ -933,18 +730,15 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "有序搭配",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u06-p01"
                 },
                 {
                   "title": "不重复不遗漏",
-                  "thought": "",
                   "status": "pending",
                   "id": "g2-down-u06-p02"
                 }
               ],
-              "thought": "其实已经是排列组合的雏形，关键是有序思考。",
               "id": "g2-down-u06"
             }
           ],
@@ -964,41 +758,25 @@ window.curriculumData = {
           "label": "上学期",
           "units": [
             {
-              "title": "两步四则运算",
+              "title": "两步四则运算与应用题",
               "category": "number",
               "points": [
                 {
                   "title": "乘除混合运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u01-p01"
                 },
                 {
                   "title": "加减乘除混合运算",
                   "status": "pending",
-                  "id": "g3-up-u01-p02",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《加减乘除混合运算》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 两步四则运算\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n教材没有解释为什么要先算乘除。运算顺序是约定，还是可以从结构上理解？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-up-u01-p02"
                 },
                 {
                   "title": "两步应用题",
                   "status": "pending",
-                  "id": "g3-up-u01-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《两步应用题》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 两步四则运算\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这可能是最重要的转折，特别是除法发生的地方：必须从数量关系而非关键词入手。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-up-u01-p03"
                 }
               ],
-              "thought": "",
               "id": "g3-up-u01"
             },
             {
@@ -1007,92 +785,72 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "一位数乘整十整百",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u02-p01"
                 },
                 {
                   "title": "一位数乘两位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u02-p02"
                 },
                 {
                   "title": "乘法竖式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u02-p03"
                 },
                 {
                   "title": "一位数乘三位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u02-p04"
                 },
                 {
                   "title": "乘法估算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u02-p05"
                 }
               ],
-              "thought": "竖式需要和分配、位值及部分积建立联系。",
               "id": "g3-up-u02"
             },
             {
-              "title": "三角形和四边形",
+              "title": "三角形与四边形",
               "category": "geometry",
               "points": [
                 {
                   "title": "角：顶点和边",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u03-p01"
                 },
                 {
                   "title": "比较角的大小",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u03-p02"
                 },
                 {
                   "title": "用三角尺识别直角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u03-p03"
                 },
                 {
                   "title": "锐角、直角、钝角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u03-p04"
                 },
                 {
                   "title": "长方形的长、宽与直角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u03-p05"
                 },
                 {
                   "title": "正方形的边与直角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u03-p06"
                 },
                 {
                   "title": "按角给三角形分类",
                   "status": "pending",
-                  "id": "g3-up-u03-p07",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《按角给三角形分类》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 三角形和四边形\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里完全没有角度概念；钝角和锐角通过直角定义，直角直接借助三角尺判断。这个直观链条很特别。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-up-u03-p07"
                 }
               ],
-              "thought": "",
               "id": "g3-up-u03"
             },
             {
@@ -1101,64 +859,36 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "一位数除整十整百",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u04-p01"
                 },
                 {
                   "title": "一位数除两位数",
                   "status": "pending",
-                  "id": "g3-up-u04-p04",
-                  "overview": {
-                    "objectives": "",
-                    "focus": "",
-                    "difficulties": "",
-                    "prerequisites": "",
-                    "nextTopics": "",
-                    "reflections": "",
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  }
+                  "id": "g3-up-u04-p04"
                 },
                 {
                   "title": "除法竖式",
                   "status": "pending",
-                  "id": "g3-up-u04-p05",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《除法竖式》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 用一位数除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n为什么正式的竖式这里才教，但前面却已经出现过？需要梳理表示演进。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-up-u04-p05"
                 },
                 {
                   "title": "倍的应用题",
                   "status": "pending",
-                  "id": "g3-up-u04-p06",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《倍的应用题》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 用一位数除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n倍关系是重点，也是语言和关系理解的难点。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-up-u04-p06"
                 },
                 {
                   "title": "一位数除三位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u04-p07"
                 },
                 {
                   "title": "除法验算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u04-p08"
                 },
                 {
                   "title": "带余数应用题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u04-p09"
                 },
@@ -1166,7 +896,7 @@ window.curriculumData = {
                   "title": "单价、数量、总价",
                   "status": "recorded",
                   "id": "g3-up-u04-p10",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《单价、数量、总价》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 用一位数除\n\n**课型：** 数量关系与应用课\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n1. 知道“单价、数量、总价”的实际含义；\n2. 掌握“单价×数量=总价”，并推出求单价与数量的另两个数量关系式；\n3. 理解数量之间的相互关系，并运用这组关系式解决简单的生活问题。\n\n### 2. 教学重点\n\n掌握“单价×数量=总价”，并运用该式解决实际问题。\n\n### 3. 教学难点\n\n理解单价、数量、总价这三个量之间的相互关系。\n\n### 4. 我的教学思考\n\n本课的重点不是教学生计算购物金额，而是帮助他们将已有的购物经验抽象为一般的数学关系。\n\n我特别关注“每”在单价概念中的作用，希望学生理解“每件商品的价格”，而不只是机械识别关键词或记忆公式。\n\n本课尝试通过春游采购这一连续情境，让学生经历认识三个量、建立数量关系、逆向求解和实际应用的过程。\n",
+                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《单价、数量、总价》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 用一位数除\n\n**课型：** 数量关系与应用课\n\n**建议课时：** 待核实\n\n## 教学目标\n\n1. 知道“单价、数量、总价”的实际含义；\n2. 掌握“单价×数量=总价”，并推出求单价与数量的另两个数量关系式；\n3. 理解数量之间的相互关系，并运用这组关系式解决简单的生活问题。\n\n## 教学重点\n\n掌握“单价×数量=总价”，并运用该式解决实际问题。\n\n## 教学难点\n\n理解单价、数量、总价这三个量之间的相互关系。\n\n## 我的教学思考\n\n本课的重点不是教学生计算购物金额，而是帮助他们将已有的购物经验抽象为一般的数学关系。\n\n我特别关注“每”在单价概念中的作用，希望学生理解“每件商品的价格”，而不只是机械识别关键词或记忆公式。\n\n本课尝试通过春游采购这一连续情境，让学生经历认识三个量、建立数量关系、逆向求解和实际应用的过程。\n",
                   "overview": {
                     "prerequisiteIds": [],
                     "nextTopicIds": []
@@ -1176,7 +906,7 @@ window.curriculumData = {
                       "id": "d1",
                       "versionNumber": 1,
                       "label": "d1",
-                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**设计依据：** 现有教学设计原稿（教材及教学用书依据待补充）\n\n**核心教学思路：**\n\n生活购物经验 → 认识三个量 → 建立乘法关系 → 逆向求未知量 → 综合应用。\n\n### 教学流程\n\n### 环节一：春游采购——认识单价与数量\n\n**情境导入**\n\n班级即将组织春游，乐乐和妈妈提前前往超市购买零食。\n\n播放采购视频，引导学生观察乐乐购买了哪些商品，以及视频中出现了哪些数学信息。\n\n学生通过观察得到：\n\n- 饼干5块，每块3元。\n- 可乐6瓶，单价暂时未知。\n\n教师引导学生区分：\n\n- “5块”“6瓶”表示购买商品的数量。\n- “每块3元”表示一块饼干的价格，即单价。\n\n结合生活中的商品标价，初步认识单价的含义。\n\n**设计意图**\n\n利用学生熟悉的购物经验引入数学术语，将日常语言中的“买了多少”和“每个多少钱”分别抽象为数量和单价。\n\n### 环节二：计算总价——建立乘法关系\n\n提出问题：\n\n“乐乐买了5块饼干，每块3元，一共花了多少钱？”\n\n学生列式：\n\n5 × 3 = 15（元）\n\n引导学生解释：\n\n5表示购买了5块饼干，3表示每块3元，5个3元合起来就是15元。\n\n由此认识总价，即购买这些商品一共需要支付的钱数。\n\n随后提出可乐问题：\n\n“乐乐买了6瓶可乐，一共需要多少钱？”\n\n预设典型错误：学生直接使用饼干的单价3元，得到18元。\n\n通过讨论明确，3元是饼干的单价，不能直接用于计算可乐的总价。\n\n补充可乐单价为每瓶2元，学生计算：\n\n6 × 2 = 12（元）\n\n进一步将可乐更换为每瓶11元的大瓶装，购买数量仍为6瓶：\n\n6 × 11 = 66（元）\n\n通过比较，感受数量相同时，单价变化会影响总价。\n\n最后从具体算式归纳：\n\n**单价 × 数量 = 总价**\n\n**设计意图**\n\n通过两个商品的计算建立数量关系，再利用缺失信息与错误答案，帮助学生认识单价和总价之间的联系。\n\n从学生已经掌握的乘法计算出发，逐步形成一般性的数学表达。\n\n### 环节三：采购记录缺失——逆向求单价\n\n春游结束后，乐乐整理购物记录，发现部分商品的单价忘记记录。\n\n提出问题：\n\n“买了3袋薯片，一共花了21元，每袋多少钱？”\n\n学生列式：\n\n21 ÷ 3 = 7（元/袋）\n\n引导学生从两个角度解释：\n\n**运算关系：** 已知3乘一个未知数等于21，可以利用乘除法之间的关系求出未知数。\n\n**实际意义：** 3袋薯片共花21元，每袋价格相同，把21元平均分成3份，每份就是一袋薯片的价格。\n\n进一步认识“元/袋”表示每袋多少元。\n\n归纳：\n\n**总价 ÷ 数量 = 单价**\n\n随后安排巩固问题：\n\n“买了2罐八宝粥，一共花了10元，每罐多少钱？”\n\n10 ÷ 2 = 5（元/罐）\n\n**设计意图**\n\n通过采购记录中的未知单价，引导学生利用已有的乘除法知识逆向思考。\n\n同时结合平均分的意义解释除法，避免将求单价简单处理为公式套用。\n\n### 环节四：继续补全记录——逆向求数量\n\n提出新的问题：\n\n“雪碧每瓶2元，一共花了12元，买了几瓶？”\n\n学生列式：\n\n12 ÷ 2 = 6（瓶）\n\n引导学生理解：\n\n每瓶2元，12元中包含6个2元，因此购买了6瓶。\n\n归纳：\n\n**总价 ÷ 单价 = 数量**\n\n组织学生回顾三种已知条件与未知量的组合，整理单价、数量和总价之间的关系。\n\n**设计意图**\n\n通过改变未知量，让学生从不同方向理解同一数量关系，建立乘除法之间的联系。\n\n### 环节五：40元春游采购——综合应用\n\n为每个小组提供40元采购预算，并展示课堂中出现的商品及其单价。\n\n学生自主选择商品和购买数量，计算各类商品的总价及全部采购费用，判断是否超出预算。\n\n安排小组讨论，并邀请部分小组展示采购方案。\n\n**设计意图**\n\n将课堂建立的数量关系重新应用于生活情境，鼓励学生综合使用乘法、加法和数量关系解决实际问题。\n\n通过不同采购方案的交流，进一步体会数学在日常决策中的作用。\n\n---\n\n本课的设计没有刻意制造旧方法无法解决问题的认知冲突，而是以学生已经熟悉的购物计算为基础，通过数学术语的引入和数量关系的归纳，帮助学生将具体经验上升为一般性的数学认识。\n\n教学主线为：\n\n**生活购物经验 → 认识三个量 → 建立乘法关系 → 逆向求未知量 → 综合应用。**\n\n本课希望学生获得的不只是三个计算公式，更是理解实际问题中不同数量之间关系的能力。\n",
+                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**设计依据：** 教材、教师教学用书及参考教案（待补充）\n\n**核心教学思路：**\n\n从学生熟悉的购物经验出发，认识单价、数量和总价；通过具体计算归纳数量关系，再利用乘除法关系解决逆向问题，最后迁移到预算采购活动。\n\n## 教学流程\n\n| 环节 | 教学活动 | 设计意图 |\n|---|---|---|\n| 1. 情境导入 | 乐乐为春游采购，观看购物视频并提取数学信息 | 激活购物经验 |\n| 2. 概念认识 | 区分“5块饼干”和“每块3元”，认识数量与单价 | 理解三个量的实际含义 |\n| 3. 关系建立 | 计算饼干总价，讨论可乐缺少单价的问题，归纳基本关系 | 从具体算式抽象一般关系 |\n| 4. 逆向求解 | 根据薯片总价与数量求单价，根据雪碧总价与单价求数量 | 理解乘除法之间的联系 |\n| 5. 综合应用 | 40元预算采购，记录并计算购物方案 | 迁移应用数量关系 |\n| 6. 课堂总结 | 回顾三个量的意义和关系 | 整理知识结构 |\n\n## 关键教学问题\n\n**问题1：** “5块饼干”和“每块3元”有什么不同？\n\n**问题2：** 只知道买了6瓶可乐，能不能算出总价？为什么？\n\n**问题3：** 21元买了3袋薯片，为什么用21÷3求单价？\n\n**问题4：** 这些购物算式有什么共同点？能否用单价、数量、总价表示？\n\n## 预设学生困难\n\n- 混淆不同商品的单价。\n- 只记住公式，不能解释算式的实际意义。\n- 求单价时忽略“元/袋”等单位。\n- 在预算活动中遗漏部分商品的费用。\n\n## 课堂评价\n\n- 能否正确识别单价、数量、总价？\n- 能否解释为什么使用乘法或除法？\n- 能否独立完成一道逆向求解题？\n- 能否正确记录并计算购物方案？\n",
                       "lessonFile": "/lessons/g3-up-u04-p10/designs/d1.md",
                       "date": "",
                       "duration": "",
@@ -1191,11 +921,11 @@ window.curriculumData = {
                       "id": "r1",
                       "versionNumber": 1,
                       "label": "r1",
-                      "markdown": "# 试讲复盘\n\n**试讲形式：** 无生模拟课堂\n**试讲版本：** r1\n**试讲时长：** 15分钟\n**采用的教学设计版本：** d1\n**日期：** 2026-10-09\n**版本说明：** v1｜新版本\n\n**试讲版本：** v1  \n**试讲形式：** 无生模拟课堂  \n**复盘依据：** 试讲语音转写、板书照片及教学设计  \n**复盘主题：** 从生活经验到数量关系的抽象\n\n## 一、本次试讲概况\n\n本次试讲围绕“乐乐春游采购”展开，通过采购前的商品选择、采购后的记录整理，以及40元预算活动，将单价、数量、总价三个概念及其关系组织在同一情境中。\n\n课堂依次经历：\n\n1. 观察采购视频，提取数量与单价信息。\n2. 计算饼干、可乐的总价。\n3. 通过可乐单价缺失和变化，理解三个量之间的联系。\n4. 根据薯片、八宝粥的总价与数量，逆向求单价。\n5. 根据雪碧的总价与单价，逆向求数量。\n6. 总结三个数量关系式。\n7. 开展40元预算采购活动。\n\n本次试讲已基本形成完整的教学流程，能够围绕同一生活情境连续推进数学问题。\n\n## 二、本次试讲中值得保留的设计\n\n### 1. 以“每”作为单价概念的切入点\n\n“每块3元”“每瓶2元”等表达与学生日常购物经验密切相关。\n\n从“买了多少”与“每个多少钱”的区别出发，有助于学生认识数量和单价分别描述什么。\n\n这一切入点可以保留，但后续需要进一步明确：单价的本质是每个计量单位商品的价格，而不是简单识别“每”字。\n\n### 2. 利用典型错误澄清单价的含义\n\n可乐题故意暂时不提供单价，并预设学生错误地使用饼干的单价3元进行计算。\n\n这一设计能够引导学生发现，不同商品的单价不能随意混用。\n\n相比单纯要求学生记忆定义，这种错误分析更有利于澄清数量关系中的信息对应问题。\n\n### 3. 从运算关系与实际意义两个角度解释除法\n\n在求薯片单价时，既使用乘除法互逆关系解释21÷3，也从“3袋共21元，平均每袋多少钱”的角度解释计算。\n\n这是本次试讲中比较重要的数学解释。\n\n它将学生已经掌握的运算知识与现实数量意义联系起来，使求单价不只是机械套用公式。\n\n### 4. 情境具有连续性\n\n春游采购贯穿了概念引入、数量关系探索、逆向计算和综合应用。\n\n不同数学问题都能在同一背景下自然出现，不需要频繁更换互不相关的故事。\n\n这延续了此前《周长》试讲中形成的认识：情境的连贯性应服务于数学问题的推进，而不是单纯追求故事的丰富程度。\n\n## 三、发现的主要问题\n\n### 1. 教师替学生完成了较多的归纳\n\n试讲中多次出现“是不是”“对不对”“大家肯定都会”等表达。\n\n在部分关键环节，教师较快给出结论，学生主要承担回答或确认的角色。\n\n尤其是在归纳三个数量关系式时，教师的总结占比较大，学生自主观察算式、比较共同点并提出一般关系的机会不足。\n\n**改进方向：**\n\n在饼干和可乐的计算完成后，先让学生比较两个算式的共同点，再尝试使用单价、数量和总价三个术语表达关系。\n\n减少确认式提问，增加真正需要学生解释和归纳的问题。\n\n### 2. 单价单位的教学时机偏晚\n\n虽然“每”被设定为本课的概念重点，但“元/袋”“元/块”等单位的正式解释直到求薯片单价时才出现。\n\n此前的饼干和可乐问题已经涉及单价，但尚未充分利用单位表达帮助学生理解。\n\n**改进方向：**\n\n第一次引入单价时，就将“每块3元”与“3元/块”对应起来。\n\n后续在求单价时再次强调答案表示“每件商品多少钱”，使概念理解贯穿整节课。\n\n### 3. 对学生回答的追问仍然不足\n\n本次试讲已经包含“为什么不对”“怎么算出来的”“为什么用除法”等解释性问题。\n\n但在学生给出预期答案后，教师有时很快接过解释，未充分让学生完成推理。\n\n例如求单价时，教师自己详细解释了平均分的意义。\n\n**改进方向：**\n\n对于关键数学问题，允许学生先用自己的语言解释，再由教师进行规范化整理。\n\n尤其要区分“学生会列算式”和“学生能解释算式意义”这两个不同层次。\n\n### 4. 例题数量较多，巩固与反馈不足\n\n本次试讲连续使用了饼干、可乐、大瓶可乐、薯片、八宝粥、雪碧等商品。\n\n这些例题能够覆盖三个数量关系，但部分题目的数学结构相近。\n\n例如薯片和八宝粥都属于已知总价、数量求单价，后者可以更简洁地作为独立练习，而不必再次完整讲解。\n\n**改进方向：**\n\n适当压缩重复性师生问答，将节省的时间用于学生独立计算、解释理由或辨析错误。\n\n### 5. 40元采购活动缺少明确的评价标准\n\n原设计要求学生自由采购，并比较哪个小组的方案“最好”。\n\n但“最好”尚未定义，可能导致学生从不同标准评价方案，偏离本课的数学目标。\n\n此外，该活动同时涉及商品选择、乘法计算、加法汇总、预算判断和小组交流，真实课堂中的时间成本可能较高。\n\n**改进方向：**\n\n明确基础任务：\n\n在40元预算内选择商品，记录单价、数量和总价，计算全部费用并判断是否超出预算。\n\n将方案比较作为拓展，而不是要求所有学生必须完成的核心任务。\n\n## 四、板书复盘\n\n本次板书包含三个量的核心关系、商品示意图、具体计算过程和逆向关系式。\n\n从照片看，能够体现由具体例题到一般公式的数学结构，但仍有改进空间。\n\n**主要问题：**\n\n- 商品信息、计算过程和核心公式之间的区域划分还不够明确。\n- 单价单位的书写形式尚未完全统一。\n- 三个关系式之间可以建立更清晰的视觉联系，避免看起来像三个孤立公式。\n- 个别粉笔字及图形辨识度受黑板贴条件影响。\n\n**下一版调整：**\n\n考虑将板书分为商品信息区、计算探索区和核心关系区。\n\n保留必要的代表性算式，不要求所有临时计算都长期留在黑板上。\n\n板书优化仍以数学表达准确、结构清楚、字迹可辨认为主要目标，不追求装饰性。\n\n## 五、对本次教学设计的进一步认识\n\n### 1. 数量关系课的核心不是重新教授乘除法\n\n学生通常已经能够解决“每块3元，买5块多少钱”的问题。\n\n本课的教学价值在于帮助学生认识这些具体计算背后存在共同的数学结构。\n\n因此，教学应当从已有经验出发，引导学生经历从具体数字到一般关系的抽象过程。\n\n### 2. 数学概念的形成不一定需要认知冲突\n\n本课没有必要刻意让旧方法失效。\n\n学生已有的购物经验和乘除法知识本身就可以成为新知识的基础。\n\n通过命名、分类、比较和归纳，同样可以形成有意义的概念学习。\n\n### 3. 公式的理解应当落实到数量意义\n\n学生能够背出“总价除以数量等于单价”，并不一定意味着理解。\n\n更重要的是能够解释：\n\n为什么要除？除数表示什么？商表示什么？答案的单位是什么？\n\n后续教学中，需要将数量关系的意义与计算方法结合起来。\n\n### 4. 课堂互动不等于学生真正参与思考\n\n模拟试讲中，即使不断安排学生回答，也可能仍由教师控制全部推理过程。\n\n需要关注的问题不只是“有没有提问”，还包括：\n\n学生是否有机会自主观察、解释、比较和归纳？\n\n这是下一阶段试讲需要重点训练的能力。\n\n## 六、下一版本修改计划\n\n下一次试讲不重新设计整个故事，而是在保留原有主线的基础上进行局部调整。\n\n**优先修改三项：**\n\n1. **增强学生归纳：** 在首次总结“单价×数量＝总价”时，让学生先比较算式并尝试表达共同关系。\n2. **强化数量意义：** 在求单价和求数量时，要求学生解释除法的实际意义，并规范单价单位。\n3. **明确综合任务：** 将40元采购活动调整为有清晰记录要求和评价标准的预算问题。\n\n其他语言、板书和节奏问题继续观察，不要求在下一次试讲中全部解决。\n\n## 七、阶段性总结\n\n本次试讲的主要进展，是尝试将一节数量关系课组织成连续的生活问题，并从具体购物计算逐步走向一般数量关系。\n\n目前的教学结构基本成立，但关键数学结论仍较多由教师完成归纳，学生独立解释和验证理解的机会不足。\n\n下一阶段的重点不是增加更多情境或设计更复杂的活动，而是提高关键问题的质量，让学生真正参与从具体经验到数学关系的抽象过程。\n\n**本次复盘的核心结论：**\n\n一节数量关系课的成功，不仅在于学生能够根据已知条件列出正确算式，更在于他们能够解释各个量的意义，理解为什么使用相应运算，并将这种关系迁移到新的问题中。\n\n*注：本次为无生模拟试讲。上述判断主要反映教学设计和模拟课堂表达的表现，尚不能作为真实学生学习效果的证据。*\n",
+                      "markdown": "# 试讲复盘\n\n**试讲形式：** 无生\n**试讲版本：** r1\n**试讲时长：** 15分钟\n**采用的教学设计版本：** d1\n**日期：** 2026-10-09\n\n## 一、本次试讲概况\n\n本次试讲围绕“乐乐春游采购”展开，通过采购前的商品选择、采购后的记录整理，以及40元预算活动，将单价、数量、总价三个概念及其关系组织在同一情境中。\n\n课堂依次经历：\n\n1. 观察采购视频，提取数量与单价信息。\n2. 计算饼干、可乐的总价。\n3. 通过可乐单价缺失和变化，理解三个量之间的联系。\n4. 根据薯片、八宝粥的总价与数量，逆向求单价。\n5. 根据雪碧的总价与单价，逆向求数量。\n6. 总结三个数量关系式。\n7. 开展40元预算采购活动。\n\n本次试讲已基本形成完整的教学流程，能够围绕同一生活情境连续推进数学问题。\n\n## 二、本次试讲中值得保留的设计\n\n### 1. 以“每”作为单价概念的切入点\n\n“每块3元”“每瓶2元”等表达与学生日常购物经验密切相关。\n\n从“买了多少”与“每个多少钱”的区别出发，有助于学生认识数量和单价分别描述什么。\n\n这一切入点可以保留，但后续需要进一步明确：单价的本质是每个计量单位商品的价格，而不是简单识别“每”字。\n\n### 2. 利用典型错误澄清单价的含义\n\n可乐题故意暂时不提供单价，并预设学生错误地使用饼干的单价3元进行计算。\n\n这一设计能够引导学生发现，不同商品的单价不能随意混用。\n\n相比单纯要求学生记忆定义，这种错误分析更有利于澄清数量关系中的信息对应问题。\n\n### 3. 从运算关系与实际意义两个角度解释除法\n\n在求薯片单价时，既使用乘除法互逆关系解释21÷3，也从“3袋共21元，平均每袋多少钱”的角度解释计算。\n\n这是本次试讲中比较重要的数学解释。\n\n它将学生已经掌握的运算知识与现实数量意义联系起来，使求单价不只是机械套用公式。\n\n### 4. 情境具有连续性\n\n春游采购贯穿了概念引入、数量关系探索、逆向计算和综合应用。\n\n不同数学问题都能在同一背景下自然出现，不需要频繁更换互不相关的故事。\n\n这延续了此前《周长》试讲中形成的认识：情境的连贯性应服务于数学问题的推进，而不是单纯追求故事的丰富程度。\n\n## 三、发现的主要问题\n\n### 1. 教师替学生完成了较多的归纳\n\n试讲中多次出现“是不是”“对不对”“大家肯定都会”等表达。\n\n在部分关键环节，教师较快给出结论，学生主要承担回答或确认的角色。\n\n尤其是在归纳三个数量关系式时，教师的总结占比较大，学生自主观察算式、比较共同点并提出一般关系的机会不足。\n\n**改进方向：**\n\n在饼干和可乐的计算完成后，先让学生比较两个算式的共同点，再尝试使用单价、数量和总价三个术语表达关系。\n\n减少确认式提问，增加真正需要学生解释和归纳的问题。\n\n### 2. 单价单位的教学时机偏晚\n\n虽然“每”被设定为本课的概念重点，但“元/袋”“元/块”等单位的正式解释直到求薯片单价时才出现。\n\n此前的饼干和可乐问题已经涉及单价，但尚未充分利用单位表达帮助学生理解。\n\n**改进方向：**\n\n第一次引入单价时，就将“每块3元”与“3元/块”对应起来。\n\n后续在求单价时再次强调答案表示“每件商品多少钱”，使概念理解贯穿整节课。\n\n### 3. 对学生回答的追问仍然不足\n\n本次试讲已经包含“为什么不对”“怎么算出来的”“为什么用除法”等解释性问题。\n\n但在学生给出预期答案后，教师有时很快接过解释，未充分让学生完成推理。\n\n例如求单价时，教师自己详细解释了平均分的意义。\n\n**改进方向：**\n\n对于关键数学问题，允许学生先用自己的语言解释，再由教师进行规范化整理。\n\n尤其要区分“学生会列算式”和“学生能解释算式意义”这两个不同层次。\n\n### 4. 例题数量较多，巩固与反馈不足\n\n本次试讲连续使用了饼干、可乐、大瓶可乐、薯片、八宝粥、雪碧等商品。\n\n这些例题能够覆盖三个数量关系，但部分题目的数学结构相近。\n\n例如薯片和八宝粥都属于已知总价、数量求单价，后者可以更简洁地作为独立练习，而不必再次完整讲解。\n\n**改进方向：**\n\n适当压缩重复性师生问答，将节省的时间用于学生独立计算、解释理由或辨析错误。\n\n### 5. 40元采购活动缺少明确的评价标准\n\n原设计要求学生自由采购，并比较哪个小组的方案“最好”。\n\n但“最好”尚未定义，可能导致学生从不同标准评价方案，偏离本课的数学目标。\n\n此外，该活动同时涉及商品选择、乘法计算、加法汇总、预算判断和小组交流，真实课堂中的时间成本可能较高。\n\n**改进方向：**\n\n明确基础任务：\n\n在40元预算内选择商品，记录单价、数量和总价，计算全部费用并判断是否超出预算。\n\n将方案比较作为拓展，而不是要求所有学生必须完成的核心任务。\n\n## 四、板书复盘\n\n本次板书包含三个量的核心关系、商品示意图、具体计算过程和逆向关系式。\n\n从照片看，能够体现由具体例题到一般公式的数学结构，但仍有改进空间。\n\n**主要问题：**\n\n- 商品信息、计算过程和核心公式之间的区域划分还不够明确。\n- 单价单位的书写形式尚未完全统一。\n- 三个关系式之间可以建立更清晰的视觉联系，避免看起来像三个孤立公式。\n- 个别粉笔字及图形辨识度受黑板贴条件影响。\n\n**下一版调整：**\n\n考虑将板书分为商品信息区、计算探索区和核心关系区。\n\n保留必要的代表性算式，不要求所有临时计算都长期留在黑板上。\n\n板书优化仍以数学表达准确、结构清楚、字迹可辨认为主要目标，不追求装饰性。\n\n## 五、对本次教学设计的进一步认识\n\n### 1. 数量关系课的核心不是重新教授乘除法\n\n学生通常已经能够解决“每块3元，买5块多少钱”的问题。\n\n本课的教学价值在于帮助学生认识这些具体计算背后存在共同的数学结构。\n\n因此，教学应当从已有经验出发，引导学生经历从具体数字到一般关系的抽象过程。\n\n### 2. 数学概念的形成不一定需要认知冲突\n\n本课没有必要刻意让旧方法失效。\n\n学生已有的购物经验和乘除法知识本身就可以成为新知识的基础。\n\n通过命名、分类、比较和归纳，同样可以形成有意义的概念学习。\n\n### 3. 公式的理解应当落实到数量意义\n\n学生能够背出“总价除以数量等于单价”，并不一定意味着理解。\n\n更重要的是能够解释：\n\n为什么要除？除数表示什么？商表示什么？答案的单位是什么？\n\n后续教学中，需要将数量关系的意义与计算方法结合起来。\n\n### 4. 课堂互动不等于学生真正参与思考\n\n模拟试讲中，即使不断安排学生回答，也可能仍由教师控制全部推理过程。\n\n需要关注的问题不只是“有没有提问”，还包括：\n\n学生是否有机会自主观察、解释、比较和归纳？\n\n这是下一阶段试讲需要重点训练的能力。\n\n## 六、下一版本修改计划\n\n下一次试讲不重新设计整个故事，而是在保留原有主线的基础上进行局部调整。\n\n**优先修改三项：**\n\n1. **增强学生归纳：** 在首次总结“单价×数量＝总价”时，让学生先比较算式并尝试表达共同关系。\n2. **强化数量意义：** 在求单价和求数量时，要求学生解释除法的实际意义，并规范单价单位。\n3. **明确综合任务：** 将40元采购活动调整为有清晰记录要求和评价标准的预算问题。\n\n其他语言、板书和节奏问题继续观察，不要求在下一次试讲中全部解决。\n\n## 七、阶段性总结\n\n本次试讲的主要进展，是尝试将一节数量关系课组织成连续的生活问题，并从具体购物计算逐步走向一般数量关系。\n\n目前的教学结构基本成立，但关键数学结论仍较多由教师完成归纳，学生独立解释和验证理解的机会不足。\n\n下一阶段的重点不是增加更多情境或设计更复杂的活动，而是提高关键问题的质量，让学生真正参与从具体经验到数学关系的抽象过程。\n\n**本次复盘的核心结论：**\n\n一节数量关系课的成功，不仅在于学生能够根据已知条件列出正确算式，更在于他们能够解释各个量的意义，理解为什么使用相应运算，并将这种关系迁移到新的问题中。\n\n*注：本次为无生模拟试讲。上述判断主要反映教学设计和模拟课堂表达的表现，尚不能作为真实学生学习效果的证据。*\n",
                       "lessonFile": "/lessons/g3-up-u04-p10/rehearsals/r1.md",
                       "date": "2026-10-09",
                       "duration": "15分钟",
-                      "format": "无生模拟课堂",
+                      "format": "无生",
                       "designVersion": "d1",
                       "boardImage": "/lessons/g3-up-u04-p10/rehearsals/r1_blackboard.jpg",
                       "video": "https://www.bilibili.com/video/BV18dpu6KELQ/"
@@ -1203,33 +933,28 @@ window.curriculumData = {
                   ]
                 }
               ],
-              "thought": "",
               "id": "g3-up-u04"
             },
             {
-              "title": "年月日",
+              "title": "年、月、日的秘密",
               "category": "practice",
               "points": [
                 {
                   "title": "认识月历",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u05-p01"
                 },
                 {
                   "title": "认识闰年",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u05-p02"
                 },
                 {
                   "title": "推算星期几",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u05-p03"
                 }
               ],
-              "thought": "周期、余数与生活时间系统在这里会合。",
               "id": "g3-up-u05"
             },
             {
@@ -1237,89 +962,86 @@ window.curriculumData = {
               "category": "geometry",
               "points": [
                 {
-                  "title": "再次测量长度",
+                  "title": "长度的测量",
                   "status": "pending",
-                  "id": "g3-up-u06-p01",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《再次测量长度》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 周长\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n为什么又来一遍？也许是在为周长与单位选择重新激活量感。\n",
+                  "id": "g3-up-u06-p01"
+                },
+                {
+                  "title": "长方形、正方形的周长",
+                  "status": "recorded",
+                  "id": "g3-up-u06-p02",
+                  "overviewMarkdown": "# 课程概览\n\n## 教学目标\n\n1. 结合小蚂蚁沿围栏行走一周的情境，理解封闭图形一周的长度是周长，能够指出图形的一周。\n2. 能通过测量、逐边相加求简单图形的周长；在理解长方形对边相等、正方形四边相等的基础上，解释并运用相应的简便计算方法。\n3. 能比较不同算式所表达的边长关系，说明算法为什么成立，并尝试将周长知识用于围栏、课本等实际情境。\n\n## 教学重点\n\n理解周长的含义，并从逐边相加发展到依据长方形、正方形边的特点进行简便计算；不仅会写算式，还能解释算式与图形的对应关系。\n\n## 教学难点\n\n区分“一周的长度”与单条边的长度；理解长方形周长的三种表达方式为何等价，以及正方形周长为什么可以用边长乘4计算。实际教学中还需处理测量误差、单位和图形边界识别。\n\n## 我的教学思考\n\n本课希望沿着“具体情境中的一周 → 周长概念 → 测量与逐边相加 → 利用特殊图形的性质简化计算”的路径展开。小蚂蚁沿围栏走一圈帮助学生建立周长的直观表象，小兔子准备围栏则使求周长成为一个有意义的问题。\n\n我希望学生先认可逐边相加这一普遍可行的方法，再比较长方形的三种算式：8+5+8+5、8×2+5×2、(8+5)×2，发现简便算法来自对边相等，而不是凭空记忆公式。正方形则进一步利用四条边相等得到边长×4。\n\n两次无生模拟试讲提示我：情境连贯不能代替数学活动本身；概念形成、测量、公式探索与练习都需要时间。第二版加入测量练习、将不规则图形改为课后思考，但是否适合一个常态课时，仍须结合实际教材课时安排核实。课上应优先保证学生有机会独立判断、解释与练习，而不是追求覆盖更多内容。\n",
                   "overview": {
                     "prerequisiteIds": [],
                     "nextTopicIds": []
                   },
-                  "designs": [],
-                  "rehearsals": []
-                },
-                {
-                  "title": "四种长度单位换算",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u06-p02"
-                },
-                {
-                  "title": "长方形周长",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u06-p03"
-                },
-                {
-                  "title": "正方形周长",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u06-p04"
+                  "designs": [
+                    {
+                      "id": "d1",
+                      "versionNumber": 1,
+                      "label": "d1",
+                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**设计依据：** 课本、参考教案、教参\n\n**核心教学思路：**\n\n从小蚂蚁绕三角形爬一周引入周长；借助小兔子围长方形篱笆的情境，探索长方形周长的多种算法；通过摆小棒、测量课本与板演巩固，再归纳正方形周长算法，最后尝试用平移边的方法处理组合图形。第一版把概念、公式和拓展安排在同一次试讲中。\n\n## 教学流程\n\n| 环节 | 教学活动 | 设计意图 |\n|---|---|---|\n| 1. 视频导入与周长概念 | 观看三角形与小蚂蚁的情境视频；给出三边5、6、4厘米，求蚂蚁走过的路程，强调15厘米的单位；把绕图形一周的长度命名为周长。 | 由熟悉的长度相加过渡到“一周的长度”。 |\n| 2. 长方形问题与算法探索 | 转入小兔子围长方形篱笆；长8米、宽5米。小组讨论不同算式，展示8+5+8+5、8×2+5×2、(8+5)×2，比较简便程度。 | 从逐边相加出发，借助长方形对边相等建立简便算法。 |\n| 3. 操作与练习 | 用小棒摆不同长方形，或测量课本周长并记录；安排若干板演练习。 | 尝试将计算方法迁移到不同长方形和实物。 |\n| 4. 正方形周长 | 讨论边长12的正方形，比较逐边相加与12×4，归纳正方形周长的简便算法。 | 由四边相等的性质解释边长乘4。 |\n| 5. 组合图形拓展与结束 | 对方格上的凸形逐边计数，尝试通过平移边转化为长方形；再提出凹形问题供思考。 | 将周长理解拓展到不规则图形，但本版内容容量较大。 |\n\n## 关键教学问题\n\n**问题1：** 小蚂蚁沿三角形走一圈，为什么要把三条边的长度相加？所得的15表示什么，单位是什么？\n\n**问题2：** 对同一个长方形，为什么8+5+8+5、8×2+5×2和(8+5)×2都能求周长？各个算式中的数与图形的哪几条边对应？\n\n**问题3：** 正方形为什么可以直接用边长乘4求周长？\n\n## 预设学生困难\n\n- 只写15或26而遗漏长度单位；需要追问结果表示什么量。\n- 能算出结果但不能解释算式与图形边的对应关系；可让学生指边说明。\n- 把长方形简便公式机械套用到任意图形；应强调公式依赖图形的边长性质。\n- 对凸形平移边的理由不理解；该拓展不宜挤占基本概念和练习时间。\n\n## 课堂评价\n\n- 给出简单封闭图形及边长，让学生指出一周并写出带单位的周长。\n- 对同一个长方形提供两种不同算式，要求说明各部分对应的边，判断为什么结果相同。\n- 给出正方形边长，要求用至少一种方法计算并解释乘4的依据。\n\n",
+                      "lessonFile": "/lessons/g3-up-u06-p02/designs/d1.md",
+                      "date": "",
+                      "duration": "",
+                      "format": "",
+                      "designVersion": "",
+                      "boardImage": "",
+                      "video": ""
+                    }
+                  ],
+                  "rehearsals": [
+                    {
+                      "id": "r2",
+                      "versionNumber": 2,
+                      "label": "r2",
+                      "markdown": "# 试讲复盘\n\n**试讲版本：** r2\n**日期：** 2026-10-08\n**试讲形式：** 无生\n**试讲时长：** 16分钟\n**采用的教学设计版本：** d1（第二次试讲已作口头流程调整，未提供独立 d2 文件）\n\n## 本次试讲概况\n\n第二版继续以小兔子围栏为背景，但将三角形围栏、小蚂蚁走一周和长方形围栏连成同一情境。引入周长后，增加用尺测量课本图形并求周长的练习；随后探索长方形三种算法、正方形周长，最后只留下凸形周长作为课后思考，不再当堂讲解凹形与凸形的转化过程。\n\n本次重点比较情境连续性、概念练习、提问与内容取舍。转录稿中有明显语音识别误差，以下不将“风筝图形”“礼拜”等识别结果直接判定为口误。\n\n## 本次试讲中值得保留的设计\n\n### 1. 情境连贯性明显改善\n\n第一版先出现三角形和小蚂蚁，再另起小兔子围篱笆；第二版一开始就提出小兔子的围栏问题，让蚂蚁沿三角形围栏走一周，之后小兔子改围长方形。故事成为从“什么是周长”到“怎样求周长”的连续线索，而不只是两个独立导入。\n\n### 2. 在公式探索前加入测量与计算\n\n第二版在给出周长定义后，先安排用尺测量几个图形、汇报各边长度并相加。这使学生有机会先运用“一周的长度”这一概念，再讨论长方形的特殊简便算法。相较第一版直接进入长方形公式，这一顺序更稳妥。\n\n### 3. 对算法意义的追问有所增加\n\n第二版明确要求解释5+6+4的列式依据，追问(8+5)×2中括号的意义，并问三种算式为什么得到同一结果。正方形部分也让模拟学生说明12×4为何成立，而不是只报出公式。\n\n### 4. 组合图形拓展从当堂讲解改为课后思考\n\n第二版删去了第一版对凸形平移边及凹形的详细讲解，只留下一个凸形问题。这减轻了后段内容负担，使课堂总结能够回到周长概念与长方形、正方形算法。\n\n## 发现的主要问题\n\n### 1. 封闭式提问仍较多，模拟反馈偏顺利\n\n第二版仍频繁出现“对不对”“是不是”“都一样吧”等表达。虽然新增了若干解释性问题，但教师通常很快替学生组织完整答案。无生试讲中的“学生都做得不错”不是学习效果证据。\n\n**改进方向：**\n\n关键处保留少量真正需要解释的问题，如“你指给大家看，(8+5)×2里的两组8+5分别在哪里？”“如果不是长方形，这个算法还能直接用吗？”在模拟试讲中预留停顿，并准备一种典型错误回应。\n\n### 2. 公式总结还可以更强调适用条件\n\n第二版已经用对边相等、四边相等解释简便算法，但也出现“规则图形所以可以简化”的概括。这一表述不够精确：关键不是笼统的“规则”，而是特定边长关系。正方形由(长+宽)×2化为边长×4的过程也可更清楚地展示。\n\n**改进方向：**\n\n在板书上用相同标记对应相等的边；总结时明确说“因为长方形两组对边分别相等”“因为正方形四条边都相等”。\n\n### 3. 操作活动与课堂容量仍需核实\n\n第二版包含视频、测量与汇报、小组讨论、摆小棒或测课本、三人板演、正方形公式和总结。相较第一版已有删减，但真实学生的测量、组织、交流和纠错需要时间，仍可能超过单课时容量。\n\n**改进方向：**\n\n明确本课究竟是周长概念课还是长方形、正方形周长计算课，依据教材课时再决定保留哪些操作；若合并教学，至少区分必做练习与可删减活动。\n\n### 4. 口头表达存在重复和非必要附和\n\n转录稿可见若干重复发问和“好”“对不对”的连续使用，但部分重复可能来自转录质量。本人另据录像记录：第二版讲到兴奋处出现咂嘴现象；这一点不能单凭文字稿确认。\n\n**改进方向：**\n\n复看录像时专门标记咂嘴出现的位置及频率，练习用短暂停顿代替口腔动作；不必因此牺牲自然的语气和课堂热情。\n\n## 对本次教学设计的进一步认识\n\n### 1. 情境的连续性来自数学问题的推进\n\n第二版最有价值的变化不是故事更完整，而是同一围栏情境先承担“认识周长”，再承担“计算周长”的任务。故事服务于数学，不应反过来增加不必要的叙述。\n\n### 2. 先巩固普遍方法，再研究特殊方法\n\n先测量并逐边相加，再比较长方形和正方形的简便算法，有助于避免学生把公式当成周长的定义。长方形、正方形公式是建立在图形性质之上的特殊计算方法。\n\n### 3. 内容删减本身也是教学设计能力\n\n将凸形转化与凹形问题移出当堂教学，是从展示更多知识转向优先保证核心目标的调整。不过仍需继续审视整节课是否覆盖了过多课时。\n\n## 下一版本修改计划\n\n1. **核对课时边界：** 对照对应教材和教师用书，确定周长概念、长方形与正方形计算是否应分课时。\n2. **提高提问质量：** 减少“对不对”，重点让学生解释算式与边的对应关系，并设计一项能独立检验理解的练习。\n3. **针对性复看录像：** 检查咂嘴、重复语句、板书分区及关键提问后的停顿；仅修改最影响课堂清晰度的问题。\n\n## 阶段性总结\n\n第二版在情境连续性、概念练习顺序、算法解释与拓展取舍方面都有可从逐字稿识别的改进。尚未解决的是课堂容量、封闭式提问、对真实学生理解的检验，以及需要视频进一步确认的表达和板书技术问题。\n\n**本次复盘的核心结论：**\n\n与第一版相比，第二版从“把多个内容讲完”更接近“围绕周长理解组织活动”。这是对两次无生模拟试讲设计与语言的比较，不是对真实课堂学习成效的判断。下一步应先核实课时与核心目标，再针对提问和课堂评价做小幅迭代。\n",
+                      "lessonFile": "/lessons/g3-up-u06-p02/rehearsals/r2.md",
+                      "date": "2026-10-08",
+                      "duration": "16分钟",
+                      "format": "无生",
+                      "designVersion": "d1（第二次试讲已作口头流程调整，未提供独立 d2 文件）",
+                      "boardImage": "/lessons/g3-up-u06-p02/rehearsals/r2_blackboard.jpg",
+                      "video": "https://www.bilibili.com/video/BV1Vmpu6rEHz/"
+                    },
+                    {
+                      "id": "r1",
+                      "versionNumber": 1,
+                      "label": "r1",
+                      "markdown": "# 试讲复盘\n\n**试讲版本：** r1\n**日期：** 2026-10-08\n**试讲形式：** 无生\n**试讲时长：** 16分钟\n**采用的教学设计版本：** d1\n\n## 本次试讲概况\n\n第一版由三角形周长概念切入，随后切换到小兔子围长方形篱笆，探索三种周长算法；再安排小棒、课本测量、板演、正方形周长以及凸形和凹形组合图形拓展。逐字稿显示完整讲授主线已经形成，但多个环节连续推进，真实课堂的操作、讨论与反馈时间尚未得到验证。\n\n## 本次试讲中值得保留的设计\n\n### 1. 从沿边走一周引出周长\n\n先给出三角形三条边长，让学生用加法求小蚂蚁走过的总长度，再命名“周长”。情境与数学量有直接联系；追问漏写单位，也提示结果需要有实际含义。\n\n### 2. 保留多种长方形周长算法\n\n逐边相加、两组对边分别乘2、长宽之和乘2三种表达都被认可，没有否定原有正确策略。这为学生从具体计算走向结构化计算提供了机会。\n\n## 发现的主要问题\n\n### 1. 情境衔接较突兀\n\n第一段以三角形和小蚂蚁建立周长，之后另起小兔子围篱笆的故事，数学问题可以衔接，但叙事连接较弱。\n\n**改进方向：**\n\n将小兔子修围栏作为连续背景，让小蚂蚁沿三角形围栏走一周，再转入小兔子需要多少材料修长方形围栏。过渡的重点应是从“什么是周长”自然进入“怎样求周长”。\n\n### 2. 教学内容过多，基础练习可能被挤压\n\n一次试讲涵盖周长定义、长方形公式、操作测量、正方形公式、凸形平移和凹形拓展。无生试讲会省略学生操作与讨论时间，不能据此判断这些内容能在一节常态课中完成。\n\n**改进方向：**\n\n优先落实周长含义与基本计算；把组合图形作为选做或课后思考，必要时进一步拆分课时。\n\n### 3. 提问有时替代学生解释\n\n逐字稿中“对不对”“是不是”较频繁，教师往往较快复述结论。对三种算法主要询问哪种更方便，尚可加强“为什么等价”的论证。\n\n**改进方向：**\n\n让学生指着图形解释每个算式的意义；先要求说理由，再归纳简便程度。避免仅凭学生附和判断理解。\n\n## 对本次教学设计的进一步认识\n\n### 1. 数学主线比情境数量更重要\n\n三角形引出周长、长方形探索简便计算的逻辑是成立的，但情境转换需要服务于问题推进，而不是只靠新增故事。长方形公式的核心是利用对边相等简化逐边相加。\n\n### 2. 正确算法的比较不应只停留在方便程度\n\n学生即使能列出三种算式，也未必理解它们为何等价。应把图形中的边与算式中的每一项建立对应关系。\n\n## 下一版本修改计划\n\n1. **统一情境：** 让三角形围栏、小蚂蚁与长方形围栏处于同一连续故事。\n2. **补足概念练习：** 在引入周长后先安排测量、逐边相加，再进入长方形公式。\n3. **控制容量与板书：** 删除课堂内的凹凸组合图形详细讲解，将凸形留作课后思考，重新规划板书。\n\n## 阶段性总结\n\n第一版已具备“直观周长—长方形多种算法—正方形算法”的主线。最需要改进的不是再增加教学创意，而是改善概念巩固、提问质量、板书结构与课时边界。\n\n**本次复盘的核心结论：**\n\n第二版应优先减少内容堆叠，并为周长概念与算法解释留下更多时间。\n",
+                      "lessonFile": "/lessons/g3-up-u06-p02/rehearsals/r1.md",
+                      "date": "2026-10-08",
+                      "duration": "16分钟",
+                      "format": "无生",
+                      "designVersion": "d1",
+                      "boardImage": "/lessons/g3-up-u06-p02/rehearsals/r1_blackboard.jpg",
+                      "video": "https://www.bilibili.com/video/BV1R8pG6SETt/"
+                    }
+                  ]
                 },
                 {
                   "title": "组合图形周长",
                   "status": "pending",
-                  "id": "g3-up-u06-p05",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《组合图形周长》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 上学期 / 周长\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n老教材这一部分同时涉及面积，版本差异值得记录。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-up-u06-p05"
                 }
               ],
-              "thought": "",
               "id": "g3-up-u06"
             },
             {
-              "title": "马拉松路线设计",
-              "category": "practice",
-              "points": [
-                {
-                  "title": "认识千米",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u07-p01"
-                },
-                {
-                  "title": "设计路线",
-                  "thought": "",
-                  "status": "pending",
-                  "id": "g3-up-u07-p02"
-                }
-              ],
-              "thought": "用真实路线建立千米量感，比单位换算更重要。",
-              "id": "g3-up-u07"
-            },
-            {
-              "title": "数学广场",
+              "title": "综合实践",
               "category": "practice",
               "points": [
                 {
                   "title": "七巧板",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u08-p01"
                 },
                 {
                   "title": "篱笆问题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-up-u08-p02"
                 }
               ],
-              "thought": "一个偏空间拼合，一个偏周长模型，可以记录两类思维如何不同。",
               "id": "g3-up-u08"
             }
           ],
@@ -1335,12 +1057,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "小括号改变运算顺序",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u01-p01"
                 }
               ],
-              "thought": "要先算某一部分时加小括号。应让学生理解括号表达的是结构与意图。",
               "id": "g3-down-u01"
             },
             {
@@ -1349,66 +1069,45 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "速度、路程、时间",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u02-p01"
                 },
                 {
                   "title": "整十数乘两位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u02-p02"
                 },
                 {
                   "title": "两位数乘法的不同方法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u02-p03"
                 },
                 {
                   "title": "两位数乘法竖式",
                   "status": "pending",
-                  "id": "g3-down-u02-p04",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《两位数乘法竖式》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 下学期 / 用两位数乘除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里竖式再度出现，已经接近最终形态。部分积的位置必须解释。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-down-u02-p04"
                 },
                 {
                   "title": "两位数乘三位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u02-p05"
                 },
                 {
                   "title": "整十数除两三位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u02-p06"
                 },
                 {
                   "title": "两位数除两三位数",
                   "status": "pending",
-                  "id": "g3-down-u02-p07",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《两位数除两三位数》\n\n**学段 / 年级：** 小学 / 三年级\n\n**教材位置：** 下学期 / 用两位数乘除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n除数是两位数时，试商是新的认知难点。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g3-down-u02-p07"
                 },
                 {
                   "title": "两位数除多位数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u02-p08"
                 }
               ],
-              "thought": "",
               "id": "g3-down-u02"
             },
             {
@@ -1417,12 +1116,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "条形统计图",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u03-p01"
                 }
               ],
-              "thought": "从整理数据进入用图形长度编码数量。",
               "id": "g3-down-u03"
             },
             {
@@ -1431,24 +1128,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "整体与部分",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u04-p01"
                 },
                 {
                   "title": "分数读写",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u04-p02"
                 },
                 {
                   "title": "简单分数大小",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u04-p03"
                 }
               ],
-              "thought": "新教材把这部分和比大小放到四年级上，版本变化值得保留。",
               "id": "g3-down-u04"
             },
             {
@@ -1457,18 +1150,15 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "认识计算器",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u05-p01"
                 },
                 {
                   "title": "用计算器验证",
-                  "thought": "",
                   "status": "pending",
                   "id": "g3-down-u05-p02"
                 }
               ],
-              "thought": "计算器应释放计算负担还是成为探索规律的工具？",
               "id": "g3-down-u05"
             }
           ],
@@ -1494,77 +1184,49 @@ window.curriculumData = {
                 {
                   "title": "加减乘除各部分名称",
                   "status": "pending",
-                  "id": "g4-up-u01-p01",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《加减乘除各部分名称》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 运算关系与运算律\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里竟然重新开始介绍加减乘除，并给出很标准的定义。为什么正式语言到现在才出现？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-up-u01-p01"
                 },
                 {
                   "title": "加法与减法的关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u01-p02"
                 },
                 {
                   "title": "乘法与除法的关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u01-p03"
                 },
                 {
                   "title": "用等式描述各部分关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u01-p04"
                 },
                 {
                   "title": "加法交换律",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u01-p05"
                 },
                 {
                   "title": "乘法交换律",
                   "status": "pending",
-                  "id": "g4-up-u01-p06",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《乘法交换律》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 运算关系与运算律\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n乘法交换律又出现了；需要区分早期直观使用与现在的正式概括。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-up-u01-p06"
                 },
                 {
                   "title": "加法结合律",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u01-p07"
                 },
                 {
                   "title": "乘法结合律",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u01-p08"
                 },
                 {
                   "title": "乘法对加法的分配律",
                   "status": "pending",
-                  "id": "g4-up-u01-p09",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《乘法对加法的分配律》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 运算关系与运算律\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n以前常简称乘法分配律，正式表述更准确，但也更长。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-up-u01-p09"
                 }
               ],
-              "thought": "",
               "id": "g4-up-u01"
             },
             {
@@ -1573,36 +1235,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "东南",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u02-p01"
                 },
                 {
                   "title": "东北",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u02-p02"
                 },
                 {
                   "title": "西南",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u02-p03"
                 },
                 {
                   "title": "西北",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u02-p04"
                 },
                 {
                   "title": "八方向定位",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u02-p05"
                 }
               ],
-              "thought": "从四方向扩展到八方向，参照点与描述顺序必须明确。",
               "id": "g4-up-u02"
             },
             {
@@ -1611,36 +1267,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "重述四则运算顺序",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u03-p01"
                 },
                 {
                   "title": "小括号",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u03-p02"
                 },
                 {
                   "title": "中括号",
                   "status": "pending",
-                  "id": "g4-up-u03-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《中括号》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 整数四则运算与应用\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里还没有讲加括号或拆括号的运算性质，括号仍然主要是顺序标记。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-up-u03-p03"
                 },
                 {
                   "title": "工作效率应用题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u03-p04"
                 }
               ],
-              "thought": "",
               "id": "g4-up-u03"
             },
             {
@@ -1649,42 +1294,35 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "重述计数单位",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u04-p01"
                 },
                 {
                   "title": "读大数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u04-p02"
                 },
                 {
                   "title": "写大数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u04-p03"
                 },
                 {
                   "title": "按数位拆解",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u04-p04"
                 },
                 {
                   "title": "大数改写",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u04-p05"
                 },
                 {
                   "title": "四舍五入",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u04-p06"
                 }
               ],
-              "thought": "位值结构从读写走向数量级表达与近似。",
               "id": "g4-up-u04"
             },
             {
@@ -1695,7 +1333,7 @@ window.curriculumData = {
                   "title": "几分之一",
                   "status": "recorded",
                   "id": "g4-up-u05-p01",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《几分之一》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 分数的初步认识\n\n**课型：** 概念形成课\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n理解几分之一来自把一个整体平均分；能在图、自然语言与分数符号之间双向转换，并辨别没有平均分的反例。\n\n### 2. 教学重点\n\n理解把一个整体平均分成若干份，其中一份可以用几分之一表示。\n\n### 3. 教学难点\n\n将平均分的图形、自然语言与分数符号相互转换，辨别没有平均分的反例。\n\n### 4. 我的教学思考\n\n学生会说“半个、小半个”，但这些日常词并不足以精确说明整体被怎样分、取了多少。怎样让分数成为一种有必要出现的新语言？\n",
+                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《几分之一》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 分数的初步认识\n\n**课型：** 概念形成课\n\n**建议课时：** 待核实\n\n## 教学目标\n\n理解几分之一来自把一个整体平均分；能在图、自然语言与分数符号之间双向转换，并辨别没有平均分的反例。\n\n## 教学重点\n\n理解把一个整体平均分成若干份，其中一份可以用几分之一表示。\n\n## 教学难点\n\n将平均分的图形、自然语言与分数符号相互转换，辨别没有平均分的反例。\n\n## 我的教学思考\n\n学生会说“半个、小半个”，但这些日常词并不足以精确说明整体被怎样分、取了多少。怎样让分数成为一种有必要出现的新语言？\n\n\n### 单元教学思考：《分数的初步认识》\n\n分数同时是数、关系和运算对象，需要避免只教图上涂色。\n\n",
                   "overview": {
                     "prerequisiteIds": [],
                     "nextTopicIds": []
@@ -1705,7 +1343,7 @@ window.curriculumData = {
                       "id": "d1",
                       "versionNumber": 1,
                       "label": "d1",
-                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**设计依据：** 现有教学设计原稿（教材及教学用书依据待补充）\n\n**核心教学思路：**\n\n公平分蛋糕 → 暴露日常语言的模糊 → 建立二分之一、四分之一、八分之一 → 正反例辨析 → 反向画图表达。\n\n### 教学流程\n\n### 环节一：产生“平均分”的需要\n\n情境：\n两个小朋友分一个蛋糕，其中一人随意切成大小明显不同的两块。\n\n核心问题：\n- 这样分公平吗？\n- 为什么？\n- 如果希望两个人得到一样多，应该怎样分？\n\n目的：\n从学生已有的“公平”生活经验中，引出“每份同样大/平均分”。\n\n预设：\n- 不公平，因为一块大一块小\n- 可能有人认为“每个人都有就是公平”\n\n处理：\n如果出现后一种观点，用“一大一小你愿意拿哪块”继续追问。\n\n---\n\n### 环节二：发现已有语言不够准确\n\n依次呈现：\n- 整个蛋糕\n- 平均分2份后的1份\n- 平均分4份后的1份\n- 平均分8份后的1份\n\n学生可能使用：\n一个、半个、小半个、小小半个、一点点……\n\n核心问题：\n两个都叫“小半个”的部分真的一样大吗？\n\n目的：\n让学生产生使用更准确数学语言的需求。\n\n---\n\n### 环节三：认识几分之一\n\n从“半个”进入“二分之一”。\n\n关键语言：\n> 把一个整体平均分成2份，其中1份是这个整体的二分之一。\n\n建立自然语言与数学符号的对应：\n\n平均分成2份 → 分母2\n取其中1份 → 分子1\n用 1/2 表示\n\n再迁移到：\n1/4、1/8\n\n注意：\n不要把“分数线 = 平均分”作为正式定义。\n可以借“分开”帮助记忆，但强调整个分数记录的是平均分后的数量关系。\n\n---\n\n### 环节四：回看最初答案\n\n如果之前学生已经尝试写1/8：\n现在重新判断是否正确，并要求说明理由。\n\n目的：\n让学生利用刚获得的知识自己判断，而不是教师一开始直接宣布答案。\n\n---\n\n### 环节五：练习与评价\n\n1. 正例\n不同图形平均分成若干份，涂其中1份。\n要求：\n- 写分数\n- 读分数\n- 解释“它是怎么得到的”\n\n2. 反例\n图形分成4份但不等大，涂1份。\n问题：\n“这是1/4吗？为什么？”\n\n目的：\n检查学生是否真正理解“平均分”。\n\n3. 反向表征\n给出1/3，让学生自己画图表示。\n\n目的：\n检查能否完成：\n图 → 分数\n以及\n分数 → 图\n的双向转换。\n\n可展示多个不同学生作品，追问：\n“这些图完全不同，为什么都可以表示1/3？”\n\n---\n\n### 环节六：总结\n\n回到开头：\n原来“半个、小半个”有什么问题？\n今天我们学会了什么新的数学语言？\n\n核心问题再次出现：\n\n> 看到一个分数，可以先问什么？\n> ——它是怎么得到的？\n\n---\n",
+                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**设计依据：** 现有教学设计原稿（教材及教学用书依据待补充）\n\n**核心教学思路：**\n\n公平分蛋糕 → 暴露日常语言的模糊 → 建立二分之一、四分之一、八分之一 → 正反例辨析 → 反向画图表达。\n\n## 教学流程\n\n### 环节一：产生“平均分”的需要\n\n情境：\n两个小朋友分一个蛋糕，其中一人随意切成大小明显不同的两块。\n\n核心问题：\n- 这样分公平吗？\n- 为什么？\n- 如果希望两个人得到一样多，应该怎样分？\n\n目的：\n从学生已有的“公平”生活经验中，引出“每份同样大/平均分”。\n\n预设：\n- 不公平，因为一块大一块小\n- 可能有人认为“每个人都有就是公平”\n\n处理：\n如果出现后一种观点，用“一大一小你愿意拿哪块”继续追问。\n\n---\n\n### 环节二：发现已有语言不够准确\n\n依次呈现：\n- 整个蛋糕\n- 平均分2份后的1份\n- 平均分4份后的1份\n- 平均分8份后的1份\n\n学生可能使用：\n一个、半个、小半个、小小半个、一点点……\n\n核心问题：\n两个都叫“小半个”的部分真的一样大吗？\n\n目的：\n让学生产生使用更准确数学语言的需求。\n\n---\n\n### 环节三：认识几分之一\n\n从“半个”进入“二分之一”。\n\n关键语言：\n> 把一个整体平均分成2份，其中1份是这个整体的二分之一。\n\n建立自然语言与数学符号的对应：\n\n平均分成2份 → 分母2\n取其中1份 → 分子1\n用 1/2 表示\n\n再迁移到：\n1/4、1/8\n\n注意：\n不要把“分数线 = 平均分”作为正式定义。\n可以借“分开”帮助记忆，但强调整个分数记录的是平均分后的数量关系。\n\n---\n\n### 环节四：回看最初答案\n\n如果之前学生已经尝试写1/8：\n现在重新判断是否正确，并要求说明理由。\n\n目的：\n让学生利用刚获得的知识自己判断，而不是教师一开始直接宣布答案。\n\n---\n\n### 环节五：练习与评价\n\n1. 正例\n不同图形平均分成若干份，涂其中1份。\n要求：\n- 写分数\n- 读分数\n- 解释“它是怎么得到的”\n\n2. 反例\n图形分成4份但不等大，涂1份。\n问题：\n“这是1/4吗？为什么？”\n\n目的：\n检查学生是否真正理解“平均分”。\n\n3. 反向表征\n给出1/3，让学生自己画图表示。\n\n目的：\n检查能否完成：\n图 → 分数\n以及\n分数 → 图\n的双向转换。\n\n可展示多个不同学生作品，追问：\n“这些图完全不同，为什么都可以表示1/3？”\n\n---\n\n### 环节六：总结\n\n回到开头：\n原来“半个、小半个”有什么问题？\n今天我们学会了什么新的数学语言？\n\n核心问题再次出现：\n\n> 看到一个分数，可以先问什么？\n> ——它是怎么得到的？\n\n---\n",
                       "lessonFile": "/lessons/g4-up-u05-p01/designs/d1.md",
                       "date": "",
                       "duration": "",
@@ -1746,24 +1384,20 @@ window.curriculumData = {
                 },
                 {
                   "title": "分数比大小",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u05-p02"
                 },
                 {
                   "title": "同分母分数加减",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u05-p03"
                 },
                 {
                   "title": "占整体多少的应用题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u05-p04"
                 }
               ],
-              "thought": "分数同时是数、关系和运算对象，需要避免只教图上涂色。",
               "id": "g4-up-u05"
             },
             {
@@ -1772,102 +1406,80 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "线段",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p01"
                 },
                 {
                   "title": "直线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p02"
                 },
                 {
                   "title": "射线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p03"
                 },
                 {
                   "title": "轴对称",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p04"
                 },
                 {
                   "title": "圆心 O、半径 r、直径 d",
                   "status": "pending",
-                  "id": "g4-up-u06-p05",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《圆心 O、半径 r、直径 d》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 上学期 / 线与角\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这可能是第一次正式使用字母代号。字母不只是缩写，而是数学对象的命名。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-up-u06-p05"
                 },
                 {
                   "title": "使用圆规画圆",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p06"
                 },
                 {
                   "title": "角的两种定义",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p07"
                 },
                 {
                   "title": "角是射线绕端点旋转",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p08"
                 },
                 {
                   "title": "认识角度",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p09"
                 },
                 {
                   "title": "周角与平角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p10"
                 },
                 {
                   "title": "用量角器量角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p11"
                 },
                 {
                   "title": "画指定角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p12"
                 },
                 {
                   "title": "三角形内角和",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p13"
                 },
                 {
                   "title": "两边之和大于第三边",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p14"
                 },
                 {
                   "title": "两点之间线段最短",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u06-p15"
                 }
               ],
-              "thought": "这一单元密度极高：对象、定义、符号、工具、度量和定理几乎同时出现，必须拆分认知层次。",
               "id": "g4-up-u06"
             },
             {
@@ -1876,24 +1488,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "抽屉原理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u07-p01"
                 },
                 {
                   "title": "枚举",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u07-p02"
                 },
                 {
                   "title": "鸡兔同笼",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-up-u07-p03"
                 }
               ],
-              "thought": "抽屉原理与枚举已经触及离散数学思维，不能只留下解题套路。",
               "id": "g4-up-u07"
             }
           ],
@@ -1909,36 +1517,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "减法运算性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u01-p01"
                 },
                 {
                   "title": "除法运算性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u01-p02"
                 },
                 {
                   "title": "增删括号与变号",
                   "status": "pending",
-                  "id": "g4-down-u01-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《增删括号与变号》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 下学期 / 整数的运算性质\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n变号规则需要回到运算关系，不能只背口诀。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-down-u01-p03"
                 },
                 {
                   "title": "商不变性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u01-p04"
                 }
               ],
-              "thought": "",
               "id": "g4-down-u01"
             },
             {
@@ -1947,78 +1544,60 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "价格中的小数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p01"
                 },
                 {
                   "title": "比较分数与小数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p02"
                 },
                 {
                   "title": "小数读写",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p03"
                 },
                 {
                   "title": "小数组成",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p04"
                 },
                 {
                   "title": "小数数位顺序",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p05"
                 },
                 {
                   "title": "小数比大小",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p06"
                 },
                 {
                   "title": "小数末尾的 0",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p07"
                 },
                 {
                   "title": "移动小数点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p08"
                 },
                 {
                   "title": "小数加减",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p09"
                 },
                 {
                   "title": "小数加减竖式",
                   "status": "pending",
-                  "id": "g4-down-u02-p10",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《小数加减竖式》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 下学期 / 小数的初步认识\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n竖式仍是重点：为什么一定要小数点对齐，而不是末位对齐？\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-down-u02-p10"
                 },
                 {
                   "title": "小数应用题",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u02-p11"
                 }
               ],
-              "thought": "",
               "id": "g4-down-u02"
             },
             {
@@ -2027,12 +1606,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "折线统计图",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u03-p01"
                 }
               ],
-              "thought": "从数量多少转向变化趋势，横轴的连续意义需要被看见。",
               "id": "g4-down-u03"
             },
             {
@@ -2041,48 +1618,40 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "垂直与互相垂直",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p01"
                 },
                 {
                   "title": "垂直符号",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p02"
                 },
                 {
                   "title": "画垂线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p03"
                 },
                 {
                   "title": "点到直线的距离",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p04"
                 },
                 {
                   "title": "平行",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p05"
                 },
                 {
                   "title": "画平行线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p06"
                 },
                 {
                   "title": "平行线间距离",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u04-p07"
                 }
               ],
-              "thought": "这里开始出现更正式的几何关系、符号和作图步骤，应连接定义、性质与操作。",
               "id": "g4-down-u04"
             },
             {
@@ -2091,30 +1660,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "增加几倍",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u05-p01"
                 },
                 {
                   "title": "增加到几倍",
                   "status": "pending",
-                  "id": "g4-down-u05-p02",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《增加到几倍》\n\n**学段 / 年级：** 小学 / 四年级\n\n**教材位置：** 下学期 / 解决问题\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这两个语言结构特别容易混淆，必须用原量、新量和关系图解释。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g4-down-u05-p02"
                 },
                 {
                   "title": "小数与近似数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u05-p03"
                 }
               ],
-              "thought": "",
               "id": "g4-down-u05"
             },
             {
@@ -2123,30 +1682,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "多功能三角尺",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u06-p01"
                 },
                 {
                   "title": "五舍六入",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u06-p02"
                 },
                 {
                   "title": "去尾法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u06-p03"
                 },
                 {
                   "title": "进一法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g4-down-u06-p04"
                 }
               ],
-              "thought": "近似方法取决于情境，不应只比较规则形式。",
               "id": "g4-down-u06"
             }
           ],
@@ -2171,84 +1725,55 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "小数乘整数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p01"
                 },
                 {
                   "title": "小数乘法中小数点定位",
                   "status": "pending",
-                  "id": "g5-up-u01-p02",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《小数乘法中小数点定位》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 小数的乘除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n关键是小数点怎么点；需要从计数单位或乘法意义解释，而非数位口诀。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u01-p02"
                 },
                 {
                   "title": "小数乘小数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p03"
                 },
                 {
                   "title": "乘法运算律推广到小数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p04"
                 },
                 {
                   "title": "整数除以小数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p05"
                 },
                 {
                   "title": "除法中添 0 继续除",
                   "status": "pending",
-                  "id": "g5-up-u01-p06",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《除法中添 0 继续除》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 小数的乘除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n添 0 为什么不改变数？这是小数性质与位值的实际应用。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u01-p06"
                 },
                 {
                   "title": "商不够 1 时整数位补 0",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p07"
                 },
                 {
                   "title": "小数除小数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p08"
                 },
                 {
                   "title": "除法中移动小数点",
                   "status": "pending",
-                  "id": "g5-up-u01-p09",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《除法中移动小数点》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 小数的乘除\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n关键是小数点怎么移、位数不够怎么办；本质应回到商不变性质。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u01-p09"
                 },
                 {
                   "title": "商的近似值",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u01-p10"
                 }
               ],
-              "thought": "",
               "id": "g5-up-u01"
             },
             {
@@ -2257,24 +1782,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "小数的近似",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u02-p01"
                 },
                 {
                   "title": "人民币汇率",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u02-p02"
                 },
                 {
                   "title": "水电煤账单",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u02-p03"
                 }
               ],
-              "thought": "真实数据很适合连接近似、单位、计算器与数量判断。",
               "id": "g5-up-u02"
             },
             {
@@ -2283,24 +1804,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "平均数的意义",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u03-p01"
                 },
                 {
                   "title": "平均数的计算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u03-p02"
                 },
                 {
                   "title": "平均数的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u03-p03"
                 }
               ],
-              "thought": "平均数不是把数加起来再除这么简单；它代表怎样的公平分配或数据水平？",
               "id": "g5-up-u03"
             },
             {
@@ -2310,59 +1827,39 @@ window.curriculumData = {
                 {
                   "title": "平行四边形的面积",
                   "status": "pending",
-                  "id": "g5-up-u04-p01",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《平行四边形的面积》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 面积\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n前面似乎没有系统介绍平行四边形，也没有正式出现平方米；前置知识需要补齐。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u04-p01"
                 },
                 {
                   "title": "用字母表示面积公式",
                   "status": "pending",
-                  "id": "g5-up-u04-p02",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《用字母表示面积公式》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 面积\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里的面积公式已经开始使用字母代数。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u04-p02"
                 },
                 {
                   "title": "三角形的面积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u04-p03"
                 },
                 {
                   "title": "梯形的面积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u04-p04"
                 },
                 {
                   "title": "组合图形面积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u04-p05"
                 },
                 {
                   "title": "平方千米",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u04-p06"
                 },
                 {
                   "title": "面积估测",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u04-p07"
                 }
               ],
-              "thought": "公式推导应该保留剪拼与转化过程，不能只留下底乘高。",
               "id": "g5-up-u04"
             },
             {
@@ -2371,96 +1868,60 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "认识自然数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p01"
                 },
                 {
                   "title": "整除",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p02"
                 },
                 {
                   "title": "因数与倍数",
                   "status": "pending",
-                  "id": "g5-up-u05-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《因数与倍数》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 因数和倍数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这两个概念的关系与区别绝对是重点，而且已经明显在往代数结构走。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u05-p03"
                 },
                 {
                   "title": "2、3、5 的倍数特征",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p04"
                 },
                 {
                   "title": "奇数与偶数",
                   "status": "pending",
-                  "id": "g5-up-u05-p05",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《奇数与偶数》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 因数和倍数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这里竟然才正式讲奇数和偶数？概念出现时间让我很震惊。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u05-p05"
                 },
                 {
                   "title": "素数与合数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p06"
                 },
                 {
                   "title": "分解素因数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p07"
                 },
                 {
                   "title": "短除法",
                   "status": "pending",
-                  "id": "g5-up-u05-p08",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《短除法》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 因数和倍数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n短除法是操作重点，但要说明它在表达什么。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u05-p08"
                 },
                 {
                   "title": "公因数与最大公因数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p09"
                 },
                 {
                   "title": "互素",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-up-u05-p10"
                 },
                 {
                   "title": "公倍数与最小公倍数",
                   "status": "pending",
-                  "id": "g5-up-u05-p11",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《公倍数与最小公倍数》\n\n**学段 / 年级：** 小学 / 五年级\n\n**教材位置：** 上学期 / 因数和倍数\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n我记得这些以前像是初中内容；教材版本和学习负担变化值得研究。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "id": "g5-up-u05-p11"
                 }
               ],
-              "thought": "",
               "id": "g5-up-u05"
             }
           ],
@@ -2476,12 +1937,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "逐课拆分知识点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-down-u01-p01"
                 }
               ],
-              "thought": "待依据沪教版教材和课程标准逐课核对、录入与建立联系。",
               "id": "g5-down-u01"
             },
             {
@@ -2490,12 +1949,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "逐课拆分知识点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-down-u02-p01"
                 }
               ],
-              "thought": "待依据沪教版教材和课程标准逐课核对、录入与建立联系。",
               "id": "g5-down-u02"
             },
             {
@@ -2504,12 +1961,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "逐课拆分知识点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-down-u03-p01"
                 }
               ],
-              "thought": "待依据沪教版教材和课程标准逐课核对、录入与建立联系。",
               "id": "g5-down-u03"
             },
             {
@@ -2518,12 +1973,10 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "逐课拆分知识点",
-                  "thought": "",
                   "status": "pending",
                   "id": "g5-down-u04-p01"
                 }
               ],
-              "thought": "待依据沪教版教材和课程标准逐课核对、录入与建立联系。",
               "id": "g5-down-u04"
             }
           ],
@@ -2548,36 +2001,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "正数与负数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u01-p01"
                 },
                 {
                   "title": "数轴",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u01-p02"
                 },
                 {
                   "title": "绝对值",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u01-p03"
                 },
                 {
                   "title": "有理数大小比较",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u01-p04"
                 },
                 {
                   "title": "有理数运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u01-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-up-u01"
             },
             {
@@ -2586,30 +2033,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "用字母表示数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u02-p01"
                 },
                 {
                   "title": "代数式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u02-p02"
                 },
                 {
                   "title": "代数式的值",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u02-p03"
                 },
                 {
                   "title": "合并同类项",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-up-u02"
             },
             {
@@ -2618,42 +2060,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "等式的性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u03-p01"
                 },
                 {
                   "title": "一元一次方程",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u03-p02"
                 },
                 {
                   "title": "移项为什么变号",
-                  "status": "planning",
-                  "id": "g6-up-u03-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《移项为什么变号》\n\n**学段 / 年级：** 初中 / 六年级\n\n**教材位置：** 六年级上 / 一元一次方程\n\n**课型：** 待补充\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n待补充\n\n### 2. 教学重点\n\n待补充\n\n### 3. 教学难点\n\n待补充\n\n### 4. 我的教学思考\n\n这是家教经历中真实发现的理解断点：会背规则，却说不清为什么。计划回到等式性质重新设计。\n",
-                  "overview": {
-                    "prerequisiteIds": [],
-                    "nextTopicIds": []
-                  },
-                  "designs": [],
-                  "rehearsals": []
+                  "status": "pending",
+                  "id": "g6-up-u03-p03"
                 },
                 {
                   "title": "解一元一次方程",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u03-p04"
                 },
                 {
                   "title": "一元一次方程的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u03-p05"
                 }
               ],
-              "thought": "从等式性质出发，而不是从移项口诀出发。",
               "id": "g6-up-u03"
             },
             {
@@ -2662,30 +2092,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "线段、射线与直线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u04-p01"
                 },
                 {
                   "title": "线段的比较",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u04-p02"
                 },
                 {
                   "title": "角的表示",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u04-p03"
                 },
                 {
                   "title": "角的比较与运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-up-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-up-u04"
             }
           ],
@@ -2701,36 +2126,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "比的意义",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u01-p01"
                 },
                 {
                   "title": "比的基本性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u01-p02"
                 },
                 {
                   "title": "比例",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u01-p03"
                 },
                 {
                   "title": "百分比",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u01-p04"
                 },
                 {
                   "title": "比与比例的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u01-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-down-u01"
             },
             {
@@ -2739,30 +2158,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "圆的周长",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u02-p01"
                 },
                 {
                   "title": "圆的面积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u02-p02"
                 },
                 {
                   "title": "弧与扇形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u02-p03"
                 },
                 {
                   "title": "扇形面积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-down-u02"
             },
             {
@@ -2771,30 +2185,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "事件的可能性",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u03-p01"
                 },
                 {
                   "title": "统计图的选择",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u03-p02"
                 },
                 {
                   "title": "读取统计图",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u03-p03"
                 },
                 {
                   "title": "解释数据",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-down-u03"
             },
             {
@@ -2803,30 +2212,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "圆柱的表面积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u04-p01"
                 },
                 {
                   "title": "圆柱的体积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u04-p02"
                 },
                 {
                   "title": "圆锥的体积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u04-p03"
                 },
                 {
                   "title": "组合立体图形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-down-u04"
             },
             {
@@ -2835,30 +2239,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "二元一次方程组",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u05-p01"
                 },
                 {
                   "title": "代入消元",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u05-p02"
                 },
                 {
                   "title": "加减消元",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u05-p03"
                 },
                 {
                   "title": "方程组的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g6-down-u05-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g6-down-u05"
             }
           ],
@@ -2883,30 +2282,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "整式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u01-p01"
                 },
                 {
                   "title": "同类项",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u01-p02"
                 },
                 {
                   "title": "合并同类项",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u01-p03"
                 },
                 {
                   "title": "整式加减",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-up-u01"
             },
             {
@@ -2915,30 +2309,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "同底数幂",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u02-p01"
                 },
                 {
                   "title": "单项式乘除",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u02-p02"
                 },
                 {
                   "title": "多项式乘法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u02-p03"
                 },
                 {
                   "title": "乘法公式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-up-u02"
             },
             {
@@ -2947,30 +2336,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "提取公因式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u03-p01"
                 },
                 {
                   "title": "公式法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u03-p02"
                 },
                 {
                   "title": "分组分解",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u03-p03"
                 },
                 {
                   "title": "因式分解的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-up-u03"
             },
             {
@@ -2979,30 +2363,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "分式的意义",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u04-p01"
                 },
                 {
                   "title": "分式基本性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u04-p02"
                 },
                 {
                   "title": "分式运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u04-p03"
                 },
                 {
                   "title": "分式方程",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-up-u04"
             },
             {
@@ -3011,30 +2390,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "平移",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u05-p01"
                 },
                 {
                   "title": "旋转",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u05-p02"
                 },
                 {
                   "title": "轴对称",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u05-p03"
                 },
                 {
                   "title": "图形运动的组合",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-up-u05-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-up-u05"
             }
           ],
@@ -3050,30 +2424,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "不等式及其性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u01-p01"
                 },
                 {
                   "title": "解一元一次不等式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u01-p02"
                 },
                 {
                   "title": "不等式组",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u01-p03"
                 },
                 {
                   "title": "不等式的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-down-u01"
             },
             {
@@ -3082,30 +2451,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "相交线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u02-p01"
                 },
                 {
                   "title": "垂线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u02-p02"
                 },
                 {
                   "title": "平行线的判定",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u02-p03"
                 },
                 {
                   "title": "平行线的性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-down-u02"
             },
             {
@@ -3114,30 +2478,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "三角形的边",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u03-p01"
                 },
                 {
                   "title": "三角形的角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u03-p02"
                 },
                 {
                   "title": "全等三角形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u03-p03"
                 },
                 {
                   "title": "三角形的基本作图",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-down-u03"
             },
             {
@@ -3146,24 +2505,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "等腰三角形的性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u04-p01"
                 },
                 {
                   "title": "等腰三角形的判定",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u04-p02"
                 },
                 {
                   "title": "等边三角形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g7-down-u04-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g7-down-u04"
             }
           ],
@@ -3188,30 +2543,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "平方根",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u01-p01"
                 },
                 {
                   "title": "立方根",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u01-p02"
                 },
                 {
                   "title": "无理数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u01-p03"
                 },
                 {
                   "title": "实数与数轴",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-up-u01"
             },
             {
@@ -3220,24 +2570,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "二次根式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u02-p01"
                 },
                 {
                   "title": "最简二次根式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u02-p02"
                 },
                 {
                   "title": "二次根式运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u02-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-up-u02"
             },
             {
@@ -3246,36 +2592,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "直接开平方法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u03-p01"
                 },
                 {
                   "title": "配方法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u03-p02"
                 },
                 {
                   "title": "公式法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u03-p03"
                 },
                 {
                   "title": "因式分解法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u03-p04"
                 },
                 {
                   "title": "方程应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u03-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-up-u03"
             },
             {
@@ -3284,30 +2624,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "勾股定理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u04-p01"
                 },
                 {
                   "title": "勾股定理逆定理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u04-p02"
                 },
                 {
                   "title": "直角三角形全等",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u04-p03"
                 },
                 {
                   "title": "直角三角形应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-up-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-up-u04"
             }
           ],
@@ -3323,36 +2658,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "平行四边形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u01-p01"
                 },
                 {
                   "title": "矩形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u01-p02"
                 },
                 {
                   "title": "菱形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u01-p03"
                 },
                 {
                   "title": "正方形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u01-p04"
                 },
                 {
                   "title": "梯形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u01-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-down-u01"
             },
             {
@@ -3361,24 +2690,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "有序数对",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u02-p01"
                 },
                 {
                   "title": "点的坐标",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u02-p02"
                 },
                 {
                   "title": "坐标与图形变换",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u02-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-down-u02"
             },
             {
@@ -3387,36 +2712,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "函数与变量",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u03-p01"
                 },
                 {
                   "title": "正比例函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u03-p02"
                 },
                 {
                   "title": "一次函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u03-p03"
                 },
                 {
                   "title": "一次函数图象与性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u03-p04"
                 },
                 {
                   "title": "一次函数应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u03-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-down-u03"
             },
             {
@@ -3425,24 +2744,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "反比例函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u04-p01"
                 },
                 {
                   "title": "反比例函数图象",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u04-p02"
                 },
                 {
                   "title": "反比例函数性质与应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g8-down-u04-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g8-down-u04"
             }
           ],
@@ -3467,30 +2782,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "二次函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u01-p01"
                 },
                 {
                   "title": "二次函数图象",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u01-p02"
                 },
                 {
                   "title": "二次函数性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u01-p03"
                 },
                 {
                   "title": "二次函数应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-up-u01"
             },
             {
@@ -3499,30 +2809,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "比例线段",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u02-p01"
                 },
                 {
                   "title": "相似三角形判定",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u02-p02"
                 },
                 {
                   "title": "相似三角形性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u02-p03"
                 },
                 {
                   "title": "相似的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-up-u02"
             },
             {
@@ -3531,24 +2836,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "锐角三角比",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u03-p01"
                 },
                 {
                   "title": "解直角三角形",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u03-p02"
                 },
                 {
                   "title": "三角比的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u03-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-up-u03"
             },
             {
@@ -3557,24 +2858,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "平行投影",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u04-p01"
                 },
                 {
                   "title": "中心投影",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u04-p02"
                 },
                 {
                   "title": "三视图",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-up-u04-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-up-u04"
             }
           ],
@@ -3590,36 +2887,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "圆的基本性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u01-p01"
                 },
                 {
                   "title": "垂径定理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u01-p02"
                 },
                 {
                   "title": "圆周角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u01-p03"
                 },
                 {
                   "title": "直线与圆",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u01-p04"
                 },
                 {
                   "title": "圆与圆",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u01-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-down-u01"
             },
             {
@@ -3628,30 +2919,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "总体与样本",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u02-p01"
                 },
                 {
                   "title": "抽样调查",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u02-p02"
                 },
                 {
                   "title": "数据的集中趋势",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u02-p03"
                 },
                 {
                   "title": "数据的离散程度",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-down-u02"
             },
             {
@@ -3660,30 +2946,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "随机事件",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u03-p01"
                 },
                 {
                   "title": "等可能事件",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u03-p02"
                 },
                 {
                   "title": "树状图与列表",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u03-p03"
                 },
                 {
                   "title": "频率与概率",
-                  "thought": "",
                   "status": "pending",
                   "id": "g9-down-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g9-down-u03"
             }
           ],
@@ -3707,31 +2988,26 @@ window.curriculumData = {
               "category": "number",
               "points": [
                 {
-                  "title": "集合及其表示",
-                  "thought": "",
+                  "title": "集合",
                   "status": "pending",
                   "id": "g10-required-1-u01-p01"
                 },
                 {
                   "title": "集合关系与运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u01-p02"
                 },
                 {
                   "title": "命题与量词",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u01-p03"
                 },
                 {
                   "title": "充分条件与必要条件",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-1-u01"
             },
             {
@@ -3740,30 +3016,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "等式性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u02-p01"
                 },
                 {
                   "title": "不等式性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u02-p02"
                 },
                 {
                   "title": "基本不等式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u02-p03"
                 },
                 {
                   "title": "不等式求解",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-1-u02"
             },
             {
@@ -3772,36 +3043,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "幂函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u03-p01"
                 },
                 {
                   "title": "指数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u03-p02"
                 },
                 {
                   "title": "指数函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u03-p03"
                 },
                 {
                   "title": "对数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u03-p04"
                 },
                 {
                   "title": "对数函数",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u03-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-1-u03"
             },
             {
@@ -3810,13 +3075,11 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "函数概念",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u04-p01"
                 },
                 {
                   "title": "函数表示",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u04-p02"
                 },
@@ -3824,7 +3087,7 @@ window.curriculumData = {
                   "title": "函数的单调性",
                   "status": "recorded",
                   "id": "g10-required-1-u04-p03",
-                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《函数的单调性》\n\n**学段 / 年级：** 高中 / 高一\n\n**教材位置：** 必修一 / 函数的概念、性质和应用\n\n**课型：** 概念形成与证明课\n\n**建议课时：** 待核实\n\n### 1. 教学目标\n\n理解单调性的定义结构，能说明区间 I 与“任意”的作用，并用定义证明一次函数的单调性。\n\n### 2. 教学重点\n\n理解函数单调性定义中区间与任意量词的作用，并运用定义证明单调性。\n\n### 3. 教学难点\n\n从图像的直观变化趋势过渡到严格定义，理解为什么必须限定区间并比较任意两点。\n\n### 4. 我的教学思考\n\n定义里的区间 I 和“任意”不是形式负担：它们分别排除了研究范围不清和只凭个别点下结论。怎样让每个限定词都因问题而产生？\n",
+                  "overviewMarkdown": "# 课程概览\n\n**课题：** 《函数的单调性》\n\n**学段 / 年级：** 高中 / 高一\n\n**教材位置：** 必修一 / 函数的概念、性质和应用\n\n**课型：** 概念形成与证明课\n\n**建议课时：** 待核实\n\n## 教学目标\n\n1. 理解单调性的定义结构。\n2. 能说明区间 I 与“任意”的作用。\n3. 能用定义证明一次函数的单调性。\n\n## 教学重点\n\n理解函数单调性定义中区间与任意量词的作用，并运用定义证明单调性。\n\n## 教学难点\n\n从图像的直观变化趋势过渡到严格定义，理解为什么必须限定区间并比较任意两点。\n\n## 我的教学思考\n\n定义里的区间 I 和“任意”不是形式负担：它们分别排除了研究范围不清和只凭个别点下结论。怎样让每个限定词都因问题而产生？\n\n\n### 单元教学思考：《函数的概念、性质和应用》\n\n真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。\n\n",
                   "overview": {
                     "prerequisiteIds": [],
                     "nextTopicIds": []
@@ -3834,7 +3097,7 @@ window.curriculumData = {
                       "id": "d1",
                       "versionNumber": 1,
                       "label": "d1",
-                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**设计依据：** 现有教学设计原稿（教材及教学用书依据待补充）\n\n**核心教学思路：**\n\n观察熟悉函数 → 翻译“从左往右” → 追问为何不能只取一对点 → 用二次函数产生区间需要 → 形成定义 → 作差证明。\n\n### 教学流程\n\n### 环节一：从熟悉函数中观察“变化趋势”\n\n回顾学生已经学过的函数图像，例如：\n\n- 指数函数\n- 对数函数\n- 一次函数\n- 二次函数\n\n先从图像直观观察：\n\n- 有些函数从左向右不断上升\n- 有些函数从左向右不断下降\n- 有些函数并不能在整个定义域上简单地说“上升”或“下降”\n\n核心问题：\n\n> 我们能不能不用“看起来在上升/下降”这种直观语言，\n> 用数学语言准确描述函数的这种变化趋势？\n\n目的：\n\n从学生已有的函数图像经验出发，产生对“单调性”这一数学刻画的需要。\n\n注意：\n\n不要一开始直接抛出完整定义。\n先让学生拥有“从左往右上升/下降”的直观认识，再逐步把自然语言翻译成数学语言。\n\n---\n\n### 环节二：把“从左往右上升”翻译成数学语言\n\n选择一个简单的单调递增函数，例如：\n\n> f(x)=2x+1\n\n画出图像。\n\n在图像上任取两个横坐标：\n\n> x₁ < x₂\n\n对应得到两个函数值：\n\n> f(x₁)、f(x₂)\n\n核心问题：\n\n- “从左往右”怎样用数学语言表示？\n- 当 x₁ < x₂ 时，对应的函数值发生了什么？\n- 图像上的“上升”能否翻译成函数值之间的大小关系？\n\n得到：\n\n> x₁ < x₂  \n> → f(x₁) < f(x₂)\n\n目的：\n\n完成第一次表征转换：\n\n> 图像直观  \n> → 自变量大小关系  \n> → 函数值大小关系\n\n让“越来越大”不再只是视觉判断，而开始成为可以精确表达的数学关系。\n\n---\n\n### 环节三：为什么不能只取一对点？\n\n继续追问：\n\n> 如果我只找到一对 x₁ < x₂，\n> 并且恰好有 f(x₁) < f(x₂)，\n> 能不能说明这个函数一直在增加？\n\n结论：\n\n不能。\n\n需要考虑这一范围内任意两个满足：\n\n> x₁ < x₂\n\n的自变量。\n\n因此引入：\n\n> 任意 x₁，x₂\n\n目的：\n\n让定义中的“任意”不是教师直接宣布的限定词，\n而是为了排除“偶然找到一对满足条件的点”而产生的必要条件。\n\n注意：\n\n“任意”是单调性定义中非常重要的词。\n不能让学生把定义理解成“存在两个点满足大小关系”。\n\n---\n\n### 环节四：为什么还需要区间 I？\n\n如果只看一次函数，学生容易形成：\n\n> 一个函数要么递增，要么递减。\n\n此时引入二次函数。\n\n观察二次函数图像：\n\n- 在一段范围内下降\n- 经过顶点后，在另一段范围内上升\n\n核心问题：\n\n> 那这个函数到底是增函数还是减函数？\n\n发现：\n\n不能简单地对整个函数作出“增/减”的判断。\n\n需要限定研究范围。\n\n因此：\n\n设函数 f(x) 的定义域为 D，\n取某个区间 I ⊆ D。\n\n目的：\n\n让学生理解区间 I 为什么必须出现在定义中。\n\n单调性不是简单给整个函数贴“增加/减少”的标签，\n而是描述函数在某个区间上的变化性质。\n\n本环节是第二次试讲后重点加强的部分。\n\n---\n\n### 环节五：形成单调性的正式定义\n\n在前面几个条件已经分别产生以后，再进行整合。\n\n对于函数 f(x)，在定义域 D 内取区间 I。\n\n如果对于任意：\n\n> x₁，x₂ ∈ I\n\n当：\n\n> x₁ < x₂\n\n都有：\n\n> f(x₁) < f(x₂)\n\n则函数 f(x) 在区间 I 上单调递增。\n\n相应地，如果：\n\n> x₁ < x₂\n\n都有：\n\n> f(x₁) > f(x₂)\n\n则函数 f(x) 在区间 I 上单调递减。\n\n核心问题：\n\n完整定义里的每一个条件分别解决了什么问题？\n\n- I：限定研究区间\n- 任意：不能只找到个别点\n- x₁ < x₂：描述自变量从左向右的顺序\n- 比较 f(x₁)、f(x₂)：描述函数值随自变量变化的趋势\n\n目的：\n\n让正式定义成为前面思考的总结，而不是需要直接背诵的一串符号。\n\n---\n\n### 环节六：从“看图判断”走向“代数证明”\n\n继续使用：\n\n> f(x)=2x+1\n\n提出问题：\n\n> 看图我们知道它是递增的。\n> 但是如果不依赖图像，能不能从定义证明？\n\n按照定义：\n\n任取：\n\n> x₁，x₂ ∈ R，且 x₁ < x₂\n\n目标：\n\n> 比较 f(x₁) 和 f(x₂) 的大小。\n\n核心问题：\n\n> 两个代数式怎样比较大小？\n\n使用作差法：\n\n> f(x₁)-f(x₂)\n\n代入：\n\n> = (2x₁+1)-(2x₂+1)\n> = 2(x₁-x₂)\n\n因为：\n\n> x₁ < x₂\n\n所以：\n\n> x₁-x₂ < 0\n\n因此：\n\n> f(x₁)-f(x₂) < 0\n\n即：\n\n> f(x₁) < f(x₂)\n\n所以：\n\n> f(x)=2x+1 在 R 上单调递增。\n\n目的：\n\n让学生第一次看到：\n\n> 图像直观上的“上升”\n\n可以通过：\n\n> 定义 + 代数推理\n\n得到严格验证。\n\n注意：\n\n不要直接开始作差。\n先明确：\n\n> “我们的目标是比较 f(x₁) 和 f(x₂) 的大小。”\n\n再追问：\n\n> “怎样比较两个代数式的大小？”\n\n否则“作差”容易成为老师突然使用的技巧。\n\n---\n\n### 环节七：回到二次函数\n\n重新观察二次函数。\n\n要求学生用刚刚建立的语言描述：\n\n- 在哪个区间上单调递减？\n- 在哪个区间上单调递增？\n- 为什么不能只说“这个函数是递增的/递减的”？\n\n目的：\n\n回收环节四留下的问题。\n\n再次强化：\n\n> 单调性是函数在某个区间上的性质。\n\n同时检查学生能否从图像直观转换为规范数学语言。\n\n---\n\n### 环节八：总结\n\n回到最初的问题：\n\n> 数学怎样准确描述“函数图像从左往右上升/下降”？\n\n本课经历：\n\n> 图像直观\n> → 取两个自变量\n> → 比较对应函数值\n> → 加入“任意”\n> → 限定区间\n> → 形成单调性定义\n> → 用定义进行证明\n\n核心认识：\n\n> 函数的单调性描述的是函数在某个区间内，\n> 函数值随着自变量增大而呈现出的变化趋势。\n\n看到单调性问题，可以先问：\n\n1. 在哪个区间？\n2. 任取 x₁ < x₂ 后，f(x₁) 与 f(x₂) 有什么大小关系？\n",
+                      "markdown": "# 教学设计\n\n**设计版本：** d1\n\n**课题：** 函数的单调性\n\n**设计依据：** 已有函数知识、单调性定义及试讲研究；教材与教师教学用书待核实\n\n**设计状态：** 初版设计，经历两次模拟试讲\n\n**核心教学思路：**\n\n从熟悉函数的图像出发，将“从左往右上升或下降”的直观观察翻译成自变量与函数值的大小关系，再通过对任意性和区间条件的讨论，形成单调性的正式定义，最后尝试利用定义进行代数证明。\n\n**核心路径：**\n\n图像直观 → 两个自变量的比较 → 任意性 → 区间条件 → 正式定义 → 作差证明\n\n*说明：这是整理后的教学设计路径。第二次实际试讲中，先进行了简单一次函数的作差证明，再给出正式定义并讨论区间 I。*\n\n## 教学流程\n\n| 环节 | 教学活动 | 设计意图 |\n|---|---|---|\n| 1. 观察函数 | 回顾指数、对数及一次函数图像 | 激活已有函数经验 |\n| 2. 数学表达 | 在图像上取 x₁ < x₂，比较函数值 | 从直观走向符号 |\n| 3. 讨论任意性 | 思考一对点能否代表整个区间 | 理解全称条件 |\n| 4. 讨论区间 | 利用二次函数的不同变化趋势 | 理解区间限定 |\n| 5. 形成定义 | 整合区间、任意性和大小关系 | 建立规范概念 |\n| 6. 代数证明 | 证明 f(x)=2x+1 的单调性 | 从观察走向证明 |\n| 7. 迁移总结 | 回顾二次函数并整理定义结构 | 巩固概念边界 |\n\n## 关键教学问题\n\n**问题1：** 怎样准确描述图像的上升趋势？\n\n观察函数 f(x)=2x+1，在图像上选择两个横坐标：\n\nx₁ < x₂\n\n发现对应的函数值满足：\n\nf(x₁) < f(x₂)\n\n将“从左往右上升”转化为两个函数值之间的大小关系。\n\n**问题2：** 只找到一对满足条件的点，够不够？\n\n如果仅存在一对 x₁ < x₂，使得 f(x₁) < f(x₂)，不能说明函数在整个研究区间上单调递增。\n\n需要对区间内任意两个满足 x₁ < x₂ 的自变量进行比较。\n\n由此引入“任意”的要求。\n\n**问题3：** 为什么需要区间 I？\n\n观察二次函数 f(x)=x²。\n\n其定义域为 R，但在不同区间具有不同的变化趋势：\n\n- 在 (-∞,0] 上单调递减。\n- 在 [0,+∞) 上单调递增。\n\n因此不能直接断言它在整个定义域上单调递增或单调递减。\n\n单调性必须结合具体研究区间描述。\n\n**问题4：** 怎样从图像观察走向代数证明？\n\n以 f(x)=2x+1 为例。\n\n任取 x₁,x₂∈R，且 x₁ < x₂。\n\n为了证明：\n\nf(x₁) < f(x₂)\n\n考虑作差：\n\nf(x₁)-f(x₂)\n\n= (2x₁+1)-(2x₂+1)\n\n= 2(x₁-x₂)\n\n因为 x₁ < x₂，所以：\n\n2(x₁-x₂) < 0\n\n从而：\n\nf(x₁) < f(x₂)\n\n因此 f(x)=2x+1 在 R 上单调递增。\n\n## 正式定义\n\n设函数 f(x) 的定义域为 D，区间 I⊆D。\n\n如果对于区间 I 内任意两个自变量 x₁、x₂，当 x₁ < x₂ 时，都有：\n\nf(x₁) < f(x₂)\n\n则称函数 f(x) 在区间 I 上单调递增。\n\n如果对于区间 I 内任意两个自变量 x₁、x₂，当 x₁ < x₂ 时，都有：\n\nf(x₁) > f(x₂)\n\n则称函数 f(x) 在区间 I 上单调递减。\n\n**定义中各条件的作用：**\n\n- 区间 I：明确讨论单调性的范围。\n- 任意：排除只凭个别点判断的情况。\n- x₁ < x₂：规定自变量的比较顺序。\n- f(x₁) 与 f(x₂)：刻画对应函数值的变化。\n\n## 预设学生困难\n\n**困难一：将“存在”误认为“任意”**\n\n学生可能认为，只要找到两个满足函数值大小关系的点，就能证明单调性。\n\n应通过反例说明：个别点满足条件不等于整个区间满足条件。\n\n**困难二：忽略区间条件**\n\n学生可能将函数简单分成“增函数”和“减函数”，忽略同一函数在不同区间上的变化差异。\n\n通过二次函数帮助学生认识研究区间的必要性。\n\n**困难三：不知道为什么使用作差法**\n\n学生可能记住证明步骤，却不理解作差的目的。\n\n应先明确证明目标是比较 f(x₁)、f(x₂) 的大小，再引出作差。\n\n## 板书设计\n\n**左侧：已有函数经验**\n\n- 指数函数、对数函数图像\n- 上升、下降的直观观察\n\n**中间：具体函数与证明**\n\n- f(x)=2x+1 的图像\n- x₁ < x₂\n- 函数值大小关系\n- 作差证明过程\n\n**右侧：正式定义与概念边界**\n\n- 区间 I\n- 任意 x₁、x₂\n- 单调递增与单调递减\n- 二次函数的区间示例\n\n板书应区分临时推导与需要保留的核心结论，避免在证明过程中耗尽空间。\n\n## 课堂评价\n\n- 能否将图像上升、下降转化为函数值的大小关系？\n- 能否说明为什么不能只取一对点？\n- 能否结合二次函数解释区间 I 的必要性？\n- 能否独立完成简单一次函数的单调性证明？\n\n## 课后练习\n\n1. 根据定义证明指数函数 y=aˣ 在 a>1 时的单调性。\n2. 根据定义证明对数函数 y=logₐx 在 a>1 时的单调性。\n\n*练习适切性需结合学生已学知识确认。第二次试讲中这两道题被作为课末练习提出；实际教学可先安排更简单的代数函数证明，再逐步提高难度。*\n",
                       "lessonFile": "/lessons/g10-required-1-u04-p03/designs/d1.md",
                       "date": "",
                       "duration": "",
@@ -3849,38 +3112,36 @@ window.curriculumData = {
                       "id": "r2",
                       "versionNumber": 2,
                       "label": "r2",
-                      "markdown": "# 试讲复盘\n\n**试讲形式：** 完全脱稿 / 黑板贴 / 第二次试讲\n**试讲版本：** r2\n**试讲时长：** 待核实\n**采用的教学设计版本：** d1\n**日期：** 2026-10-03\n**版本说明：** v2｜重新设计板书与概念路径\n\n日期：2026-10-03\n形式：完全脱稿 / 黑板贴 / 第二次试讲\n\n#### 本版重点修改\n\n- 刻意规划板书区域\n- 减少面对黑板讲话\n- 把第一次自己困惑的“为什么需要区间 I”变成教学内容\n- 使用二次函数说明：\n  - 整个定义域上未必只有一种变化趋势\n  - 单调性需要限定区间\n- 在代数证明前先明确：\n  - 目标是比较 f(x₁) 与 f(x₂) 的大小\n  - 作差是为了完成这个比较\n\n#### 当时的感受\n\n- 第二遍明显比第一遍顺畅\n- 数学逻辑更加确定以后，讲课负担明显下降\n- 不再需要一边讲一边确认“下一步数学上对不对”\n- 仍然感觉比小学课累很多，但整个试讲过程依然比较沉浸\n\n#### 板书改进\n\n板书开始形成较明确的空间结构：\n\n左侧：\n> 已学函数 / 图像经验\n\n中间：\n> 具体函数\n> x₁ < x₂\n> f(x₁) 与 f(x₂) 的比较\n> 代数验证\n\n右侧：\n> 正式定义\n> 区间 I\n> 单调递增 / 单调递减\n> 二次函数反例与区间意义\n\n相比v1：\n\n- 板书不再只是记录讲过的内容\n- 开始承担组织课堂逻辑的作用\n- 更注意写完关键式子后重新面对学生\n\n#### 仍然存在的问题\n\n- 后半段字越来越大\n- 板书空间预算仍然不足\n- 数学符号密度较高\n- 过程板书与最终保留板书仍可以进一步区分\n- 仍可能写得太多\n- 高中数学对教师自身知识熟练度要求明显更高\n\n#### 新认识\n\n同一堂高中数学课第二次讲以后，\n困难已经明显下降。\n\n因此第一次感受到的压力至少包含两个来源：\n\n1. 高中数学本身对学科知识要求更高\n2. 自己对这一具体知识点已经不熟悉\n\n目前主观体验仍有明显区别：\n\n小学数学：\n> 更像游戏  \n> 更容易产生好奇和情绪奖励  \n> 更自然地关注“孩子为什么这样想”\n\n高中数学：\n> 更像知识工作  \n> 更关注概念是否严谨、证明是否完整  \n> 自身知识掌握成为备课的重要前提\n\n两者都能进入沉浸状态，但沉浸的性质不同。\n\n#### 下一版只改\n\n1. 把黑板明确分成“过程区”和“保留区”\n2. 过程推导完成任务后及时擦除\n3. 控制后半段字号\n4. 每次转身写板书前先完成提问，写完后重新面对学生解释\n\n## 原课程记录补充\n\n**备课追问：** 如何把第一次试讲中自己的困惑，转化成学生理解“为什么需要区间 I”的学习机会？\n\n**本版目标：** 让定义的每个条件都有明确来由；在证明前先说清比较目标，再选择作差方法。\n\n**设计调整：** 加入二次函数反例解释区间；拆开定义条件逐一生成；明确“比较函数值”的目标后再进入作差证明。\n\n**板书记录：** 左侧保留已学图像，中间展示具体函数和代数验证，右侧形成正式定义及二次函数反例。\n\n**复盘摘要：** 第二次试讲明显顺畅，数学逻辑确定后讲课负担下降。下一版将黑板进一步分为过程区与保留区，并减少符号堆叠。\n",
+                      "markdown": "# 试讲复盘\n\n**试讲版本：** r2\n\n**课题：** 函数的单调性\n\n**日期：** 2026-10-03\n\n**试讲形式：** 无生\n\n**试讲时长：** 13分钟\n\n**采用的教学设计版本：** d1\n\n**版本说明：** 第二次试讲，调整板书与概念讲解路径\n\n**复盘依据：** 试讲回忆、板书记录及第二次试讲语音转录\n\n## 一、本次试讲概况\n\n与第一次边备边讲相比，第二次试讲明显更加顺畅。\n\n经过重新理解单调性定义并规划板书，讲解过程中不再需要频繁确认下一步数学推理是否成立，能够将更多注意力投入课堂语言和概念解释。\n\n本次采用了较自然的脱稿表达，并尝试通过熟悉函数的图像、一次函数的代数证明及二次函数的反例解释单调性的数学意义。\n\n但从转录来看，课堂仍存在教师引导性提问过多、部分结论由教师直接给出、概念生成顺序不够理想等问题。\n\n### 本版主要修改\n\n相较 r1，本版重点调整了：\n\n- 预先规划黑板空间，区分函数图像、代数证明与正式定义。\n- 减少长时间面对黑板讲话。\n- 加强对区间 I 的解释，利用二次函数说明单调性与研究区间的关系。\n- 在代数证明前，先明确需要比较 f(x₁) 与 f(x₂) 的大小。\n- 尝试将抽象定义与具体函数图像联系起来。\n\n### 实际教学过程\n\n根据试讲转录，本次实际课堂大致按以下顺序展开。\n\n| 环节 | 实际教学内容 | 观察 |\n|---|---|---|\n| 1. 复习导入 | 回顾指数函数、对数函数及其图像 | 利用已有知识引出上升趋势 |\n| 2. 直观观察 | 观察一次函数图像，选取 x₁ < x₂ | 建立自变量与函数值的比较 |\n| 3. 讨论任意性 | 移动图像上的点，讨论取值条件 | 尝试说明不能只依赖固定点 |\n| 4. 代数证明 | 利用作差法证明 f(x)=2x+1 递增 | 从图像判断进入代数推理 |\n| 5. 形成定义 | 给出增函数、减函数的正式定义 | 将前面的比较关系一般化 |\n| 6. 解释区间 | 利用二次函数说明区间 I 的必要性 | 回答第一次试讲留下的问题 |\n| 7. 课堂练习 | 布置指数函数、对数函数单调性证明 | 尝试迁移证明方法 |\n\n值得注意的是，本次实际顺序与整理后的 d1 不完全一致：正式定义与区间讨论发生在一次函数证明之后。\n\n## 二、本次试讲中值得保留的设计\n\n### 1. 利用具体函数建立符号表达\n\n通过 f(x)=2x+1 的图像，先比较两个自变量，再比较对应的函数值。\n\n这一过程使“图像上升”与：\n\nx₁ < x₂ ⇒ f(x₁) < f(x₂)\n\n建立了联系。\n\n相比直接给出定义，这种处理更有利于学生理解符号关系的直观来源。\n\n### 2. 在作差前明确证明目标\n\n试讲中先提出：\n\n“我们的目标是什么？”\n\n再引导学生将比较函数值大小转化为判断差的符号。\n\n这一顺序具有明确的数学逻辑：\n\n比较函数值 → 构造差式 → 判断正负 → 得到大小关系。\n\n作差不再只是突然出现的计算技巧，而是为完成证明目标服务。\n\n### 3. 利用二次函数解释区间 I\n\n通过观察二次函数在不同区间上的变化趋势，解释为什么不能只根据整个定义域给函数贴上“递增”或“递减”的标签。\n\n这是对第一次试讲中自身困惑的直接回应。\n\n本次最重要的概念改进，是开始将定义中的区间条件作为需要理解的数学内容，而不是仅仅作为符号约定。\n\n## 三、发现的主要问题\n\n### 1. 学生独立思考的空间不足\n\n转录中多次出现：\n\n- “对不对？”\n- “是不是？”\n- “大家肯定还记得……”\n- “这是不是特别简单？”\n\n教师经常在提出问题后迅速给出答案或继续解释。\n\n例如，在比较函数值大小和总结增减函数定义时，学生主要是在确认教师的推理方向。\n\n影响：\n\n模拟课堂虽然能够顺畅推进，但较难判断学生是否真正理解每一步的数学意义。\n\n下一版可以减少确认性提问，增加要求学生解释理由的问题。\n\n### 2. 对‘任意’的解释还不充分\n\n试讲通过移动图像上的两个点，说明比较关系不依赖于某一对固定点。\n\n这一思路基本正确，但需要进一步明确：\n\n找到若干对满足条件的点，仍然不能证明整个区间上的单调性。\n\n严格定义要求对区间内任意两个满足 x₁ < x₂ 的自变量，函数值关系都成立。\n\n因此，图像演示主要用于形成直观认识，不能代替全称条件的证明。\n\n### 3. 定义、证明与区间条件的顺序仍可优化\n\n本次实际先证明一次函数递增，再给出正式定义，最后通过二次函数解释区间 I。\n\n这一顺序能够完成教学，但也存在问题：\n\n学生在尚未完整建立定义时，就已经使用接近正式定义的证明步骤。\n\n此外，区间 I 的必要性直到定义呈现后才得到充分说明。\n\n下一版可以考虑先利用二次函数明确研究范围，再形成完整定义，最后进行严格证明。\n\n这属于教学结构优化，并不意味着本次证明本身不成立。\n\n### 4. 复习导入存在不必要的负面评价\n\n转录中出现类似：\n\n“这不是上次才学的吗？”\n\n“不要老是提醒啊。”\n\n这些语言在模拟课堂中可能是为了营造真实感，但真实课堂中容易让暂时遗忘知识的学生感到压力。\n\n建议用简短的图像提示或复习问题替代责备性表达。\n\n### 5. 课末练习的难度跨度较大\n\n本课主要示范了 f(x)=2x+1 的单调性证明，课末却直接要求证明指数函数和对数函数的单调性。\n\n这些函数的严格证明可能需要额外的知识基础，不能简单照搬一次函数的作差过程。\n\n如果目标是巩固定义证明法，可以先安排更接近示例的代数函数，再逐步拓展到其他函数。\n\n## 四、板书复盘\n\n本次板书开始形成明确分区：\n\n**左侧：函数图像经验**\n\n- 已学函数\n- 图像的上升与下降趋势\n\n**中间：具体函数及证明**\n\n- f(x)=2x+1\n- x₁ < x₂\n- 函数值比较\n- 作差推理\n\n**右侧：正式定义与区间条件**\n\n- 区间 I\n- 任意两个自变量\n- 增函数、减函数\n- 二次函数示例\n\n相较第一次，板书不再只是记录讲过的内容，而开始承担组织课堂数学逻辑的作用。\n\n但仍然存在：\n\n- 后半段字号逐渐变大。\n- 板书空间预算不足。\n- 数学符号较密集。\n- 临时过程与最终结论没有完全区分。\n- 部分内容可能需要及时擦除。\n\n## 五、下一版本修改计划\n\n- [ ] 调整概念生成顺序，让区间条件和任意性在正式定义前得到更充分的解释。\n- [ ] 减少“是不是”“对不对”等确认性提问，增加要求解释理由的问题。\n- [ ] 将黑板分为过程区和保留区，控制字号与书写量。\n\n## 六、阶段性总结\n\n第二次试讲明显比第一次顺畅，说明第一次感受到的压力并不完全来自高中数学教学本身，也与我对这一知识点尚不熟悉有关。\n\n当数学逻辑更加明确后，讲解过程的认知负担有所下降，能够更加自然地组织语言并关注教学流程。\n\n目前的主观体验仍然存在差异：\n\n小学数学试讲更像一种探索性游戏，容易产生好奇和情绪奖励。\n\n高中数学试讲更像严谨的知识工作，需要关注概念的准确性、证明的完整性以及符号表达。\n\n两种试讲都能进入较为专注的状态，但仅凭目前的模拟经验，还不能判断哪一个学段更适合长期任教。\n\n本次最大的收获是：\n\n**数学定义中的每一个限定条件，都应当有可以向学生解释的理由；而教师自己理解这些理由，是开展概念教学的前提。**\n\n### 版本记录\n\n| 版本 | 主要变化 | 状态 |\n|---|---|---|\n| r1 | 边备边讲，发现区间 I 的理解问题 | 已完成 |\n| r2 | 重新规划板书，加强定义解释与证明逻辑 | 已完成 |\n| r3 | 待定；重点考虑学生思维参与和板书精简 | 尚未开展 |\n",
                       "lessonFile": "/lessons/g10-required-1-u04-p03/rehearsals/r2.md",
                       "date": "2026-10-03",
-                      "duration": "待核实",
-                      "format": "完全脱稿 / 黑板贴 / 第二次试讲",
+                      "duration": "13分钟",
+                      "format": "无生",
                       "designVersion": "d1",
-                      "boardImage": "",
-                      "video": ""
+                      "boardImage": "/lessons/g10-required-1-u04-p03/rehearsals/r2_blackboard.jpg",
+                      "video": "https://www.bilibili.com/video/BV1XYpG6mESS/"
                     },
                     {
                       "id": "r1",
                       "versionNumber": 1,
                       "label": "r1",
-                      "markdown": "# 试讲复盘\n\n**试讲形式：** 半脱稿 / 黑板贴 / 无生\n**试讲版本：** r1\n**试讲时长：** 约15分钟\n**采用的教学设计版本：** d1\n**日期：** 2026-10-03\n**版本说明：** v1｜第一次高中数学试讲\n\n日期：2026-10-03\n时长：约15分钟\n形式：半脱稿 / 黑板贴 / 无生\n\n#### 当时的感受\n\n- 明显比小学数学压力大\n- 很多时候首先担心的不是“怎么教”，而是“我自己到底懂不懂”\n- 会不断怀疑学生能不能听懂\n- 数学知识本身占用了大量注意力\n- 讲完以后感觉更像完成了一份工作\n- 但整个过程中仍然比较沉浸，15分钟过去得很快\n\n#### 最明显的知识问题\n\n写正式定义时出现：\n\n> 在定义域 D 内取区间 I\n\n当时自己都产生疑问：\n\n> “这个 I 到底是干嘛的？”\n\n直到后面画二次函数，才重新意识到：\n\n- 一个函数可能不在整个定义域上保持同一种变化趋势\n- 单调性需要在某个区间上讨论\n- 区间 I 不是形式定义里多余的字母，而是概念本身不可缺少的条件\n\n这是本次试讲最重要的知识发现。\n\n#### 教学问题\n\n- 完整定义的信息密度太高\n- 容易一次写出：\n  - D\n  - I ⊆ D\n  - 任意 x₁，x₂ ∈ I\n  - x₁ < x₂\n  - f(x₁) 与 f(x₂) 的大小关系\n- 自己理解没有问题时容易低估学生同时处理这些符号的负担\n- 对“每一个限定词为什么存在”解释不足\n\n#### 板书问题\n\n- 板书量明显大于小学课\n- 经常边写边讲，长时间背对假想学生\n- 过程推导和最终需要保留的结论没有充分区分\n- 黑板空间很快不足\n- 导入部分最后不得不擦掉\n\n#### 新认识\n\n高中数学的困难与小学不同：\n\n小学更多是：\n\n> 我已经完全会了\n> → 怎样重新拆成儿童能够理解的台阶？\n\n高中更多是：\n\n> 我先重新理解知识\n> → 再判断学生已有知识\n> → 再把抽象结构拆成连续的逻辑台阶\n\n教师自己对知识的理解程度，会直接限制教学设计。\n\n#### 下一版只改\n\n1. 解释清楚区间 I 为什么存在\n2. 减少背对学生边写边讲\n3. 提前规划板书区域\n4. 先说清证明目标，再进入作差\n\n## 原课程记录补充\n\n**备课追问：** 怎样把图像“从左往右上升”的直观观察，逐步翻译成带有区间和任意量词的严格定义？\n\n**本版目标：** 理解单调性的定义结构，能说明区间 I 与“任意”的作用，并用定义证明一次函数的单调性。\n\n**设计调整：** 观察熟悉函数 → 翻译“从左往右” → 追问为何不能只取一对点 → 用二次函数产生区间需要 → 形成定义 → 作差证明。\n\n**板书记录：** 图像、符号定义与代数证明依次展开；v1 中过程推导和保留结论尚未清楚分区。\n\n**复盘摘要：** 约 15 分钟。首次清楚意识到教师自身对区间 I 的理解会直接限制讲解；定义信息密度过高，板书空间也很快不足。\n",
+                      "markdown": "# 试讲复盘\n\n**试讲版本：** r1\n\n**课题：** 函数的单调性\n\n**日期：** 2026-10-03\n\n**试讲形式：** 无生 / 边备边讲\n\n**试讲时长：** 约15分钟\n\n**采用的教学设计版本：** d1（初步形成阶段）\n\n**版本说明：** 第一次高中数学试讲\n\n## 一、本次试讲概况\n\n这是我第一次尝试高中数学试讲，与此前的小学数学试讲相比，备课和讲解的认知负担明显增加。\n\n由于高中数学知识已有所遗忘，这次采用边备边讲的方式进行。试讲过程中不仅需要考虑怎样组织教学，还需要不断确认自己对数学概念和证明方法的理解是否准确。\n\n整堂课约15分钟，虽然感到压力较大，但仍然能够进入较为专注的状态。\n\n本次最重要的收获，不是完成了一次单调性讲解，而是在实际讲解过程中发现了自己对定义中区间条件理解不足的问题。\n\n## 二、本次试讲中值得保留的设计\n\n### 1. 建立了从图像直观走向数学定义的基本思路\n\n尝试利用熟悉函数的图像，引导学生从“从左往右上升”过渡到自变量与函数值的大小比较。\n\n这一思路为后续修改提供了基础。\n\n### 2. 发现了一个真实的数学理解问题\n\n在写出正式定义时，面对“在定义域 D 内取区间 I”，自己产生了疑问：\n\n“这个 I 到底是干嘛的？”\n\n直到随后画出二次函数图像，才更清楚地意识到：\n\n- 函数未必在整个定义域上保持同一种变化趋势。\n- 单调性需要限定具体区间。\n- 区间 I 是定义中的实质条件，而非形式性的符号。\n\n这成为下一次试讲最重要的修改依据。\n\n## 三、发现的主要问题\n\n### 1. 自身学科知识尚不够熟练\n\n具体表现：\n\n- 对部分高中函数知识需要重新回忆。\n- 在讲解过程中仍需确认数学推理是否成立。\n- 对正式定义中某些限定条件的理解不够充分。\n\n可能原因：\n\n较长时间没有系统使用高中数学知识，对知识结构的熟悉程度下降。\n\n影响：\n\n数学知识本身占用了较多注意力，限制了对教学语言和学生理解过程的关注。\n\n### 2. 定义的信息密度过高\n\n具体表现：\n\n在短时间内集中呈现：\n\n- 定义域 D\n- 区间 I⊆D\n- 任意 x₁、x₂∈I\n- x₁ < x₂\n- f(x₁)、f(x₂) 的大小关系\n\n这些条件没有得到充分的逐层解释。\n\n影响：\n\n容易使定义成为需要记忆的符号组合，而不是学生能够理解其必要性的数学结论。\n\n### 3. 板书缺少空间规划\n\n具体表现：\n\n- 图像、定义与证明占用较多空间。\n- 经常边写边讲。\n- 过程推导与最终结论没有明确区分。\n- 导入部分的板书后来需要擦除。\n\n影响：\n\n板书组织不够清晰，也增加了长时间背对假想学生的情况。\n\n## 四、下一版本修改计划\n\n- [ ] 利用二次函数解释区间 I 的必要性。\n- [ ] 将正式定义的限定条件拆开说明。\n- [ ] 在作差证明前明确函数值比较的目标。\n- [ ] 提前规划板书区域，减少边写边讲。\n\n## 五、阶段性总结\n\n这次试讲让我更清楚地认识到，高中数学教学首先要求教师自己理解知识结构。\n\n小学数学的主要挑战通常是如何将已经熟练掌握的知识重新拆解为儿童能够理解的认知步骤。\n\n高中数学则需要先恢复和巩固自己的学科知识，再考虑如何将抽象概念组织成连续、可理解的教学过程。\n\n尤其是区间 I 的问题说明：教师只有理解定义中的限定条件为什么存在，才能更有效地帮助学生理解定义，而不是仅仅要求学生记住它。\n",
                       "lessonFile": "/lessons/g10-required-1-u04-p03/rehearsals/r1.md",
                       "date": "2026-10-03",
                       "duration": "约15分钟",
-                      "format": "半脱稿 / 黑板贴 / 无生",
-                      "designVersion": "d1",
-                      "boardImage": "",
-                      "video": ""
+                      "format": "无生 / 边备边讲",
+                      "designVersion": "d1（初步形成阶段）",
+                      "boardImage": "/lessons/g10-required-1-u04-p03/rehearsals/r1_blackboard.jpg",
+                      "video": "https://www.bilibili.com/video/BV1VYpG6UE2g/"
                     }
                   ]
                 },
                 {
                   "title": "函数应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-1-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-1-u04"
             }
           ],
@@ -3896,30 +3157,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "任意角",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u01-p01"
                 },
                 {
                   "title": "弧度制",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u01-p02"
                 },
                 {
                   "title": "三角比",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u01-p03"
                 },
                 {
                   "title": "三角恒等变换",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-2-u01"
             },
             {
@@ -3928,24 +3184,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "三角函数图象",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u02-p01"
                 },
                 {
                   "title": "三角函数性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u02-p02"
                 },
                 {
                   "title": "三角函数模型",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u02-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-2-u02"
             },
             {
@@ -3954,30 +3206,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "向量概念",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u03-p01"
                 },
                 {
                   "title": "向量运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u03-p02"
                 },
                 {
                   "title": "向量坐标",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u03-p03"
                 },
                 {
                   "title": "向量的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-2-u03"
             },
             {
@@ -3986,24 +3233,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "复数概念",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u04-p01"
                 },
                 {
                   "title": "复数运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u04-p02"
                 },
                 {
                   "title": "复数的几何意义",
-                  "thought": "",
                   "status": "pending",
                   "id": "g10-required-2-u04-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g10-required-2-u04"
             }
           ],
@@ -4028,30 +3271,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "空间点线面关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u01-p01"
                 },
                 {
                   "title": "直线与平面平行",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u01-p02"
                 },
                 {
                   "title": "直线与平面垂直",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u01-p03"
                 },
                 {
                   "title": "平面与平面关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-required-3-u01"
             },
             {
@@ -4060,36 +3298,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "柱体",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u02-p01"
                 },
                 {
                   "title": "锥体",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u02-p02"
                 },
                 {
                   "title": "台体",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u02-p03"
                 },
                 {
                   "title": "球",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u02-p04"
                 },
                 {
                   "title": "表面积与体积",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u02-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-required-3-u02"
             },
             {
@@ -4098,30 +3330,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "随机事件",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u03-p01"
                 },
                 {
                   "title": "古典概型",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u03-p02"
                 },
                 {
                   "title": "独立性",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u03-p03"
                 },
                 {
                   "title": "概率应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-required-3-u03"
             },
             {
@@ -4130,30 +3357,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "数据获取",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u04-p01"
                 },
                 {
                   "title": "抽样方法",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u04-p02"
                 },
                 {
                   "title": "统计图表",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u04-p03"
                 },
                 {
                   "title": "统计量与数据解释",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-required-3-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-required-3-u04"
             }
           ],
@@ -4169,24 +3391,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "直线方程",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u01-p01"
                 },
                 {
                   "title": "两直线位置关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u01-p02"
                 },
                 {
                   "title": "距离公式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u01-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-elective-1-u01"
             },
             {
@@ -4195,30 +3413,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "椭圆",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u02-p01"
                 },
                 {
                   "title": "双曲线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u02-p02"
                 },
                 {
                   "title": "抛物线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u02-p03"
                 },
                 {
                   "title": "直线与圆锥曲线",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u02-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-elective-1-u02"
             },
             {
@@ -4227,24 +3440,20 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "空间向量运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u03-p01"
                 },
                 {
                   "title": "空间向量坐标",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u03-p02"
                 },
                 {
                   "title": "空间角与距离",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u03-p03"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-elective-1-u03"
             },
             {
@@ -4253,30 +3462,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "数列概念",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u04-p01"
                 },
                 {
                   "title": "等差数列",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u04-p02"
                 },
                 {
                   "title": "等比数列",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u04-p03"
                 },
                 {
                   "title": "数列求和",
-                  "thought": "",
                   "status": "pending",
                   "id": "g11-elective-1-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g11-elective-1-u04"
             }
           ],
@@ -4301,30 +3505,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "导数概念",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u01-p01"
                 },
                 {
                   "title": "导数运算",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u01-p02"
                 },
                 {
                   "title": "导数与函数性质",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u01-p03"
                 },
                 {
                   "title": "导数的应用",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u01-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g12-elective-2-u01"
             },
             {
@@ -4333,36 +3532,30 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "分类加法原理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u02-p01"
                 },
                 {
                   "title": "分步乘法原理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u02-p02"
                 },
                 {
                   "title": "排列",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u02-p03"
                 },
                 {
                   "title": "组合",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u02-p04"
                 },
                 {
                   "title": "二项式定理",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u02-p05"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g12-elective-2-u02"
             },
             {
@@ -4371,30 +3564,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "条件概率",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u03-p01"
                 },
                 {
                   "title": "全概率公式",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u03-p02"
                 },
                 {
                   "title": "随机变量",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u03-p03"
                 },
                 {
                   "title": "概率分布",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u03-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g12-elective-2-u03"
             },
             {
@@ -4403,30 +3591,25 @@ window.curriculumData = {
               "points": [
                 {
                   "title": "相关关系",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u04-p01"
                 },
                 {
                   "title": "回归分析",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u04-p02"
                 },
                 {
                   "title": "独立性检验",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u04-p03"
                 },
                 {
                   "title": "统计结论解释",
-                  "thought": "",
                   "status": "pending",
                   "id": "g12-elective-2-u04-p04"
                 }
               ],
-              "thought": "真实课程目录已经录入；细分课时、教材顺序和个人追问将在正式备课时继续补充。",
               "id": "g12-elective-2-u04"
             }
           ],

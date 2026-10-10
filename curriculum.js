@@ -18,12 +18,7 @@ const resetViewButton = document.querySelector("[data-reset-view]");
 const topicSearch = document.querySelector("[data-topic-search]");
 const searchCount = document.querySelector("[data-search-count]");
 
-const statusLabels = {
-  pending: "尚未备课",
-  planning: "已进入规划",
-  drafted: "已有教案",
-  recorded: "已完成试讲"
-};
+const statusLabels = window.lessonContent.statusLabels;
 
 let activeCategory = "all";
 let layoutMode = "loose";
@@ -127,9 +122,9 @@ function renderGrades() {
     const semesters = grade.terms.map((semester, termIndex) => {
       const units = semester.units.map((unit, unitIndex) => {
         const category = data.categories[unit.category];
-        const startedCount = unit.points.filter((point) => point.status !== "pending").length;
-        const heatLevel = startedCount === 0 ? 0 : Math.min(4, Math.ceil((startedCount / unit.points.length) * 4));
+        const unitState = window.lessonContent.unitState(unit.points);
         const points = unit.points.map((point, pointIndex) => {
+          point.status = window.lessonContent.status(point);
           const id = topicId(gradeIndex, termIndex, unitIndex, pointIndex, point);
           return `
             <button class="knowledge-chip" type="button" data-topic-id="${id}" data-status="${point.status}" style="--node-stage:${stage.color}" aria-label="${escapeHtml(`${grade.label}${termDisplayLabel(grade, semester)}，${unit.title}，${point.title}，${statusLabels[point.status]}`)}">
@@ -137,7 +132,7 @@ function renderGrades() {
             </button>`;
         }).join("");
         return `
-          <article class="unit-card" data-unit-id="${escapeHtml(unit.id)}" data-route-category="${unit.category}" data-stage="${grade.stage}" data-heat="${heatLevel}" data-search-text="${escapeHtml(unit.points.map((point) => point.title).join(" ").toLocaleLowerCase())}" style="--unit-stage:${stage.color}">
+          <article class="unit-card" data-unit-id="${escapeHtml(unit.id)}" data-route-category="${unit.category}" data-stage="${grade.stage}" data-state="${unitState}" data-search-text="${escapeHtml(unit.points.map((point) => point.title).join(" ").toLocaleLowerCase())}" style="--unit-stage:${stage.color}">
             <div class="unit-heading"><span>${category.label}</span><strong>${escapeHtml(unit.title)}</strong></div>
             <div class="knowledge-list">${points}</div>
             <button class="unit-focus-button" type="button" aria-label="聚焦单元：${escapeHtml(`${grade.label}${termDisplayLabel(grade, semester)} ${unit.title}`)}"></button>
@@ -166,8 +161,7 @@ function renderGrades() {
 function updateStats() {
   const topics = flattenTopics();
   const visible = activeCategory === "all" ? topics : topics.filter((item) => item.unit.category === activeCategory);
-  const lessonPlans = visible.filter((item) => (item.point.designs || []).length > 0).length;
-  const playableTrials = visible.reduce((total, item) => total + (item.point.rehearsals || []).filter((version) => version.video).length, 0);
+  const { designs: lessonPlans, playableTrials } = window.lessonContent.statistics(visible.map(item => item.point));
   statsRoot.innerHTML = `
     <span class="map-metric"><strong>${visible.length}</strong><small>知识点</small></span>
     <span class="map-metric"><strong>${lessonPlans}</strong><small>篇教案</small></span>
@@ -344,12 +338,13 @@ function openLesson(lesson) {
   }
   const requestId = ++lessonOpenRequest;
   currentLesson = lesson;
+  lesson.point.status = window.lessonContent.status(lesson.point);
   const stage = data.stages[lesson.grade.stage];
   const model = lessonTabModel(lesson);
   currentLessonTabs = model.tabs;
   currentLessonTabIndex = 0;
   dialogContent.innerHTML = `
-    <article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${stage.color}">
+    <article class="lesson-dialog-inner ${model.hasContent ? "" : "is-empty-lesson"}" style="--dialog-stage:${window.lessonContent.dialogColor(lesson.point, stage)}">
       ${window.lessonContent.header(lesson, stage, termDisplayLabel(lesson.grade, lesson.semester), statusLabels[lesson.point.status], data.categories[lesson.unit.category].label)}
       <div class="version-tabs" role="tablist" aria-label="课例内容">
         ${model.tabs.map((tab, index) => `<button type="button" role="tab" data-version-id="${escapeHtml(tab.id)}" aria-selected="${index === 0}">${escapeHtml(tab.label)}</button>`).join("")}
@@ -363,7 +358,10 @@ function openLesson(lesson) {
   renderVersionPanel(model.tabs[0]);
   if (!dialog.open) dialog.showModal();
   window.lessonContent.refresh(lesson.point).then(() => {
+    renderGrades();
+    applyFilterState(false);
     if (requestId !== lessonOpenRequest || currentLesson !== lesson || !dialog.open) return;
+    window.lessonContent.syncDialogState(dialogContent.querySelector('.lesson-dialog-inner'), lesson.point, stage);
     const activeId = currentLessonTabs[currentLessonTabIndex]?.id;
     currentLessonTabs = lessonTabModel(lesson).tabs;
     currentLessonTabIndex = Math.max(0, currentLessonTabs.findIndex(tab => tab.id === activeId));
@@ -759,6 +757,13 @@ renderStageBands();
 renderGrades();
 applyFilterState(false);
 resetView();
+window.lessonContent.watchCurriculum(data, () => {
+  topicLookup.clear();
+  flattenTopics().forEach(topic => topicLookup.set(topic.id, topic));
+  renderStageBands();
+  renderGrades();
+  applyFilterState(false);
+});
 const requestedUnitId = requestedParams.get("unit");
 const requestedTopicId = requestedParams.get("topic");
 if (requestedUnitId) {
