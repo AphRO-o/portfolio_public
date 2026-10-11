@@ -67,16 +67,13 @@ function animateVersionPanel(panel, direction) {
   );
 }
 
-function renderVersionPanel(tab, direction = 1, resetScroll = false) {
+function renderVersionPanel(tab, direction = 1, resetScroll = false, shouldAnimate = false) {
   const panel = dialogContent.querySelector("[data-version-panel]");
   if (!panel) return;
-  const shouldAnimate = panel.dataset.ready === "true";
-  panel.querySelectorAll("video").forEach(video => video.pause());
-  panel.dataset.ready = "true";
-  panel.innerHTML = window.lessonContent.render(tab, currentLesson.point, topicLookup);
+  const markup = window.lessonContent.render(tab, currentLesson.point, topicLookup);
+  if (!window.lessonContent.updatePanel(panel, markup, resetScroll)) return;
   window.lessonContent.bindMedia(panel);
-  if (resetScroll) panel.scrollTop = 0;
-  window.lessonContent.bindVersionPicker(panel, tab, () => renderVersionPanel(tab));
+  window.lessonContent.bindVersionPicker(panel, tab, () => renderVersionPanel(tab, 1, false, true));
   if (shouldAnimate) animateVersionPanel(panel, direction);
 }
 
@@ -87,7 +84,7 @@ function selectVersion(versionId) {
   const selected = currentLessonTabs[nextIndex] || currentLessonTabs[0];
   currentLessonTabIndex = nextIndex;
   dialogContent.querySelectorAll("[data-version-id]").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.versionId === selected.id)));
-  renderVersionPanel(selected, direction, true);
+  renderVersionPanel(selected, direction, true, true);
 }
 
 function openLesson(lesson) {

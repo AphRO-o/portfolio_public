@@ -1,8 +1,33 @@
 (() => {
   const escape = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
   function markdown(markdown) {
-    const inline = value => escape(value).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
-    const lines = String(markdown || '').replaceAll('\r\n', '\n').split('\n');
+    const formulas = new Map();
+    let source = String(markdown || '').replaceAll('\r\n', '\n');
+    let prefix = '\uE000lesson-math-';
+    while (source.includes(prefix)) prefix += '-';
+    // Protect TeX from Markdown's emphasis, table and line parsing; leave code literal.
+    source = source.replace(/```[\s\S]*?(?:```|$)|`[^`\n]*`|(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$|(?<![\\$])\$(?!\$)([^\n$]+?)(?<!\\)\$(?!\$)/g, (raw, block, inline) => {
+      if (block === undefined && inline === undefined) return raw;
+      if (inline !== undefined && inline !== inline.trim()) return raw;
+      const token = `${prefix}${formulas.size}\uE001`;
+      formulas.set(token, { tex: block ?? inline, display: block !== undefined, raw });
+      return token;
+    });
+    const formulaHtml = (formula, block = false) => {
+      const rendered = window.katex ? window.katex.renderToString(formula.tex.trim(), {
+        displayMode: formula.display, throwOnError: false, trust: false,
+        strict: 'ignore', maxExpand: 1000, maxSize: 20
+      }) : escape(formula.raw);
+      return block ? `<div class="lesson-math-block">${rendered}</div>` : rendered;
+    };
+    const inline = value => {
+      let html = escape(value).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      for (const [token, formula] of formulas) {
+        if (html.includes(token)) html = html.replaceAll(token, formulaHtml(formula));
+      }
+      return html;
+    };
+    const lines = source.split('\n');
     const html = [];
     let list = '';
     const closeList = () => { if (list) html.push(`</${list}>`); list = ''; };
@@ -10,6 +35,9 @@
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) { closeList(); continue; }
+      if (formulas.get(line)?.display) {
+        closeList(); html.push(formulaHtml(formulas.get(line), true)); continue;
+      }
       if (line.startsWith('```')) {
         closeList(); const code = [];
         while (++i < lines.length && !lines[i].trim().startsWith('```')) code.push(lines[i]);
@@ -345,6 +373,18 @@
       else if (open && event.key === 'Tab') closePicker(open);
     });
   }
+  const panelMarkup = new WeakMap();
+  function updatePanel(panel, markup, resetScroll = false) {
+    if (panelMarkup.get(panel) === markup) {
+      if (resetScroll) panel.scrollTop = 0;
+      return false;
+    }
+    panel.querySelectorAll('video').forEach(video => video.pause());
+    panel.innerHTML = markup;
+    panelMarkup.set(panel, markup);
+    if (resetScroll) panel.scrollTop = 0;
+    return true;
+  }
   async function refresh(point) {
     const response = await fetch(`/lessons/${encodeURIComponent(point.id)}/index.json`, { cache: 'no-store' });
     if (!response.ok) throw new Error('暂时无法读取最新课程材料');
@@ -355,5 +395,5 @@
     point.rehearsals = lesson.rehearsals;
     point.status = status(point);
   }
-  window.lessonContent = Object.freeze({ escape, markdown, model, render, refresh, header, bindDialog, bindVersionPicker, bindMedia, videoAddress, status, statusLabels, unitState, dialogColor, syncDialogState, statistics, watchCurriculum });
+  window.lessonContent = Object.freeze({ escape, markdown, model, render, updatePanel, refresh, header, bindDialog, bindVersionPicker, bindMedia, videoAddress, status, statusLabels, unitState, dialogColor, syncDialogState, statistics, watchCurriculum });
 })();

@@ -280,6 +280,9 @@
 .lesson-markdown { color: var(--muted); font-size: 0.76rem; line-height: 1.78; }
 .lesson-markdown h3, .lesson-markdown h4 { margin: 1.15rem 0 0.45rem; color: var(--ink); font-family: var(--serif); }
 .lesson-markdown p { margin: 0.45rem 0; }
+.lesson-math-block { margin:1rem 0; color:var(--ink); }
+.lesson-markdown .katex-display { margin:0.75em 0; padding:0.25em 0; overflow-x:auto; overflow-y:hidden; }
+.lesson-markdown .katex-display > .katex { white-space:nowrap; }
 .lesson-markdown ul, .lesson-markdown ol { margin: 0.45rem 0 0.75rem; padding-left: 1.2rem; }
 .lesson-markdown blockquote { margin: 0.75rem 0; padding: 0.7rem 0.9rem; color: var(--green); background: #edf4ee; border-left: 3px solid var(--green); }
 .lesson-markdown hr { margin: 1rem 0; border: 0; border-top: 1px solid #e3dbd1; }
