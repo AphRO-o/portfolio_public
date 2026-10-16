@@ -462,13 +462,13 @@
 .bili-click-shield { position:absolute; z-index:1; inset:0 0 min(84px,40%); touch-action:pan-y; }
 .bili-click-shield span { position:absolute; bottom:.5rem; left:50%; width:max-content; max-width:95%; padding:.3rem .55rem; transform:translateX(-50%); border-radius:4px; color:#fff; background:rgba(0,0,0,.65); font-size:.65rem; opacity:0; pointer-events:none; transition:opacity .15s; }
 .bili-click-shield:hover span { opacity:1; }
-.bili-fullscreen { position:absolute; z-index:2; right:8px; bottom:16px; display:grid; place-items:center; width:40px; height:40px; padding:10px; border:0; border-radius:0; color:white; background:rgba(24,24,24,.8); cursor:pointer; }
+.bili-fullscreen { position:absolute; z-index:2; top:12px; right:12px; display:grid; place-items:center; width:40px; height:40px; padding:10px; border:0; border-radius:8px; color:white; background:rgba(24,24,24,.8); cursor:pointer; }
 .bili-fullscreen svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; }
 .bili-fullscreen:hover { color:var(--dialog-stage); }
 .bili-fullscreen:focus-visible { outline:2px solid var(--dialog-stage); outline-offset:-3px; }
 .lesson-dialog-inner .lesson-media > .bili-video:fullscreen { position:fixed; inset:0; width:100vw; height:100vh; max-width:none; aspect-ratio:auto; margin:0; border:0; border-radius:0; }
 .bili-video:fullscreen .bili-click-shield { bottom:84px; }
-.bili-video:fullscreen .bili-fullscreen { right:0; bottom:0; width:48px; height:40px; }
+.bili-video:fullscreen .bili-fullscreen { top:16px; right:16px; bottom:auto; }
 .lesson-board-section { margin-top:2.2rem; padding-top:1.3rem; border-top:1px solid color-mix(in srgb,var(--dialog-stage) 22%,#e6dfd4); }
 .lesson-board-section > h3 { margin:0 0 .8rem; color:var(--lesson-heading); font-family:var(--serif); font-size:1.2rem; }
 .lesson-dialog-inner .lesson-board-section .board-preview { margin:0; padding:.6rem; overflow:hidden; border-radius:12px; background:#f3eee5; border-color:color-mix(in srgb,var(--dialog-stage) 25%,#dfd5c7); }

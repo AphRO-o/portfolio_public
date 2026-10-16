@@ -1,0 +1,172 @@
+{
+  "personal": {
+    "name": "徐晨昊",
+    "headerLines": [
+      {
+        "text": "数学教师候选人。计算机科学、工程训练与长期数学辅导经历，共同构成我理解问题、拆解概念和设计学习路径的方式。"
+      },
+      {
+        "text": "NUS 计算机科学硕士｜同济大学优秀毕业论文｜IELTS 7.5｜Python / SQL / Excel"
+      },
+      {
+        "text": ""
+      }
+    ]
+  },
+  "settings": {
+    "spacing": 1,
+    "fontFamily": "song",
+    "bodySize": 10.5,
+    "nameSize": 22,
+    "sectionTitleSize": 12,
+    "sectionGap": 8.5,
+    "entryGap": 4.2,
+    "bulletGap": 0.7
+  },
+  "sections": [
+    {
+      "id": "teach-section-1",
+      "title": "教育背景",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "teach-1-1",
+          "title": "新加坡国立大学",
+          "subtitle": "计算机科学 · 硕士研究生",
+          "date": "2025.08 — 2027.01",
+          "bullets": [
+            "GPA 4.07 / 5（截至 2026.08）。",
+            "相关课程：数据结构与算法、机器学习概率建模、人工智能、神经网络与深度学习。",
+            "毕业论文：运用概率统计、机器学习等方法比较不同数据处理方案，分析物联网通信效率与模型表现的权衡。"
+          ],
+          "visible": true
+        },
+        {
+          "id": "teach-1-2",
+          "title": "同济大学",
+          "subtitle": "土木工程 · 本科",
+          "date": "2020.09 — 2025.06",
+          "bullets": [
+            "GPA 86 / 100（前 30%），同济大学三等奖学金，优秀团员。",
+            "相关课程：高等数学、线性代数、概率论与数理统计。",
+            "毕业论文：运用语义分割、机器学习与 GIS 分析道路安全影响因素，获校级优秀毕业论文。"
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "teach-section-2",
+      "title": "教学经历",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "teach-2-1",
+          "title": "小学一对一家教",
+          "subtitle": "四年级全科辅导 · 侧重语文 · 每周约 3 次",
+          "date": "2024.05 — 2024.08",
+          "bullets": [
+            "结合学校进度开展下学期知识预习讲解、作业辅导与复习。",
+            "重点进行写作辅导：先引导学生用自然语言叙述个人经历，再逐步关注结构表达；结合“父亲教骑自行车”等生活经验，通过提问发现独特细节，将真实体验转化为具体内容。"
+          ],
+          "visible": true
+        },
+        {
+          "id": "teach-2-2",
+          "title": "初中一对一家教",
+          "subtitle": "七年级全科辅导 · 侧重数学 · 每周约 3 次",
+          "date": "2023.09 — 2023.12",
+          "bullets": [
+            "结合学校课程进度开展作业辅导、知识讲解与阶段复习。",
+            "重点辅导整式运算、因式分解、同底数幂运算等内容，根据掌握情况调整讲解方式，通过例题拆解、提问和针对性练习帮助学生理解运算规则与解题方法。"
+          ],
+          "visible": true
+        },
+        {
+          "id": "teach-2-3",
+          "title": "高中一对一家教",
+          "subtitle": "高一至高三数学辅导 · 每周约 2 次",
+          "date": "2020.10 — 2022.06",
+          "bullets": [
+            "结合学校课程进度进行知识讲解、作业辅导和疑难问题答疑。",
+            "发现学生对“方程移项变号”等基础规则存在理解断点后，追溯其前置知识，从小学阶段的方程概念重新梳理，帮助学生建立从基础概念到当前内容的知识联系。"
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "teach-section-3",
+      "title": "教育活动与组织经历",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "teach-3-1",
+          "title": "ASCE 美国土木工程师协会同济学生分会",
+          "subtitle": "主席",
+          "date": "2022.09 — 2023.08",
+          "bullets": [
+            "主导三届面向大一新生的结构设计竞赛，自主设计《火星撞地球》赛题，把竖向、水平、扭转及冲击等荷载工况融入任务；面向参赛学生主讲赛题要求并统一解答规则与技术问题。",
+            "参与两届全国中学生结构设计大赛；第十一届担任学生负责人，统筹赛程、参赛沟通、住宿饮食、志愿者协调及现场组织。",
+            "面向中学生讲解赛题与规则，结合结构受力、力学与数学原理答疑，将结构力学概念转化为可理解的语言和实例。"
+          ],
+          "visible": true
+        },
+        {
+          "id": "teach-3-2",
+          "title": "闵行区青少年活动中心",
+          "subtitle": "暑期志愿者",
+          "date": "2018.08",
+          "bullets": [
+            "参与约 20 名二年级小学生暑期托班的日常管理与陪伴，协助维持班级秩序、组织早操及集体活动。",
+            "参与星期 8 小镇集体活动，协助学生分组、秩序维护、午餐发放及安全看护。"
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "资格与技能",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "teach-skills-1",
+          "title": "教师资格",
+          "subtitle": "拟参加 2027 年上半年高中数学教师资格考试",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        },
+        {
+          "id": "teach-skills-2",
+          "title": "普通话",
+          "subtitle": "拟于 2027 年 1 月参加考试",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        },
+        {
+          "id": "teach-skills-3",
+          "title": "英语",
+          "subtitle": "2024 IELTS Academic 7.5",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        },
+        {
+          "id": "teach-skills-4",
+          "title": "数字技能",
+          "subtitle": "Python、Excel、SQL；具备数据分析、基础编程及 AI / ML 背景，可支持数学建模、STEM 及信息科技相关教学活动",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

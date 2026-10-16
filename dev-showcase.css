@@ -58,7 +58,8 @@ body {
   text-decoration: none;
 }
 .showcase-brand > span { margin-right: 0.42rem; color: var(--showcase-accent); }
-.showcase-brand > i { font-style: normal; animation: showcase-blink 1s step-end infinite; }
+.showcase-brand > i,
+.showcase-footer strong > i { font-style: normal; animation: showcase-blink 1s step-end infinite; }
 .showcase-site .resume-nav-link { display: inline-flex; align-items: center; justify-self: end; gap: 14px; padding: 9px 13px; border: 1px solid rgba(137, 202, 245, .48); color: #d9f1ff; background: rgba(45, 112, 162, .16); font-family: var(--showcase-mono); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; transition: border-color 160ms ease, background 160ms ease; }
 .showcase-site .resume-nav-link:hover,
 .showcase-site .resume-nav-link:focus-visible { border-color: #8bd6ff; background: rgba(76, 155, 211, .27); outline: 0; }
@@ -369,19 +370,20 @@ body {
 .image-editor-status { min-height: 1.5em; margin: 10px 0 0; color: #acd0e8; font-size: .67rem; line-height: 1.4; }
 
 .developer-resume {
+  --resume-inset: clamp(90px, 11vw, 180px);
   position: relative;
   display: grid;
   grid-template-columns: minmax(300px, 0.78fr) minmax(440px, 1.22fr);
   gap: clamp(60px, 8vw, 150px);
   min-height: 100svh;
-  padding: clamp(90px, 11vw, 180px) clamp(24px, 8vw, 150px);
+  padding: var(--resume-inset) clamp(24px, 8vw, 150px);
   color: #edf5fb;
   background: #091d32;
 }
 .resume-glow-layer { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
 .resume-glow-spot { position: absolute; top: 0; left: 0; width: 360px; height: 360px; opacity: 0; border-radius: 50%; background: radial-gradient(circle, rgba(104, 190, 255, .22) 0%, rgba(77, 158, 226, .11) 33%, rgba(60, 136, 207, .035) 57%, transparent 72%); pointer-events: none; transition: opacity 220ms ease; will-change: transform, opacity; }
 .resume-glow-spot.is-visible { opacity: 1; }
-.resume-intro { position: sticky; z-index: 1; top: 70px; align-self: start; }
+.resume-intro { position: sticky; z-index: 1; top: var(--resume-inset); align-self: start; }
 .resume-kicker,.resume-label { margin: 0; color: #83b9dc; font-family: var(--showcase-mono); font-size: 0.65rem; letter-spacing: 0.16em; }
 .resume-intro h2 { margin: 28px 0 0; font-family: var(--showcase-serif); font-size: clamp(4.4rem, 7.5vw, 9rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.09em; }
 .resume-role { margin: 18px 0 0; color: var(--showcase-accent); font-family: var(--showcase-mono); font-size: 0.74rem; letter-spacing: 0.05em; }
@@ -389,6 +391,7 @@ body {
 .resume-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
 .resume-facts span { padding: 6px 9px; border: 1px solid rgba(172,216,244,.25); color: #b6ccdc; font-size: 0.66rem; }
 .resume-mail { display: inline-flex; gap: 18px; margin-top: 40px; padding-bottom: 3px; border-bottom: 1px solid currentColor; font-family: var(--showcase-mono); font-size: 0.72rem; text-decoration: none; }
+.resume-mail a { text-decoration: none; }
 .resume-content { position: relative; z-index: 1; min-width: 0; }
 .resume-group { padding: 0 0 68px; border-top: 1px solid rgba(184,224,249,.27); }
 .resume-label { padding: 18px 0 32px; }

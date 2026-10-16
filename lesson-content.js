@@ -138,6 +138,24 @@
     const bv = text.match(/^bv([0-9A-Za-z]{10})$/i);
     return bv ? `https://www.bilibili.com/video/BV${bv[1]}/` : text;
   }
+  function featuredLessons(curriculum) {
+    const configured = curriculum.featuredLessons ?? { primary: 'g4-up-u05-p01' };
+    const stages = new Map();
+    for (const grade of curriculum.grades) for (const term of grade.terms) for (const unit of term.units) for (const point of unit.points) stages.set(point.id, grade.stage);
+    return Object.fromEntries(['primary', 'junior', 'senior'].map(stage => [stage, stages.get(configured[stage]) === stage ? configured[stage] : null]));
+  }
+  function pauseMedia(panel) {
+    panel.querySelectorAll('video').forEach(video => video.pause());
+    panel.querySelectorAll('[data-bili-video]').forEach(slot => {
+      const frame = slot.querySelector('[data-bili-frame]');
+      frame.removeAttribute('src');
+      frame.hidden = true;
+      slot.dataset.started = 'false';
+      slot.querySelector('[data-bili-start]').hidden = false;
+      slot.querySelector('[data-bili-shield]').hidden = true;
+      slot.querySelector('[data-bili-fullscreen]').hidden = true;
+    });
+  }
   function bilibiliPlayer(value) {
     let url;
     try { url = new URL(videoAddress(value)); } catch { return ''; }
@@ -395,5 +413,5 @@
     point.rehearsals = lesson.rehearsals;
     point.status = status(point);
   }
-  window.lessonContent = Object.freeze({ escape, markdown, model, render, updatePanel, refresh, header, bindDialog, bindVersionPicker, bindMedia, videoAddress, status, statusLabels, unitState, dialogColor, syncDialogState, statistics, watchCurriculum });
+  window.lessonContent = Object.freeze({ escape, markdown, model, render, updatePanel, refresh, header, bindDialog, bindVersionPicker, bindMedia, media, pauseMedia, featuredLessons, videoAddress, status, statusLabels, unitState, dialogColor, syncDialogState, statistics, watchCurriculum });
 })();

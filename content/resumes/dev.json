@@ -1,0 +1,128 @@
+{
+  "personal": {
+    "name": "徐晨昊",
+    "headerLines": [
+      {
+        "text": "Developer · Researcher · Game Maker"
+      },
+      {
+        "text": "新加坡国立大学计算机科学硕士在读。"
+      },
+      {
+        "text": "NUS 计算机科学硕士｜同济大学优秀毕业论文｜IELTS 7.5｜Python / SQL / JavaScript / Unity｜[contact@xuchenhao.me](mailto:contact@xuchenhao.me)"
+      }
+    ]
+  },
+  "settings": {
+    "spacing": 1,
+    "fontFamily": "song",
+    "bodySize": 10.5,
+    "nameSize": 22,
+    "sectionTitleSize": 12,
+    "sectionGap": 8.5,
+    "entryGap": 4.2,
+    "bulletGap": 0.7
+  },
+  "sections": [
+    {
+      "id": "dev-section-1",
+      "title": "EDUCATION",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "dev-1-1",
+          "title": "新加坡国立大学",
+          "subtitle": "计算机科学 · 硕士研究生",
+          "date": "2025.08 — 2027.01",
+          "bullets": [
+            "GPA 4.07 / 5（截至 2026.08）。",
+            "数据结构与算法、机器学习概率建模、人工智能、神经网络与深度学习。",
+            "研究物联网数据处理方案中通信开销、模型表现与系统约束之间的权衡。"
+          ],
+          "visible": true
+        },
+        {
+          "id": "dev-1-2",
+          "title": "同济大学",
+          "subtitle": "土木工程 · 本科",
+          "date": "2020.09 — 2025.06",
+          "bullets": [
+            "GPA 86 / 100（前 30%），校三等奖学金、优秀团员。",
+            "以语义分割、机器学习与 GIS 分析道路安全影响因素，获校级优秀毕业论文。"
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "dev-section-2",
+      "title": "SELECTED PRACTICE",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "dev-2-1",
+          "title": "ASCE 同济学生分会",
+          "subtitle": "主席 · 竞赛设计与组织",
+          "date": "2022.09 — 2023.08",
+          "bullets": [
+            "主导三届结构设计竞赛，自主设计《火星撞地球》赛题并统筹参赛沟通与现场组织。",
+            "将结构受力、力学与数学原理转化为面向中学生的可理解语言和实例。"
+          ],
+          "visible": true
+        },
+        {
+          "id": "dev-2-2",
+          "title": "一对一教学",
+          "subtitle": "小学至高中 · 数学与综合辅导",
+          "date": "2020.10 — 2024.08",
+          "bullets": [
+            "通过问题拆解、反例和针对性练习定位理解断点，并重建知识之间的连接。"
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "TOOLBOX",
+      "visible": true,
+      "collapsed": false,
+      "entries": [
+        {
+          "id": "dev-skills-1",
+          "title": "CODE",
+          "subtitle": "Python, JavaScript, SQL",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        },
+        {
+          "id": "dev-skills-2",
+          "title": "ML / DATA",
+          "subtitle": "PyTorch, statistical analysis, GIS",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        },
+        {
+          "id": "dev-skills-3",
+          "title": "GAME",
+          "subtitle": "Unity, game design, art direction",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        },
+        {
+          "id": "dev-skills-4",
+          "title": "LANGUAGE",
+          "subtitle": "中文 · English (IELTS 7.5)",
+          "date": "",
+          "bullets": [],
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

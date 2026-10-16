@@ -3,6 +3,7 @@ const pane = document.querySelector("[data-reading-pane]");
 const titleNode = document.querySelector("[data-article-title]");
 const authorNode = document.querySelector("[data-article-author]");
 const dateNode = document.querySelector("[data-article-date]");
+const recognitionNode = document.querySelector("[data-article-recognition]");
 const bodyNode = document.querySelector("[data-article-body]");
 const countNode = document.querySelector("[data-library-count]");
 const authorFilterRoot = document.querySelector("[data-author-filter]");
@@ -13,7 +14,6 @@ let library = [];
 let activeAuthor = "all";
 let currentArticleId = null;
 let articleTransition = 0;
-let lockedGlassCleanup = null;
 
 const authorPalette = ["#315f4d", "#9b6846", "#66708f", "#86617d", "#52777b", "#8b7450"];
 
@@ -37,10 +37,9 @@ function markdownToHtml(markdown) {
   const closeList = () => { if (listType) html.push(`</${listType}>`); listType = null; };
   lines.forEach((line, index) => {
     const trimmed = line.trim();
-    if (index === 0 && /^#\s+/.test(trimmed)) return;
     if (!trimmed) { closeList(); return; }
     if (/^---+$/.test(trimmed)) { closeList(); html.push("<hr />"); return; }
-    const heading = trimmed.match(/^(#{2,4})\s+(.+)$/);
+    const heading = trimmed.match(/^(#{1,4})\s+(.+)$/);
     if (heading) { closeList(); const level = Math.min(heading[1].length, 3); html.push(`<h${level}>${renderInline(heading[2])}</h${level}>`); return; }
     const quote = trimmed.match(/^>\s?(.*)$/);
     if (quote) { closeList(); html.push(`<blockquote><p>${renderInline(quote[1])}</p></blockquote>`); return; }
@@ -60,62 +59,15 @@ function markdownToHtml(markdown) {
 }
 
 function lockedArticleToHtml(article) {
-  const widths = [94, 82, 89, 68, 91, 76, 86, 57];
-  return (article.segments || []).map((segment, segmentIndex) => {
+  return (article.segments || []).map((segment) => {
     if (segment.type === "public") {
       return `<section class="locked-public">${markdownToHtml(segment.markdown || "")}</section>`;
     }
-    const blocks = Math.max(1, Math.min(7, Number(segment.blocks) || 1));
-    const lines = Array.from({ length: blocks * 3 + 1 }, (_, lineIndex) => {
-      const width = widths[(segmentIndex * 3 + lineIndex) % widths.length];
-      return `<i style="--locked-line:${width}%"></i>`;
+    const images = (segment.images || []).map(({ desktop, mobile }) => {
+      return `<picture><source media="(max-width:720px)" srcset="${escapeHtml(mobile.src)}" width="${mobile.width}" height="${mobile.height}"><img src="${escapeHtml(desktop.src)}" width="${desktop.width}" height="${desktop.height}" alt="" loading="eager" decoding="async" draggable="false"></picture>`;
     }).join("");
-    return `<section class="locked-copy" aria-label="此段正文暂未公开"><div class="locked-copy-glass" aria-hidden="true">${lines}</div><span class="locked-copy-note">正文暂未公开</span></section>`;
+    return `<section class="locked-copy" aria-label="此段正文暂未公开"><div class="locked-copy-lines" aria-hidden="true">${images}</div></section>`;
   }).join("");
-}
-
-function setupLockedGlassInteraction() {
-  lockedGlassCleanup?.();
-  lockedGlassCleanup = null;
-  if (reducedMotion.matches) return;
-  const glasses = [...bodyNode.querySelectorAll(".locked-copy")];
-  if (!glasses.length) return;
-  let frame = 0;
-  let pointerX = 50;
-  let pointerY = 50;
-  const properties = ["--glass-light-x", "--glass-light-y", "--glass-content-x", "--glass-content-y", "--glass-shadow-x", "--glass-shadow-y"];
-  const paint = () => {
-    frame = 0;
-    glasses.forEach((glass) => {
-      const oppositeX = 100 - pointerX;
-      const oppositeY = 100 - pointerY;
-      glass.style.setProperty("--glass-light-x", `${oppositeX.toFixed(1)}%`);
-      glass.style.setProperty("--glass-light-y", `${oppositeY.toFixed(1)}%`);
-      glass.style.setProperty("--glass-content-x", `${((pointerX - 50) * .035).toFixed(2)}px`);
-      glass.style.setProperty("--glass-content-y", `${((pointerY - 50) * .025).toFixed(2)}px`);
-      glass.style.setProperty("--glass-shadow-x", `${((50 - pointerX) * .07).toFixed(2)}px`);
-      glass.style.setProperty("--glass-shadow-y", `${(10 + (50 - pointerY) * .045).toFixed(2)}px`);
-    });
-  };
-  const trackPointer = (event) => {
-    pointerX = Math.max(0, Math.min(100, (event.clientX / window.innerWidth) * 100));
-    pointerY = Math.max(0, Math.min(100, (event.clientY / window.innerHeight) * 100));
-    if (!frame) frame = requestAnimationFrame(paint);
-  };
-  const reset = () => {
-    if (frame) cancelAnimationFrame(frame);
-    frame = 0;
-    glasses.forEach((glass) => properties.forEach((property) => glass.style.removeProperty(property)));
-  };
-  document.addEventListener("pointermove", trackPointer, { passive: true });
-  document.addEventListener("pointerleave", reset, { passive: true });
-  window.addEventListener("blur", reset, { passive: true });
-  lockedGlassCleanup = () => {
-    document.removeEventListener("pointermove", trackPointer);
-    document.removeEventListener("pointerleave", reset);
-    window.removeEventListener("blur", reset);
-    reset();
-  };
 }
 
 function authorAccent(author) {
@@ -173,11 +125,9 @@ function commitArticle(article, updateUrl, markerDirection, updateIndicator = tr
   titleNode.textContent = article.title;
   authorNode.textContent = article.author || "未署名";
   dateNode.textContent = article.date && article.date !== String(article.year) ? article.date : "";
+  recognitionNode.textContent = [article.publication, article.awards].filter((value) => value?.trim()).join(" · ");
   bodyNode.classList.toggle("is-locked", Boolean(article.locked));
-  lockedGlassCleanup?.();
-  lockedGlassCleanup = null;
   bodyNode.innerHTML = article.locked ? lockedArticleToHtml(article) : markdownToHtml(article.markdown || "");
-  if (article.locked) setupLockedGlassInteraction();
   listRoot.querySelectorAll("[data-article-id]").forEach((button) => button.classList.toggle("is-active", button.dataset.articleId === article.id));
   const activeChoice = listRoot.querySelector(`[data-article-id="${CSS.escape(article.id)}"]`);
   if (updateIndicator) syncArticleChoiceIndicator(hadCurrentArticle);
@@ -224,7 +174,7 @@ function showArticle(id, updateUrl = true, animate = true) {
 function renderLibrary(updateIndicator = true) {
   const visibleItems = visibleLibrary();
   const years = [...new Set(visibleItems.map((item) => item.year))];
-  listRoot.innerHTML = `${years.map((year) => `<section class="year-group" data-library-year="${escapeHtml(year)}"><span class="year-label">${escapeHtml(year)}</span><div class="year-articles">${visibleItems.filter((item) => item.year === year).map((item) => `<button class="article-choice" type="button" data-article-id="${escapeHtml(item.id)}" style="--author-accent:${authorAccent(item.author)}"><span>《${escapeHtml(item.title)}》</span></button>`).join("")}</div></section>`).join("")}<i class="article-choice-indicator" aria-hidden="true"></i>`;
+  listRoot.innerHTML = `${years.map((year) => `<section class="year-group" data-library-year="${escapeHtml(year)}"><span class="year-label">${escapeHtml(year || "未注明")}</span><div class="year-articles">${visibleItems.filter((item) => item.year === year).map((item) => `<button class="article-choice" type="button" data-article-id="${escapeHtml(item.id)}" style="--author-accent:${authorAccent(item.author)}"><span>《${escapeHtml(item.title)}》</span></button>`).join("")}</div></section>`).join("")}<i class="article-choice-indicator" aria-hidden="true"></i>`;
   listRoot.querySelectorAll("[data-article-id]").forEach((button) => button.addEventListener("click", () => showArticle(button.dataset.articleId)));
   listRoot.querySelector(`[data-article-id="${CSS.escape(currentArticleId || "")}"]`)?.classList.add("is-active");
   if (updateIndicator) requestAnimationFrame(() => syncArticleChoiceIndicator(false));
@@ -376,6 +326,38 @@ async function loadLibrary() {
     document.body.classList.add("reading-room-ready");
   }
 }
+
+let refreshingLibrary = false;
+async function refreshWritingLibrary() {
+  if (refreshingLibrary || !library.length || document.hidden) return;
+  refreshingLibrary = true;
+  try {
+    const response = await fetch("/writing-library.json", { cache: "no-store" });
+    if (!response.ok) return;
+    const next = (await response.json()).items;
+    if (!Array.isArray(next) || !next.length || JSON.stringify(next) === JSON.stringify(library)) return;
+    const scrollTop = pane.scrollTop;
+    library = next;
+    if (activeAuthor !== "all" && !library.some((item) => item.author === activeAuthor)) activeAuthor = "all";
+    const selected = visibleLibrary().find((item) => item.id === currentArticleId) || visibleLibrary()[0];
+    ++articleTransition;
+    articleShell.classList.remove("is-entering", "is-leaving");
+    renderAuthorFilter();
+    updateLibraryCount();
+    renderLibrary();
+    commitArticle(selected, true, false);
+    pane.scrollTop = scrollTop;
+  } catch { /* Keep the current reading when the network is unavailable. */ }
+  finally { refreshingLibrary = false; }
+}
+if (typeof BroadcastChannel === "function") {
+  const updates = new BroadcastChannel("portfolio-writing");
+  updates.addEventListener("message", (event) => { if (event.data?.type === "writing-saved") refreshWritingLibrary(); });
+}
+window.addEventListener("storage", (event) => { if (event.key === "portfolio-writing-updated") refreshWritingLibrary(); });
+window.addEventListener("focus", refreshWritingLibrary);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshWritingLibrary(); });
+setInterval(refreshWritingLibrary, 15000);
 
 window.addEventListener("resize", () => {
   updateAuthorFilter(false);

@@ -16,6 +16,7 @@ let mapTransitionTimer = 0;
 let mapPrepareTimer = 0;
 let pendingMapUnitId = null;
 let mapOriginTrigger = null;
+let refreshFeaturedLessons = () => {};
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -384,14 +385,13 @@ function setupFeaturedLessons() {
   const area = document.querySelector(".featured-area");
   const tabs = [...document.querySelectorAll("[data-featured-stage]")];
   const panels = [...document.querySelectorAll("[data-featured-panel]")];
-  const referencePanel = panels.find((panel) => panel.dataset.featuredPanel === "primary");
   let panelHeightFrame = 0;
   const syncPanelHeight = () => {
-    if (!area || !referencePanel) return;
+    if (!area || !panels.length) return;
     cancelAnimationFrame(panelHeightFrame);
     area.style.removeProperty("--featured-panel-height");
     panelHeightFrame = requestAnimationFrame(() => {
-      const height = Math.ceil(referencePanel.getBoundingClientRect().height);
+      const height = Math.ceil(Math.max(...panels.map(panel => panel.getBoundingClientRect().height)));
       if (height) area.style.setProperty("--featured-panel-height", `${height}px`);
     });
   };
@@ -406,6 +406,7 @@ function setupFeaturedLessons() {
     tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
     panels.forEach((panel) => {
       const inactive = panel.dataset.featuredPanel !== stage;
+      if (inactive) window.lessonContent.pauseMedia(panel);
       panel.classList.toggle("is-inactive", inactive);
       panel.toggleAttribute("inert", inactive);
       panel.setAttribute("aria-hidden", String(inactive));
@@ -413,28 +414,47 @@ function setupFeaturedLessons() {
   }));
 
   panels.forEach((panel) => {
-    const topicId = panel.dataset.featuredTopic;
-    if (!topicId) return;
-    const lesson = topicLookup.get(topicId);
-    const video = panel.querySelector("[data-featured-video]");
-    const placeholder = panel.querySelector("[data-featured-video-placeholder]");
-    const videoVersion = lesson ? (lesson.point.rehearsals || []).find((version) => version.video) : null;
-    if (video && videoVersion) {
-      video.src = videoVersion.video;
-      video.hidden = false;
-      if (placeholder) placeholder.hidden = true;
-    }
-    video?.addEventListener("click", (event) => event.stopPropagation());
     panel.addEventListener("click", (event) => {
-      if (event.target.closest("video")) return;
-      openLesson(lesson);
+      if (event.target.closest(".featured-media")) return;
+      const lesson = topicLookup.get(panel.dataset.featuredTopic);
+      if (lesson) openLesson(lesson);
     });
     panel.addEventListener("keydown", (event) => {
       if (event.target !== panel || (event.key !== "Enter" && event.key !== " ")) return;
       event.preventDefault();
-      openLesson(lesson);
+      const lesson = topicLookup.get(panel.dataset.featuredTopic);
+      if (lesson) openLesson(lesson);
     });
   });
+  refreshFeaturedLessons = () => {
+    const selected = window.lessonContent.featuredLessons(data);
+    let changed = false;
+    panels.forEach(panel => {
+      const stage = panel.dataset.featuredPanel;
+      const lesson = topicLookup.get(selected[stage]);
+      panel.dataset.featuredTopic = lesson?.point.id || '';
+      panel.classList.toggle('featured-empty', !lesson);
+      if (lesson) panel.setAttribute('tabindex', '0');
+      else panel.removeAttribute('tabindex');
+      panel.setAttribute('aria-label', lesson ? `${data.stages[stage].label}代表课例：${lesson.point.title}；点击打开完整课例` : `${data.stages[stage].label}代表课例尚未公开`);
+      if (window.lessonContent.updatePanel(panel, featuredLessonMarkup(lesson, stage))) {
+        window.lessonContent.bindMedia(panel);
+        changed = true;
+      }
+    });
+    if (changed) syncPanelHeight();
+  };
+  refreshFeaturedLessons();
+}
+
+function featuredLessonMarkup(lesson, stage) {
+  const label = data.stages[stage].label;
+  if (!lesson) return `<div><span>${{ primary:'PRIMARY MATH', junior:'JUNIOR MATH', senior:'SENIOR MATH' }[stage]}</span><strong>${label[0]}</strong></div><p>${label}代表课例尚未公开</p><small>以后再来看看吧。</small>`;
+  const { point, grade, semester, unit } = lesson;
+  const rehearsals = [...(point.rehearsals || [])].sort((a,b) => b.versionNumber - a.versionNumber);
+  const video = rehearsals.find(version => version.video);
+  const details = [`教学设计 · ${point.designs?.length || 0} 个版本`, `试讲复盘 · ${rehearsals.length} 个版本`, video ? `当前视频 · V${video.versionNumber}${video.date ? ` · ${video.date}` : ''}` : '试讲视频待上传'];
+  return `<div class="featured-topline"><span>代表课例 · ${escapeHtml(label)}${escapeHtml(grade.label)} · ${escapeHtml(termDisplayLabel(grade, semester))}</span><span>${rehearsals.length} 次试讲</span></div><div class="featured-media">${window.lessonContent.media(video || {}).video}</div><div class="featured-copy"><p>${escapeHtml(unit.title)}</p><h2>${escapeHtml(point.title)}</h2><ul>${details.map(detail => `<li>${escapeHtml(detail)}</li>`).join('')}</ul><div class="featured-open">打开教案、版本与复盘 <span>↗</span></div></div>`;
 }
 
 document.querySelector(".hero-featured-link")?.addEventListener("click", (event) => {
@@ -494,6 +514,7 @@ window.lessonContent.watchCurriculum(data, () => {
   flattenTopics().forEach(topic => topicLookup.set(topic.id, topic));
   renderHeroStats();
   renderMiniMap();
+  refreshFeaturedLessons();
 });
 setupFeaturedLessons();
 

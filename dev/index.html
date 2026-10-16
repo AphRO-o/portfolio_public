@@ -15,7 +15,8 @@
     <title>AphRO｜Developer</title>
     <link rel="preload" as="image" href="/content/dev/pic/optimized/desktop/soap_cover.webp" media="(min-width: 621px)" fetchpriority="high" />
     <link rel="preload" as="image" href="/content/dev/pic/optimized/mobile/soap_cover.webp" media="(max-width: 620px)" fetchpriority="high" />
-    <link rel="stylesheet" href="/dev-showcase.css" />
+    <link rel="stylesheet" href="/dev-showcase.css?v=resume-mail-6" />
+    <script type="module" src="/resume.js?v=panel-motion-5"></script>
   </head>
   <body>
     <div class="showcase-site" data-showcase-site>
@@ -80,38 +81,14 @@
 
         </section>
 
-        <section class="developer-resume" id="resume" aria-labelledby="resume-title">
-          <div class="resume-intro">
-            <p class="resume-kicker">FULL RESUME / 2026</p>
-            <h2 id="resume-title">徐晨昊</h2>
-            <p class="resume-role">Developer · Researcher · Game Maker</p>
-            <p class="resume-lead">新加坡国立大学计算机科学硕士在读。</p>
-            <div class="resume-facts"><span>NUS 计算机科学硕士</span><span>同济大学优秀毕业论文</span><span>IELTS 7.5</span><span>Python / SQL / JavaScript / Unity</span></div>
-            <a class="resume-mail" href="mailto:contact@xuchenhao.me">contact@xuchenhao.me <span aria-hidden="true">↗</span></a>
-          </div>
-
-          <div class="resume-content">
-            <section class="resume-group">
-              <p class="resume-label">01 / EDUCATION</p>
-              <article class="resume-entry"><time>2025.08 — 2027.01</time><div><h3>新加坡国立大学</h3><p>计算机科学 · 硕士研究生</p><ul><li>GPA 4.07 / 5（截至 2026.08）。</li><li>数据结构与算法、机器学习概率建模、人工智能、神经网络与深度学习。</li><li>研究物联网数据处理方案中通信开销、模型表现与系统约束之间的权衡。</li></ul></div></article>
-              <article class="resume-entry"><time>2020.09 — 2025.06</time><div><h3>同济大学</h3><p>土木工程 · 本科</p><ul><li>GPA 86 / 100（前 30%），校三等奖学金、优秀团员。</li><li>以语义分割、机器学习与 GIS 分析道路安全影响因素，获校级优秀毕业论文。</li></ul></div></article>
-            </section>
-
-            <section class="resume-group">
-              <p class="resume-label">02 / SELECTED PRACTICE</p>
-              <article class="resume-entry"><time>2022.09 — 2023.08</time><div><h3>ASCE 同济学生分会</h3><p>主席 · 竞赛设计与组织</p><ul><li>主导三届结构设计竞赛，自主设计《火星撞地球》赛题并统筹参赛沟通与现场组织。</li><li>将结构受力、力学与数学原理转化为面向中学生的可理解语言和实例。</li></ul></div></article>
-              <article class="resume-entry"><time>2020.10 — 2024.08</time><div><h3>一对一教学</h3><p>小学至高中 · 数学与综合辅导</p><ul><li>通过问题拆解、反例和针对性练习定位理解断点，并重建知识之间的连接。</li></ul></div></article>
-            </section>
-
-            <section class="resume-group resume-skills">
-              <p class="resume-label">03 / TOOLBOX</p>
-              <div class="skill-grid"><article><span>CODE</span><p>Python, JavaScript, SQL</p></article><article><span>ML / DATA</span><p>PyTorch, statistical analysis, GIS</p></article><article><span>GAME</span><p>Unity, game design, art direction</p></article><article><span>LANGUAGE</span><p>中文 · English (IELTS 7.5)</p></article></div>
-            </section>
-          </div>
+        <section class="developer-resume" id="resume" data-resume="dev" data-resume-src="/content/resumes/dev.json" aria-labelledby="resume-title">
+          <div class="resume-intro" data-resume-intro><p class="resume-kicker">FULL RESUME</p><h2 id="resume-title">徐晨昊</h2><p class="resume-role">Developer · Researcher · Game Maker</p><p class="resume-lead">新加坡国立大学计算机科学硕士在读。</p><div class="resume-facts"><span>NUS 计算机科学硕士</span><span>同济大学优秀毕业论文</span><span>IELTS 7.5</span><span>Python / SQL / JavaScript / Unity</span></div><div class="resume-mail"><a href="mailto:contact@xuchenhao.me" rel="noopener noreferrer">contact@xuchenhao.me</a></div></div>
+          <div class="resume-content" data-resume-content><section class="resume-group"><p class="resume-label">01 / EDUCATION</p><article class="resume-entry"><time>2025.08 — 2027.01</time><div><h3>新加坡国立大学</h3><p>计算机科学 · 硕士研究生</p><ul><li>GPA 4.07 / 5（截至 2026.08）。</li><li>数据结构与算法、机器学习概率建模、人工智能、神经网络与深度学习。</li><li>研究物联网数据处理方案中通信开销、模型表现与系统约束之间的权衡。</li></ul></div></article><article class="resume-entry"><time>2020.09 — 2025.06</time><div><h3>同济大学</h3><p>土木工程 · 本科</p><ul><li>GPA 86 / 100（前 30%），校三等奖学金、优秀团员。</li><li>以语义分割、机器学习与 GIS 分析道路安全影响因素，获校级优秀毕业论文。</li></ul></div></article></section><section class="resume-group"><p class="resume-label">02 / SELECTED PRACTICE</p><article class="resume-entry"><time>2022.09 — 2023.08</time><div><h3>ASCE 同济学生分会</h3><p>主席 · 竞赛设计与组织</p><ul><li>主导三届结构设计竞赛，自主设计《火星撞地球》赛题并统筹参赛沟通与现场组织。</li><li>将结构受力、力学与数学原理转化为面向中学生的可理解语言和实例。</li></ul></div></article><article class="resume-entry"><time>2020.10 — 2024.08</time><div><h3>一对一教学</h3><p>小学至高中 · 数学与综合辅导</p><ul><li>通过问题拆解、反例和针对性练习定位理解断点，并重建知识之间的连接。</li></ul></div></article></section><section class="resume-group"><p class="resume-label">03 / TOOLBOX</p><div class="skill-grid"><article><span>CODE</span><p>Python, JavaScript, SQL</p></article><article><span>ML / DATA</span><p>PyTorch, statistical analysis, GIS</p></article><article><span>GAME</span><p>Unity, game design, art direction</p></article><article><span>LANGUAGE</span><p>中文 · English (IELTS 7.5)</p></article></div></section></div>
         </section>
+
       </main>
 
-      <footer class="showcase-footer"><strong>&gt;&nbsp;AphRO_</strong><span>© <span data-showcase-year></span> XU CHENHAO</span><a href="#top">BACK TO TOP ↑</a></footer>
+      <footer class="showcase-footer"><strong>&gt;&nbsp;AphRO<i aria-hidden="true">_</i></strong><span>© <span data-showcase-year></span> XU CHENHAO</span><a href="#top">BACK TO TOP ↑</a></footer>
     </div>
 
     <script src="/dev-showcase.js"></script>
